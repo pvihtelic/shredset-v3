@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ski_id: 1
+  spec_id: 1
+  store_id: 1
+  product_url: MyString
+  price: 9.99
+
+two:
+  ski_id: 1
+  spec_id: 1
+  store_id: 1
+  product_url: MyString
+  price: 9.99

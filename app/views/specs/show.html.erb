@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Length:</b>
+  <%= @spec.length %>
+</p>
+
+<p>
+  <b>Turning radius:</b>
+  <%= @spec.turning_radius %>
+</p>
+
+<p>
+  <b>Tip width:</b>
+  <%= @spec.tip_width %>
+</p>
+
+<p>
+  <b>Waist width:</b>
+  <%= @spec.waist_width %>
+</p>
+
+<p>
+  <b>Tail width:</b>
+  <%= @spec.tail_width %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @spec.weight %>
+</p>
+
+<p>
+  <b>Ski:</b>
+  <%= @spec.ski_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_spec_path(@spec) %> |
+<%= link_to 'Back', specs_path %>

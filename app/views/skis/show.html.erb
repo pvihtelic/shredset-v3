@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @ski.name %>
+</p>
+
+<p>
+  <b>Ability level:</b>
+  <%= @ski.ability_level %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @ski.description %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @ski.gender %>
+</p>
+
+<p>
+  <b>Model year:</b>
+  <%= @ski.model_year %>
+</p>
+
+<p>
+  <b>Rocker type:</b>
+  <%= @ski.rocker_type %>
+</p>
+
+<p>
+  <b>Ski type:</b>
+  <%= @ski.ski_type %>
+</p>
+
+<p>
+  <b>Brand:</b>
+  <%= @ski.brand_id %>
+</p>
+
+<thead>
+            <tr>
+              <th>Stores</th>
+              <th>Sizes Availabile</th>
+              <th>Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+              <% @ski.inventories.each do |ski| %>
+              <tr>
+                <td> <%= ski.price %> </td>
+                <td> <%= ski.product_url %> </td>
+                   <%= @stores %>
+                  <%end %>
+
+               
+
+
+<%= link_to 'Edit', edit_ski_path(@ski) %> |
+<%= link_to 'Back', skis_path %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  length: 1
+  turning_radius: 9.99
+  tip_width: 1
+  waist_width: 1
+  tail_width: 1
+  weight: 1
+  ski_id: 1
+
+two:
+  length: 1
+  turning_radius: 9.99
+  tip_width: 1
+  waist_width: 1
+  tail_width: 1
+  weight: 1
+  ski_id: 1
