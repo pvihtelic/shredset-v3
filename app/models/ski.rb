@@ -3,6 +3,7 @@ class Ski < ActiveRecord::Base
 
   has_many :specs
   has_many :inventories
+  has_many :stores, :through => :inventories
   has_many :images
 
 end

@@ -3,4 +3,5 @@ class Spec < ActiveRecord::Base
 
   belongs_to :ski
   has_many :inventories
+  has_many :stores, :through => :inventories
 end

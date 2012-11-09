@@ -3,5 +3,6 @@ class Store < ActiveRecord::Base
 
   has_many :inventories
   has_many :skis, :through => :inventories
+  has_many :specs, :through => :inventories
   has_many :brands, :through => :skis
 end

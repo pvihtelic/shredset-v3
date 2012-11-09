@@ -40,23 +40,31 @@
   <%= @ski.brand_id %>
 </p>
 
-<thead>
-            <tr>
-              <th>Stores</th>
-              <th>Sizes Availabile</th>
-              <th>Total Price</th>
-            </tr>
-            </thead>
-            <tbody>
-              <% @ski.inventories.each do |ski| %>
-              <tr>
-                <td> <%= ski.price %> </td>
-                <td> <%= ski.product_url %> </td>
-                   <%= @stores %>
-                  <%end %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Stores</th>
+      <th>Sizes Availabile</th>
+      <th>Total Price</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @inventory.select("distinct(inventories.store_id)").each do |unique_stores| %>
+      <tr>
+        <td><%= unique_stores.store.vendor %></td>
+      <% end %>
+      <td>
+        <% @spec.each do |x| %>
+          <li>
+            <%= x.length %>
+          </li>
+          <% end %>
+      </td>
+      </tr>
+    </tbody>
+</table>
 
-               
-
-
+<p>
 <%= link_to 'Edit', edit_ski_path(@ski) %> |
 <%= link_to 'Back', skis_path %>
+</p>

@@ -15,7 +15,9 @@ class SkisController < ApplicationController
   def show
     @ski = Ski.find(params[:id])
 
-    @stores = Store.where(:id => @ski.inventories.first.store_id)
+    @inventory = Inventory.where(:ski_id => params[:id])
+
+    @spec = Spec.where(:ski_id => params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
