@@ -49,18 +49,18 @@
     </tr>
     </thead>
     <tbody>
-      <% @inventory.select("distinct(inventories.store_id)").each do |unique_stores| %>
+      <% @inventory.group('store_id').each do |unique_stores| %>
       <tr>
         <td><%= unique_stores.store.vendor %></td>
-      <% end %>
       <td>
-        <% @spec.each do |x| %>
+        <% unique_stores.ski.specs.each do |x| %>
           <li>
             <%= x.length %>
           </li>
           <% end %>
       </td>
       </tr>
+      <% end %>
     </tbody>
 </table>
 
