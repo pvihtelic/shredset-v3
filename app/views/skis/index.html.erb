@@ -18,7 +18,13 @@
     <td><%= ski.brand.company %></td>
     <td><%= ski.name %></td>
     <td><%= ski.model_year %></td>
-    <td><%= "#{ski.stores.count} stores" %></td>
+    <% @b = [] %>
+    <% ski.inventories.each do |inventory| %>
+        <% if !@b.include? inventory.store_id %>
+            <% @b.push(inventory.store_id) %>
+        <% end %>
+    <% end %>
+    <td><%= @b.count %></td>
     <% a = [] %>
     <% ski.inventories.each do |inventory| %>
         <% a.push(inventory.price) %>
