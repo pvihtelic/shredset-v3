@@ -26,6 +26,8 @@ class SkisController < ApplicationController
       end
     end
 
+    @images = Image.where(:ski_id => params[:id])
+
 
     respond_to do |format|
       format.html # show.html.erb

@@ -64,10 +64,12 @@
             </td>
         </tr>
       <% end %>
-
-        
     </tbody>
 </table>
+
+<% @images.each do |image| %>
+  <%= image_tag image.image_url %>
+<% end %>
 
 <p>
 <%= link_to 'Edit', edit_ski_path(@ski) %> |
