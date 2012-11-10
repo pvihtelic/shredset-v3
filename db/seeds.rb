@@ -24,10 +24,9 @@ spec4 = Spec.create(:length => 171, :turning_radius => 23.0, :tip_width => 110, 
 
 inventories = [
 	{ :ski_id => ski1.id, :spec_id => spec1.id, :store_id => store1.id, :product_url => "http://www.evo.com/ski-packages/atomic-blackeye-ti-skis-xto-12-bindings.aspx", :price => 799.00 },
-	{ :ski_id => ski1.id, :spec_id => spec2.id, :store_id => store1.id, :product_url => "http://www.evo.com/ski-packages/atomic-blackeye-ti-skis-xto-12-bindings.aspx", :price => 799.00 },
-	{ :ski_id => ski3.id, :spec_id => spec3.id, :store_id => store3.id, :product_url => "http://www.rei.com/product/839895/atomic-smoke-ti-skis-with-bindings-mens-20122013", :price => 599.00 },
-	{ :ski_id => ski2.id, :spec_id => spec2.id, :store_id => store4.id, :product_url => "http://www.skis.com/Atomic-Cloud-7-Womens-Skis-with-XTL-9-Lightrak-Bindings-2012/227352P,default,pd.html?src=cpc&utm_source=google&utm_medium=cpc&utm_term=&utm_content=pla&utm_campaign=product%2Bads&mr:trackingCode=49CEC662-F9E4-E011-B18D-001B21A69EB0&mr:referralID=NA&mr:adType=pla&mr:ad=18190193121&mr:keyword=&mr:match=&mr:filter=30046702161&gclid=CKWAoILAwLMCFYZaMgodkysA4w", :price => 223.98 },
-	{ :ski_id => ski3.id, :spec_id => spec4.id, :store_id => store2.id, :product_url => "http://www.skis.com/Atomic-Cloud-7-Womens-Skis-with-XTL-9-Lightrak-Bindings-2012/227352P,default,pd.html?src=cpc&utm_source=google&utm_medium=cpc&utm_term=&utm_content=pla&utm_campaign=product%2Bads&mr:trackingCode=49CEC662-F9E4-E011-B18D-001B21A69EB0&mr:referralID=NA&mr:adType=pla&mr:ad=18190193121&mr:keyword=&mr:match=&mr:filter=30046702161&gclid=CKWAoILAwLMCFYZaMgodkysA4w", :price => 275.00}
+	{ :ski_id => ski1.id, :spec_id => spec3.id, :store_id => store1.id, :product_url => "http://www.evo.com/ski-packages/atomic-blackeye-ti-skis-xto-12-bindings.aspx", :price => 799.00 },
+	{ :ski_id => ski3.id, :spec_id => spec4.id, :store_id => store3.id, :product_url => "http://www.rei.com/product/839895/atomic-smoke-ti-skis-with-bindings-mens-20122013", :price => 599.00 },
+	{ :ski_id => ski2.id, :spec_id => spec2.id, :store_id => store4.id, :product_url => "http://www.skis.com/Atomic-Cloud-7-Womens-Skis-with-XTL-9-Lightrak-Bindings-2012/227352P,default,pd.html?src=cpc&utm_source=google&utm_medium=cpc&utm_term=&utm_content=pla&utm_campaign=product%2Bads&mr:trackingCode=49CEC662-F9E4-E011-B18D-001B21A69EB0&mr:referralID=NA&mr:adType=pla&mr:ad=18190193121&mr:keyword=&mr:match=&mr:filter=30046702161&gclid=CKWAoILAwLMCFYZaMgodkysA4w", :price => 223.98 }
 ]
 
 images = [

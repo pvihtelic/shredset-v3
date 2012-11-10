@@ -82,9 +82,9 @@
         <tr>
         <td><%= store.vendor  %></td>
         <td>
-        <% store.specs.each do |spec| %>
+        <% store.inventories.where(:ski_id => @ski.id).each do |inventory| %>
             <li>
-              <%= spec.length %>
+                <%= inventory.spec.length %>
             </li>
         <% end %>
         </td>
