@@ -8,7 +8,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: 100%;
-    background-position: 0px;
+    background-attachment: fixed;
     background-repeat: no-repeat; 
 	}
 
@@ -16,6 +16,12 @@ body {
   background: url('http://i.imgur.com/EhZdQ.png') no-repeat left center;
   height: 30px;
 }
+
+.navbar-search {
+	padding-top: 6px;
+	padding-right: 60px;
+}
+
 .navbar .brand{
 	padding: 10px 50px 10px 50px;
 }
@@ -32,7 +38,15 @@ body {
 	}
 
 .page-header {
-	margin-bottom: 10px;
+	margin-bottom: 0px;
+}
+
+.index-product-image {
+   width: 300px;
+	text-align: center;
+	height: 300px;
+	overflow: hidden;
+	border: 2px solid #CCC;
 }
 
 .ski-image {
@@ -40,6 +54,26 @@ body {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #CCC;
+}
+
+.products {
+   list-style-type: none;
+   margin-left: 45px;
+}
+
+.product-details {
+	list-style-type: none;
+	margin: 0;
+}
+
+.product-title {
+	font-weight: bold;
+}
+
+.product-item {
+   float: left;
+   width: 300px;
+   padding: 15px;
 }
 
 .container {
@@ -60,4 +94,8 @@ body {
 
 .table {
 	float: right;
+}
+
+.carousel-control {
+	margin-right: 17px;
 }

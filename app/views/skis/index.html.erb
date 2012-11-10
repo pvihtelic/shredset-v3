@@ -1,43 +1,40 @@
-<h1>Skis</h1>
+<div class="page-header">
+    <h3>Skis Available</h3>        
+</div>
 
-<table>
-  <tr>
-    <th></th>
-    <th> Brand</th> 
-    <th>| Name</th> 
-    <th>| Model Year</th>     
-    <th>| Number of Stores Carrying:</th> 
-    <th>| Lowest Price:</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @skis.each do |ski| %>
-  <tr>
-    <td><%= image_tag ski.images.first.image_url, :width => '200' %></td>
-    <td><%= ski.brand.company %></td>
-    <td><%= ski.name %></td>
-    <td><%= ski.model_year %></td>
-    <% @b = [] %>
-    <% ski.inventories.each do |inventory| %>
-        <% if !@b.include? inventory.store_id %>
-            <% @b.push(inventory.store_id) %>
-        <% end %>
+<div class="row">
+    <ul class="products">
+    <% @skis.each do |ski| %>
+            <li class="product-item">
+            <%= link_to image_tag(ski.images.first.image_url, :class => "index-product-image"), ski_url(ski.id) %>
+            <br />
+            <ul class="product-details">
+            <li class="product-details">
+                <span class="product-title">
+                <%= ski.brand.company %> <%= ski.name %> <%= ski.model_year %> </br>
+                </span>
+                <% @b = [] %>
+                    <% ski.inventories.each do |inventory| %>
+                        <% if !@b.include? inventory.store_id %>
+                        <% @b.push(inventory.store_id) %>
+                        <% end %>
+                    <% end %>
+                    Available at <%= @b.count %> 
+                    <% if @b.count>1%> stores <% else %> store
+                    <% end %>
+                <% a = [] %>
+                <% ski.inventories.each do |inventory| %>
+                    <% a.push(inventory.price) %>
+                    <% end %>
+                    <% @lowest_price = a.sort { |x,y| x <=> y} %>
+                    from $<%= @lowest_price.first %>
+                </br>
+                </li>
+            </ul>
     <% end %>
-    <td><%= @b.count %></td>
-    <% a = [] %>
-    <% ski.inventories.each do |inventory| %>
-        <% a.push(inventory.price) %>
-    <% end %>
-    <% @lowest_price = a.sort { |x,y| x <=> y} %>
-        <td style= "color:red;"><%= @lowest_price.first %></td>
-    <td><%= link_to 'Show', ski %></td>
-    <td><%= link_to 'Edit', edit_ski_path(ski) %></td>
-    <td><%= link_to 'Destroy', ski, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    </ul>
 
+</div>
 <br />
 
 <%= link_to 'New Ski', new_ski_path %>
