@@ -40,61 +40,24 @@
   <%= @ski.brand_id %>
 </p>
 
+
+
 <div class="span4">
         <div id="this-carousel-id" class="carousel slide">
         <div class="carousel-inner">
-          <div class="item active">
-            <% @image.each do |image| %>
-            <a> 
-              <%= image_tag image.image_url %> 
-            </a>
-            
-            <div class="carousel-caption">
-              <p>Picture 1</p>
-              <p> <%= link_to "add link here", skis_url %> </p>
-            </div>
-          </div>
-          <div class="item">
-            <a/>
-              <%= image_tag image.image_url %>   
-            </a>
-            <% end %>
-            <div class="carousel-caption">
-              <p>Picture 2</p>
-              <p> <%= link_to "add another link here", skis_url %> </p>
-            </div>
-            </div>
+                  <% @image.each_with_index do |item_image, index| %>
+                  <div class="<% if index == 0 %>item active
+                    <% else %>item
+
+                    <% end %>">
+                      <%= link_to(image_tag(item_image.image_url, :class=> "ski-image"), item_image.image_url, ) %>
+                  </div>
+                  <% end %>
+          <div>
             <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
             <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
           </div>
-
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Stores</th>
-      <th>Sizes Availabile</th>
-      <th>Total Price</th>
-    </tr>
-    </thead>
-    <tbody>
-      <% @stores_array.each do |store| %>
-        <tr>
-        <td><%= store.vendor  %></td>
-        <td>
-        <% store.inventories.where(:ski_id => @ski.id).each do |inventory| %>
-            <li>
-                <%= inventory.spec.length %>
-            </li>
-        <% end %>
-        </td>
-        <td>
-            <%= store.inventories.first.price %>
-            </td>
-        </tr>
-      <% end %>
-    </tbody>
-</table>
+          </div>
 
 <table class="table table-hover">
   <thead>
