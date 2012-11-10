@@ -4,6 +4,7 @@ class SkisController < ApplicationController
   def index
     @skis = Ski.all
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @skis }
