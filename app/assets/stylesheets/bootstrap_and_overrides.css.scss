@@ -2,6 +2,35 @@
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
+body { 
+    background: url('mountainbackground.jpg'); 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: 100%;
+    background-position: 0px;
+    background-repeat: no-repeat; 
+	}
+
+.brand {
+  background: url('http://i.imgur.com/EhZdQ.png') no-repeat left center;
+  height: 30px;
+}
+.navbar .brand{
+	padding: 10px 50px 10px 50px;
+}
+
+.navbar .nav {
+	margin: 8px 10px 0px 15px
+}
+
+.navbar-inner {
+  background-color: #DDD;
+  background-image: none;
+  background-repeat: no-repeat;
+  filter: none;
+	}
+
 .page-header {
 	margin-bottom: 10px;
 }
@@ -21,6 +50,7 @@ body { padding-top: 60px; }
 
 .span7 {
 	float: right;
+	margin-right: 10px;
 }
 
 #this-carousel-id {
