@@ -17,6 +17,8 @@ class SkisController < ApplicationController
 
     @inventory = Inventory.where(:ski_id => params[:id])
 
+    @image = Image.where(:ski_id => params[:id])
+
     @spec = Spec.where(:ski_id => params[:id])
 
     @s = [] 
