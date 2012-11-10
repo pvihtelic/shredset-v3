@@ -3,20 +3,28 @@
 <table>
   <tr>
     <th></th>
-    <th>Name</th>
-    <th>Model Year</th>
-    <th>Brand</th>
-    <th></th>
+    <th> Brand</th> 
+    <th>| Name</th> 
+    <th>| Model Year</th>     
+    <th>| Number of Stores Carrying:</th> 
+    <th>| Lowest Price:</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @skis.each do |ski| %>
   <tr>
-    <td><%= image_tag ski.images.first.image_url %></td>
+    <td><%= image_tag ski.images.first.image_url, :width => '200' %></td>
+    <td><%= ski.brand.company %></td>
     <td><%= ski.name %></td>
     <td><%= ski.model_year %></td>
-    <td><%= ski.brand.company %></td>
+    <td><%= "#{ski.stores.count} stores" %></td>
+    <% a = [] %>
+    <% ski.inventories.each do |inventory| %>
+        <% a.push(inventory.price) %>
+    <% end %>
+    <% @lowest_price = a.sort { |x,y| x <=> y} %>
+        <td style= "color:red;"><%= @lowest_price.first %></td>
     <td><%= link_to 'Show', ski %></td>
     <td><%= link_to 'Edit', edit_ski_path(ski) %></td>
     <td><%= link_to 'Destroy', ski, method: :delete, data: { confirm: 'Are you sure?' } %></td>
