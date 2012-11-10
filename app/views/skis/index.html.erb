@@ -1,14 +1,10 @@
-<h1>Listing skis</h1>
+<h1>Skis</h1>
 
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
-    <th>Ability level</th>
-    <th>Description</th>
-    <th>Gender</th>
-    <th>Model year</th>
-    <th>Rocker type</th>
-    <th>Ski type</th>
+    <th>Model Year</th>
     <th>Brand</th>
     <th></th>
     <th></th>
@@ -17,14 +13,10 @@
 
 <% @skis.each do |ski| %>
   <tr>
+    <td><%= image_tag ski.images.first.image_url %></td>
     <td><%= ski.name %></td>
-    <td><%= ski.ability_level %></td>
-    <td><%= ski.description %></td>
-    <td><%= ski.gender %></td>
     <td><%= ski.model_year %></td>
-    <td><%= ski.rocker_type %></td>
-    <td><%= ski.ski_type %></td>
-    <td><%= ski.brand_id %></td>
+    <td><%= ski.brand.company %></td>
     <td><%= link_to 'Show', ski %></td>
     <td><%= link_to 'Edit', edit_ski_path(ski) %></td>
     <td><%= link_to 'Destroy', ski, method: :delete, data: { confirm: 'Are you sure?' } %></td>
