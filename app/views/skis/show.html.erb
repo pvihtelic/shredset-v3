@@ -96,6 +96,33 @@
     </tbody>
 </table>
 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Sizes (cm)</th>
+      <th>Turning Radius (m)</th>
+      <th>Tip Width (mm)</th>
+      <th>Waist Width (mm)</th>
+      <th>Tail Width (mm)</th>
+      <th>Individual Ski Weight (g)</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @spec.each do |spec| %>
+        <tr>
+        <td><%= spec.length %></td>
+        <td><%= spec.turning_radius %></td>
+        <td><%= spec.tip_width %></td>
+        <td><%= spec.waist_width %></td>
+        <td><%= spec.tail_width %></td>
+        <td><%= spec.weight %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+
+
 <p>
 <%= link_to 'Edit', edit_ski_path(@ski) %> |
 <%= link_to 'Back', skis_path %>
