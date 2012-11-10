@@ -19,6 +19,14 @@ class SkisController < ApplicationController
 
     @spec = Spec.where(:ski_id => params[:id])
 
+    @s = [] 
+    @inventory.each do |inventory|
+      if !@s.include? inventory.store 
+        @s.push inventory.store
+      end
+    end
+
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @ski }
