@@ -1,119 +1,92 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @ski.name %>
-</p>
+      <div class="page-header">
+          <h2><%= @ski.brand.company %> <%= @ski.name %> <small><%= @ski.model_year %> | <%= @ski.gender %> | <%= @ski.ski_type %></small></h2>
+      </div>
+      <div class="row">
+        <div class="span4">
+              <div id="this-carousel-id" class="carousel slide">
+              <div class="carousel-inner">
+                        <% @image.each_with_index do |item_image, index| %>
+                        <div class="<% if index == 0 %>item active
+                          <% else %>item
 
-<p>
-  <b>Ability level:</b>
-  <%= @ski.ability_level %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @ski.description %>
-</p>
-
-<p>
-  <b>Gender:</b>
-  <%= @ski.gender %>
-</p>
-
-<p>
-  <b>Model year:</b>
-  <%= @ski.model_year %>
-</p>
-
-<p>
-  <b>Rocker type:</b>
-  <%= @ski.rocker_type %>
-</p>
-
-<p>
-  <b>Ski type:</b>
-  <%= @ski.ski_type %>
-</p>
-
-<p>
-  <b>Brand:</b>
-  <%= @ski.brand_id %>
-</p>
-
-
-
-<div class="span4">
-        <div id="this-carousel-id" class="carousel slide">
-        <div class="carousel-inner">
-                  <% @image.each_with_index do |item_image, index| %>
-                  <div class="<% if index == 0 %>item active
-                    <% else %>item
-
-                    <% end %>">
-                      <%= link_to(image_tag(item_image.image_url, :class=> "ski-image"), item_image.image_url, ) %>
-                  </div>
+                          <% end %>">
+                            <%= link_to(image_tag(item_image.image_url, :class=>"ski-image"), item_image.image_url, ) %>
+                        </div>
+                        <% end %>
+                  <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+                  <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+                </div>
+        </div>
+        </div>
+      
+        <div class="span7">
+          <h3>Comparison Shopping Data</h3>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Stores</th>
+                <th>Sizes Availabile</th>
+                <th>Total Price</th>
+              </tr>
+              </thead>
+              <tbody>
+                <% @stores_array.each do |store| %>
+                  <tr>
+                  <td><%= store.vendor  %></td>
+                  <td>
+                  <% store.inventories.where(:ski_id => @ski.id).each do |inventory| %>
+                      <li>
+                          <%= inventory.spec.length %>
+                      </li>
                   <% end %>
-          <div>
-            <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
-          </div>
-          </div>
+                  </td>
+                  <td>
+                      <%= store.inventories.first.price %>
+                      </td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>
+          <h4>Description</h4>
+          <p><%= @ski.description %></p>
+          <ul>
+                <li><%= @ski.ski_type %></li>
+                <li><%= @ski.ability_level %></li>
+                <li><%= @ski.rocker_type %></li>
+          </ul>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Stores</th>
-      <th>Sizes Availabile</th>
-      <th>Total Price</th>
-    </tr>
-    </thead>
-    <tbody>
-      <% @stores_array.each do |store| %>
-        <tr>
-        <td><%= store.vendor  %></td>
-        <td>
-        <% store.inventories.where(:ski_id => @ski.id).each do |inventory| %>
-            <li>
-                <%= inventory.spec.length %>
-            </li>
-        <% end %>
-        </td>
-        <td>
-            <%= store.inventories.first.price %>
-            </td>
-        </tr>
-      <% end %>
-    </tbody>
-</table>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Sizes (cm)</th>
-      <th>Turning Radius (m)</th>
-      <th>Tip Width (mm)</th>
-      <th>Waist Width (mm)</th>
-      <th>Tail Width (mm)</th>
-      <th>Individual Ski Weight (g)</th>
-    </tr>
-    </thead>
-    <tbody>
-      <% @spec.each do |spec| %>
-        <tr>
-        <td><%= spec.length %></td>
-        <td><%= spec.turning_radius %></td>
-        <td><%= spec.tip_width %></td>
-        <td><%= spec.waist_width %></td>
-        <td><%= spec.tail_width %></td>
-        <td><%= spec.weight %></td>
-        </tr>
-      <% end %>
-    </tbody>
-</table>
-
-
-
-<p>
-<%= link_to 'Edit', edit_ski_path(@ski) %> |
-<%= link_to 'Back', skis_path %>
-</p>
+          <h4>Manufacturer Specs</h4>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Sizes (cm)</th>
+                <th>Turning Radius (m)</th>
+                <th>Tip Width (mm)</th>
+                <th>Waist Width (mm)</th>
+                <th>Tail Width (mm)</th>
+                <th>Individual Ski Weight (g)</th>
+              </tr>
+              </thead>
+              <tbody>
+                <% @spec.each do |spec| %>
+                  <tr>
+                  <td><%= spec.length %></td>
+                  <td><%= spec.turning_radius %></td>
+                  <td><%= spec.tip_width %></td>
+                  <td><%= spec.waist_width %></td>
+                  <td><%= spec.tail_width %></td>
+                  <td><%= spec.weight %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+          </table>    
+        </div>
+      </div>
+    </div>
+    </div>
+    <p>
+    <%= link_to 'Edit', edit_ski_path(@ski) %> |
+    <%= link_to 'Back', skis_path %>
+    </p>

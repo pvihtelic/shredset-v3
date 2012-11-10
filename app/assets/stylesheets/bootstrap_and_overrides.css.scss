@@ -7,10 +7,20 @@ body { padding-top: 60px; }
 }
 
 .ski-image {
-	width: 466px;
+	width: 350px;
 	border-style: solid;
 	border-width: 2px;
 	border-color: #CCC;
+}
+
+.container {
+	width: auto;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.span7 {
+	float: right;
 }
 
 #this-carousel-id {
