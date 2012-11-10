@@ -21,10 +21,10 @@ class SkisController < ApplicationController
 
     @spec = Spec.where(:ski_id => params[:id])
 
-    @s = [] 
+    @stores_array = [] 
     @inventory.each do |inventory|
-      if !@s.include? inventory.store 
-        @s.push inventory.store
+      if !@stores_array.include? inventory.store 
+        @stores_array.push inventory.store
       end
     end
 
