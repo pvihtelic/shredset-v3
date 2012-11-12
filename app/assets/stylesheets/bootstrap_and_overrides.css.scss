@@ -3,13 +3,14 @@ body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
 body { 
-    background: url('mountainbackground.jpg'); 
+    background: url('http://25.media.tumblr.com/tumblr_mbn6imHca41riufsso1_1280.jpg'); 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: 100%;
     background-attachment: fixed;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
+    font-family: 'Sanchez', serif; 
 	}
 
 .brand {
@@ -31,7 +32,7 @@ body {
 }
 
 .navbar-inner {
-  background-color: #DDD;
+  background-color: #F0F0F0;
   background-image: none;
   background-repeat: no-repeat;
   filter: none;
@@ -42,9 +43,9 @@ body {
 }
 
 .index-product-image {
-   width: 300px;
+   width: 250px;
 	text-align: center;
-	height: 300px;
+	height: 250px;
 	overflow: hidden;
 	border: 2px solid #CCC;
 }
@@ -72,19 +73,20 @@ body {
 
 .product-item {
    float: left;
-   width: 300px;
-   padding: 15px;
+   width: 270px;
+   padding: 5px;
 }
 
 .container {
 	width: auto;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 225px;
+    margin-right: 225px;
 }
 
 .span7 {
 	float: right;
-	margin-right: 10px;
+	margin-right:10px;
+	margin-left:10px;
 }
 
 #this-carousel-id {

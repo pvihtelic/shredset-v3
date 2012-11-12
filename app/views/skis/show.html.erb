@@ -21,8 +21,8 @@
         </div>
         </div>
       
-        <div class="span7">
-          <h3>Comparison Shopping Data</h3>
+        <div class="span5">
+          <h4>Network Shopping Data</h4>
           <table class="table table-hover">
             <thead>
               <tr>
@@ -34,8 +34,8 @@
               <tbody>
                 <% @stores_array.each do |store| %>
                   <tr>
-                    <% store.inventories.where(:ski_id => @ski.id).each do |i| %>
-                  <td><%= link_to store.vendor, i.product_url  %></td>
+                    <% store.inventories.where(:ski_id => @ski.id).group('store_id').each do |i| %>
+                  <td><%= link_to store.vendor, i.product_url %></td>
                   <% end %>
                   <td>
                   <% store.inventories.where(:ski_id => @ski.id).each do |inventory| %>
@@ -45,7 +45,7 @@
                   <% end %>
                   </td>
                   <td>
-                      $<%= store.inventories.first.price %>
+                      $<%= store.inventories.where(:ski_id => @ski.id).first.price %>
                       </td>
                   </tr>
                 <% end %>
@@ -58,7 +58,7 @@
                 <li><%= @ski.ability_level %></li>
                 <li><%= @ski.rocker_type %></li>
           </ul>
-
+        </br>
           <h4>Manufacturer Specs</h4>
           <table class="table table-hover">
             <thead>
