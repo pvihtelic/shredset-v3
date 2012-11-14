@@ -16,9 +16,9 @@ task :scrape => :environment do
 		end
 	end
 
-	# @prices = []	
-
 	####### Prices ########
+
+	# @prices = []	
 
 	# @links_array.each do |product_link|
 	# 	url = product_link
@@ -166,5 +166,4 @@ task :scrape => :environment do
 	end
 	
 	puts @gender
-
 end
