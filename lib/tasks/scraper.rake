@@ -18,6 +18,8 @@ task :scrape => :environment do
 
 	# @prices = []	
 
+	####### Prices ########
+
 	# @links_array.each do |product_link|
 	# 	url = product_link
 	# 	data = Nokogiri::HTML(open(url))
@@ -25,6 +27,8 @@ task :scrape => :environment do
 	# end
 
 	# puts @prices
+
+	####### Brands ########
 
 	# @brands = []	
 
@@ -36,6 +40,7 @@ task :scrape => :environment do
 
 	# puts @brands
 
+	####### Model Years ########
 
 	# @model_years = []	
 
@@ -47,6 +52,8 @@ task :scrape => :environment do
 
 	# puts @model_years
 
+	####### Descriptions ########
+
 	# @descriptions = []	
 
 	# @links_array.each do |product_link|
@@ -56,6 +63,8 @@ task :scrape => :environment do
 	# end
 
 	# puts @descriptions
+
+	####### Images ########
 
 	# @images = []	
 
@@ -68,6 +77,8 @@ task :scrape => :environment do
 	# 	end
 	# end	
 	# puts @images
+
+	####### Sizes Available ########
 
 	# @sizes = []
 	# @placeholder = []
@@ -83,6 +94,8 @@ task :scrape => :environment do
 	# 	end	
 
 	# puts @sizes
+
+	####### Ability Level ########
 
 	# @ability_level = []
 
@@ -101,6 +114,8 @@ task :scrape => :environment do
 
 	# puts @ability_level
 
+	####### Rocker Type ########
+
 	# @rocker_type = []
 
 	# @links_array.each do |product_link|
@@ -111,27 +126,45 @@ task :scrape => :environment do
 
 	# puts @rocker_type
 
-	@ski_type = []
+	####### Ski Type ########
+
+	# @ski_type = []
+
+	# @links_array.each do |product_link|
+	# 	url = product_link
+	# 	data = Nokogiri::HTML(open(url))
+	# 	if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
+	# 	@ski_type << data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
+	# 	elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
+	# 		@ski_type << data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
+	# 	elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
+	# 		@ski_type << data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
+	# 	elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
+	# 		@ski_type << data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
+	# 	elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
+	# 		@ski_type << data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
+	# 	elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
+	# 		@ski_type << data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
+	# 	else
+	# 		@ski_type << "na"	
+	# 	end 
+	# end
+	# puts @ski_type
+
+	####### Gender ########
+
+	@gender = []
 
 	@links_array.each do |product_link|
 		url = product_link
 		data = Nokogiri::HTML(open(url))
-		if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
-		@ski_type << data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
-		elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
-			@ski_type << data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
-		elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
-			@ski_type << data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
-		elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
-			@ski_type << data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
-		elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
-			@ski_type << data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
-		elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
-			@ski_type << data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
+		if data.css("h1.fn").text.include? "Women's"
+			@gender << "Women's"
 		else
-			@ski_type << "na"	
-		end 
+			@gender << "Men's"	
+		end
 	end
-	puts @ski_type
+	
+	puts @gender
 
 end
