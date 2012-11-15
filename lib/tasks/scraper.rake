@@ -30,39 +30,45 @@ task :scrape => :environment do
 
 	####### Brands ########
 
-	# @brands = []	
+	@brands = []	
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@brands << data.css("h1.fn").css("strong.brand").text
-	# end
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		@brands << data.css("h1.fn").css("strong.brand").text
+	end
 
-	# puts @brands
+	@brands.each do |brand|
+		Brand.create(:company => brand)
+	end
 
 	####### Model Years ########
 
-	# @model_years = []	
+	@model_years = []	
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@model_years << data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
-	# end
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		@model_years << data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
+	end
 
-	# puts @model_years
+	@model_years.each do |model_year|
+		Ski.create(:model_year => model_year)
+	end
 
-	####### Descriptions ########
+	###### Descriptions ########
 
-	# @descriptions = []	
+	@descriptions = []	
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@descriptions << data.css(".description").text
-	# end
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		@descriptions << data.css(".description").text
+	end
 
-	# puts @descriptions
+	@descriptions.each do |description|
+		Ski.update_attributes(:description => description)
+	end
 
 	####### Images ########
 
@@ -95,61 +101,83 @@ task :scrape => :environment do
 
 	# puts @sizes
 
+################ Name ############
+
+@names = []	
+
+@links_array.each do |product_link|
+	url = product_link
+	data = Nokogiri::HTML(open(url))
+	x = data.at('strong').next.text
+	@names << x.slice(0...(x.index('Skis')))
+end
+
+@names.each do |name|
+	Ski.update_attributes(:name => name)
+end
+
 	####### Ability Level ########
 
-	# @ability_level = []
+	@ability_level = []
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	string_object = data.at_css('span.values').text
-	# 	if string_object.include? "/"
-	# 		@ability_level << "na"
-	# 		elsif string_object.include? "@"
-	# 			@ability_level << "na"
-	# 	else
-	# 		@ability_level << string_object
-	# 	end		
-	# end	
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		string_object = data.at_css('span.values').text
+		if string_object.include? "/"
+			@ability_level << "na"
+			elsif string_object.include? "@"
+				@ability_level << "na"
+		else
+			@ability_level << string_object
+		end		
+	end	
 
-	# puts @ability_level
+	@ability_level.each do |ability_level|
+		Ski.update_attributes(:ability_level => ability_level)
+	end
 
 	####### Rocker Type ########
 
-	# @rocker_type = []
+	@rocker_type = []
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@rocker_type << data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text
-	# end	
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		@rocker_type << data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text
+	end	
 
-	# puts @rocker_type
+	@rocker_type.each do |rocker_type|
+		Ski.update_attributes(:rocker_type => rocker_type)
+	end
 
 	####### Ski Type ########
 
-	# @ski_type = []
+	@ski_type = []
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
-	# 	@ski_type << data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
-	# 	else
-	# 		@ski_type << "na"	
-	# 	end 
-	# end
-	# puts @ski_type
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
+		@ski_type << data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
+			@ski_type << data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
+			@ski_type << data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
+			@ski_type << data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
+			@ski_type << data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
+			@ski_type << data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
+		else
+			@ski_type << "na"	
+		end 
+	end
+	
+	@ski_type.each do |ski_type|
+		Ski.update_attributes(:ski_type => ski_type)
+	end
 
 	####### Gender ########
 
@@ -165,5 +193,10 @@ task :scrape => :environment do
 		end
 	end
 	
-	puts @gender
+	@gender.each do |gender|
+		Ski.update_attributes(:gender => gender)
+	end
+
+skis = [ {:name => @names[0], :ability_level => ]
+
 end
