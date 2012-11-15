@@ -52,10 +52,6 @@ task :scrape => :environment do
 		@model_years << data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
 	end
 
-	@model_years.each do |model_year|
-		Ski.create(:model_year => model_year)
-	end
-
 	###### Descriptions ########
 
 	@descriptions = []	
@@ -66,9 +62,6 @@ task :scrape => :environment do
 		@descriptions << data.css(".description").text
 	end
 
-	@descriptions.each do |description|
-		Ski.update_attributes(:description => description)
-	end
 
 	####### Images ########
 
@@ -112,9 +105,7 @@ task :scrape => :environment do
 	@names << x.slice(0...(x.index('Skis')))
 end
 
-@names.each do |name|
-	Ski.update_attributes(:name => name)
-end
+
 
 	####### Ability Level ########
 
@@ -133,9 +124,6 @@ end
 		end		
 	end	
 
-	@ability_level.each do |ability_level|
-		Ski.update_attributes(:ability_level => ability_level)
-	end
 
 	####### Rocker Type ########
 
@@ -147,9 +135,7 @@ end
 		@rocker_type << data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text
 	end	
 
-	@rocker_type.each do |rocker_type|
-		Ski.update_attributes(:rocker_type => rocker_type)
-	end
+
 
 	####### Ski Type ########
 
@@ -175,9 +161,7 @@ end
 		end 
 	end
 	
-	@ski_type.each do |ski_type|
-		Ski.update_attributes(:ski_type => ski_type)
-	end
+
 
 	####### Gender ########
 
@@ -193,10 +177,15 @@ end
 		end
 	end
 	
-	@gender.each do |gender|
-		Ski.update_attributes(:gender => gender)
-	end
 
-skis = [ {:name => @names[0], :ability_level => ]
+
+@brand_id_array = []
+Brand.all.each do |brand|
+	@brand_id_array << brand.id
+end
+
+40.times do |x|
+	Ski.create(:name => @names[x], :ability_level => @ability_level[x], :description => @descriptions[x], :gender => @gender[x], :model_year => @model_years[x], :rocker_type => @rocker_type[x], :ski_type => @ski_type[x], :brand_id => @brand_id_array[x])
+end
 
 end
