@@ -16,19 +16,7 @@ task :scrape => :environment do
 		end
 	end
 
-	####### Prices ########
-
-	# @prices = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@prices << data.css("#price").text.strip
-	# end
-
-	# puts @prices
-
-	####### Brands ########
+############ Brands table ########
 
 	@brands = []	
 
@@ -42,7 +30,16 @@ task :scrape => :environment do
 		Brand.create(:company => brand)
 	end
 
-	####### Model Years ########
+########### Skis table #########
+
+	@names = []	
+
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		x = data.at('strong').next.text
+		@names << x.slice(0...(x.index('Skis')))
+	end
 
 	@model_years = []	
 
@@ -52,8 +49,6 @@ task :scrape => :environment do
 		@model_years << data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
 	end
 
-	###### Descriptions ########
-
 	@descriptions = []	
 
 	@links_array.each do |product_link|
@@ -61,38 +56,6 @@ task :scrape => :environment do
 		data = Nokogiri::HTML(open(url))
 		@descriptions << data.css(".description").text
 	end
-
-	####### Sizes Available ########
-
-	# @sizes = []
-	# @placeholder = []
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@sizes_available_array = data.at_css('.buttonContainer').text.strip.scan(/\d*/)
-	# 	@placeholder << @sizes_available_array.select {|string| string.length == 3}
-	# 	end
-	# 	@placeholder.each do |placeholder_object|
-	# 		@sizes << "#{placeholder_object}"
-	# 	end	
-
-	# puts @sizes
-
-################ Name ############
-
-@names = []	
-
-@links_array.each do |product_link|
-	url = product_link
-	data = Nokogiri::HTML(open(url))
-	x = data.at('strong').next.text
-	@names << x.slice(0...(x.index('Skis')))
-end
-
-
-
-	####### Ability Level ########
 
 	@ability_level = []
 
@@ -109,9 +72,6 @@ end
 		end		
 	end	
 
-
-	####### Rocker Type ########
-
 	@rocker_type = []
 
 	@links_array.each do |product_link|
@@ -119,10 +79,6 @@ end
 		data = Nokogiri::HTML(open(url))
 		@rocker_type << data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text
 	end	
-
-
-
-	####### Ski Type ########
 
 	@ski_type = []
 
@@ -145,10 +101,6 @@ end
 			@ski_type << "na"	
 		end 
 	end
-	
-
-
-	####### Gender ########
 
 	@gender = []
 
@@ -161,19 +113,41 @@ end
 			@gender << "Men's"	
 		end
 	end
-	
 
+	@brand_id_array = []
+	Brand.all.each do |brand|
+		@brand_id_array << brand.id
+	end
 
-@brand_id_array = []
-Brand.all.each do |brand|
-	@brand_id_array << brand.id
-end
+	@skis.size.times do |x|
+		Ski.create(:name => @names[x], :ability_level => @ability_level[x], :description => @descriptions[x], :gender => @gender[x], :model_year => @model_years[x], :rocker_type => @rocker_type[x], :ski_type => @ski_type[x], :brand_id => @brand_id_array[x])
+	end
 
-# 40.times do |x|
-# 	Ski.create(:name => @names[x], :ability_level => @ability_level[x], :description => @descriptions[x], :gender => @gender[x], :model_year => @model_years[x], :rocker_type => @rocker_type[x], :ski_type => @ski_type[x], :brand_id => @brand_id_array[x])
-# end
+########### Inventories table - need to finish specs table and stores table ########
 
-####### Images ########
+	@prices = []	
+
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		@prices << data.css("#price").text.strip
+	end
+
+	@ski_id_array = []
+	Ski.all.each do |ski|
+		@ski_id_array << ski.id
+	end
+
+	@ski_id_array = []
+	Ski.all.each do |ski|
+		@ski_id_array << ski.id
+	end
+
+	@skis.size.times do |x|
+		Inventory.create(:price => @prices[x], :product_url => @links_array[x], :ski_id => @ski_id_array[x], :spec_id => @TBD[x], :store_id => @TBD[x])
+	end
+
+############# Images table ########
 
 	@images = []	
 
@@ -195,8 +169,7 @@ end
 		Image.create(:image_url => @images[x], :ski_id => @ski_id_array[x])
 	end
 
-
-################## Number of Reviews ############
+################## Number of Reviews (need to add review model) ############
 
 	# @number_of_reviews = []
 
@@ -229,6 +202,5 @@ end
 	# end
 
 	# puts @review_average
-
 
 end
