@@ -62,21 +62,6 @@ task :scrape => :environment do
 		@descriptions << data.css(".description").text
 	end
 
-
-	####### Images ########
-
-	# @images = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	image_link = data.css(".mainImageContainer")
-	# 	image_link.each do |link| 
-	# 		@images << "http://www.evo.com#{link['href']}"
-	# 	end
-	# end	
-	# puts @images
-
 	####### Sizes Available ########
 
 	# @sizes = []
@@ -184,8 +169,31 @@ Brand.all.each do |brand|
 	@brand_id_array << brand.id
 end
 
-40.times do |x|
-	Ski.create(:name => @names[x], :ability_level => @ability_level[x], :description => @descriptions[x], :gender => @gender[x], :model_year => @model_years[x], :rocker_type => @rocker_type[x], :ski_type => @ski_type[x], :brand_id => @brand_id_array[x])
-end
+# 40.times do |x|
+# 	Ski.create(:name => @names[x], :ability_level => @ability_level[x], :description => @descriptions[x], :gender => @gender[x], :model_year => @model_years[x], :rocker_type => @rocker_type[x], :ski_type => @ski_type[x], :brand_id => @brand_id_array[x])
+# end
+
+####### Images ########
+
+	@images = []	
+
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		image_link = data.css(".mainImageContainer")
+		image_link.each do |link| 
+			@images << "http://www.evo.com#{link['href']}"
+		end
+	end	
+
+	@ski_id_array = []
+	Ski.all.each do |ski|
+		@ski_id_array << ski.id
+	end
+
+	@images.size.times do |x|
+		Image.create(:image_url => @images[x], :ski_id => @ski_id_array[x])
+	end
+
 
 end
