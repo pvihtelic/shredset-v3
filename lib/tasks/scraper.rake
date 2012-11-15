@@ -196,4 +196,39 @@ end
 	end
 
 
+################## Number of Reviews ############
+
+	# @number_of_reviews = []
+
+	# @links_array.each do |product_link|
+	# 	url = product_link
+	# 	data = Nokogiri::HTML(open(url))
+	# 	string_object = data.css(".pr-snapshot-average-based-on-text").text.gsub(/[^\d]/,"")
+	# 	if !string_object.empty?
+	# 	@number_of_reviews  << string_object
+	# 	else
+	# 		@number_of_reviews << "na"
+	# 	end
+	# end
+
+	# puts @number_of_reviews
+
+################# Average Review #################
+
+	# @review_average = []
+
+	# @links_array.each do |product_link|
+	# 	url = product_link
+	# 	data = Nokogiri::HTML(open(url))
+	# 	string_object = data.css(".average").text
+	# 	if !string_object.empty?
+	# 	@review_average  << string_object
+	# 	else
+	# 		@review_average << "na"
+	# 	end
+	# end
+
+	# puts @review_average
+
+
 end
