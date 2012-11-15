@@ -201,20 +201,69 @@ task :scrape => :environment do
 
 	# puts @review_average
 
-	# @specs_table = []
+	@table_body_array = []
+	@table_header_array = []
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	string_object = data.xpath('//table[contains(text(), "Sizes")]'//
-	# 	# if !string_object.empty?
-	# 	@specs_table  << string_object
-	# 	# else
-	# 	# 	@specs_table << "na"
-	# 	# end
-	# end
-	
-	# puts @specs_table
+
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		data.xpath('//table[@class="matrixSpecTable"]//thead').each do |table_header|
+			header_columns = table_header.search('th/text()').map(&:to_s)
+			if !header_columns.nil?
+				@table_header_array << [{
+					:row_label_one => header_columns[0],
+					:size_one => header_columns[1],
+					:size_two => header_columns[2],
+					:size_three => header_columns[3],
+					:size_four => header_columns[4],
+					:size_five => header_columns[5],
+					:size_six => header_columns[6],
+					:size_seven => header_columns[7]
+				}]
+			else
+				@table_header_array << [{
+					:row_label_one => "na",
+					:size_one => "na",
+					:size_two => "na",
+					:size_three => "na",
+					:size_four => "na",
+					:size_five => "na",
+					:size_six => "na",
+					:size_seven => "na"
+				}]
+			end
+		end	
+
+		data.xpath('//table[@class="matrixSpecTable"]//tr').each do |row|
+			columns = row.search('td/text()').map(&:to_s)
+			if !columns.nil?
+				@table_body_array << [{
+					:row_label => columns[0],
+					:size_one => columns[1],
+					:size_two => columns[2],
+					:size_three => columns[3],
+					:size_four => columns[4],
+					:size_five => columns[5]
+				}]
+			else
+				@table_body_array << [{	
+					:row_label_ => "na",
+					:size_one => "na",
+					:size_two => "na",
+					:size_three => "na",
+					:size_four => "na",
+					:size_five => "na"
+				}]
+			end	
+		end
+		@table_body_array.each do |x|
+			@table_header_array.map{|y| y << x}
+		end
+	end
+
+	puts @table_header_array	
+	# puts @table_body_array
 
 	####### Sizes Available ########
 		
