@@ -56,56 +56,24 @@ task :scrape => :environment do
 		else
 			gender = "Men's"
 		end
+		
+		price = data.css("#price").text.strip
+
+		image_link_relative = data.css(".mainImageContainer").map{|link| link['href']}
+		image_link = "http://www.evo.com#{image_link_relative.join}"
 
 		ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
 		puts ski.name
+
+		# inventory = Inventory.create(:price => price, :product_url => url, :ski_id => ski.id, :spec_id => spec.id, :store_id => store.id)
+
+		
+		image = Image.create(:image_url => image_link, :ski_id => ski.id)
+		puts image.image_url
+		
 	end
-
-	########### Inventories table - need to finish specs table and stores table ########
-
-	# @prices = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@prices << data.css("#price").text.strip
-	# end
-
-	# @ski_id_array = []
-	# Ski.all.each do |ski|
-	# 	@ski_id_array << ski.id
-	# end
-
-	# @ski_id_array = []
-	# Ski.all.each do |ski|
-	# 	@ski_id_array << ski.id
-	# end
-
-	# @skis.size.times do |x|
-	# 	Inventory.create(:price => @prices[x], :product_url => @links_array[x], :ski_id => @ski_id_array[x], :spec_id => @TBD[x], :store_id => @TBD[x])
-	# end
-
-	############# Images table ########
-
-	# @images = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	image_link = data.css(".mainImageContainer")
-	# 	image_link.each do |link| 
-	# 		@images << "http://www.evo.com#{link['href']}"
-	# 	end
-	# end	
-
-	# @ski_id_array = []
-	# Ski.all.each do |ski|
-	# 	@ski_id_array << ski.id
-	# end
-
-	# @images.size.times do |x|
-	# 	Image.create(:image_url => @images[x], :ski_id => @ski_id_array[x])
-	# end
+end	
+	
 
 	################## Reviews Table (need to add review model) ############
 
@@ -215,40 +183,37 @@ task :scrape => :environment do
 	#   end  	  	
 	# puts @sizes
 
-end
+
+# spec = [{
+# 	:length => 177,
+# 	:ski_id => 2,
+# 	:tail_width => 120,
+# 	:tip_width => 125, 
+# 	:turning_radius => 25,
+# 	:waist_width => 100,
+# 	:weight => 2000
+# }]
 
 
 
-spec = [{
-	:length => 177,
-	:ski_id => 2,
-	:tail_width => 120,
-	:tip_width => 125, 
-	:turning_radius => 25,
-	:waist_width => 100,
-	:weight => 2000
-}]
+# specs = []
+# doc.css('th').each.with_index do |th, i|
+# 	next if i == 0
+# 	specs << { :length => th.text.to_i }
+# end
 
+# spec_labels = {
+# 	'Turning Radius (m)' => :turning_radius
+# }
 
+# doc.css('tr').each do |tr|
+# 	key = :something
 
-specs = []
-doc.css('th').each.with_index do |th, i|
-	next if i == 0
-	specs << { :length => th.text.to_i }
-end
-
-spec_labels = {
-	'Turning Radius (m)' => :turning_radius
-}
-
-doc.css('tr').each do |tr|
-	key = :something
-
-	tr.css('td').each.with_index do |td, i|
-		if i == 0
-			key = spec_labels[td.text]
-		else
-			specs[i-1][key] = td.text
-		end
-	end
-end
+# 	tr.css('td').each.with_index do |td, i|
+# 		if i == 0
+# 			key = spec_labels[td.text]
+# 		else
+# 			specs[i-1][key] = td.text
+# 		end
+# 	end
+# end
