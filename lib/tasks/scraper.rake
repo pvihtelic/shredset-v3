@@ -16,112 +16,50 @@ task :scrape => :environment do
 		end
 	end
 
-	############ Brands table ########
+	@links_array.each do |product_link|
+		url = product_link
+		data = Nokogiri::HTML(open(url))
+		brand = Brand.find_or_create_by_company(:company => data.css("h1.fn").css("strong.brand").text)
+		puts brand.company
+		x = data.at('strong').next.text
+		name = x.slice(0...(x.index('Skis')))
+		model_year = data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
+		description = data.css(".description").text
 
-	# @brands = []	
+		ability_level_input = data.at_css('span.values').text
+		ability_level = if ability_level_input.include?("/") || ability_level_input.include?("@")
+			"na"
+		else
+			ability_level_input
+		end
 
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@brands << data.css("h1.fn").css("strong.brand").text
-	# end
+		rocker_type = data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text
 
-	# @brands.each do |brand|
-	# 	Brand.create(:company => brand)
-	# end
+		if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
+			ski_type = data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
+			ski_type = data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
+			ski_type = data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
+			ski_type = data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
+			ski_type = data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
+		elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
+			ski_type = data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
+		else
+			ski_type = "na"	
+		end 
 
-	########### Skis table #########
+		if data.css("h1.fn").text.include? "Women's"
+			gender = "Women's"
+		else
+			gender = "Men's"
+		end
 
-	# @names = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	x = data.at('strong').next.text
-	# 	@names << x.slice(0...(x.index('Skis')))
-	# end
-
-	# @model_years = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@model_years << data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
-	# end
-
-	# @descriptions = []	
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@descriptions << data.css(".description").text
-	# end
-
-	# @ability_level = []
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	string_object = data.at_css('span.values').text
-	# 	if string_object.include? "/"
-	# 		@ability_level << "na"
-	# 		elsif string_object.include? "@"
-	# 			@ability_level << "na"
-	# 	else
-	# 		@ability_level << string_object
-	# 	end		
-	# end	
-
-	# @rocker_type = []
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	@rocker_type << data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text
-	# end	
-
-	# @ski_type = []
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
-	# 	@ski_type << data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
-	# 	elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
-	# 		@ski_type << data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
-	# 	else
-	# 		@ski_type << "na"	
-	# 	end 
-	# end
-
-	# @gender = []
-
-	# @links_array.each do |product_link|
-	# 	url = product_link
-	# 	data = Nokogiri::HTML(open(url))
-	# 	if data.css("h1.fn").text.include? "Women's"
-	# 		@gender << "Women's"
-	# 	else
-	# 		@gender << "Men's"	
-	# 	end
-	# end
-
-	# @brand_id_array = []
-	# Brand.all.each do |brand|
-	# 	@brand_id_array << brand.id
-	# end
-
-	# @skis.size.times do |x|
-	# 	Ski.create(:name => @names[x], :ability_level => @ability_level[x], :description => @descriptions[x], :gender => @gender[x], :model_year => @model_years[x], :rocker_type => @rocker_type[x], :ski_type => @ski_type[x], :brand_id => @brand_id_array[x])
-	# end
+		ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
+		puts ski.name
+	end
 
 	########### Inventories table - need to finish specs table and stores table ########
 
@@ -201,68 +139,65 @@ task :scrape => :environment do
 
 	# puts @review_average
 
-	@table_body_array = []
-	@table_header_array = []
+	# @table_body_array = []
+	# @table_header_array = []
+	# @test_array = []
 
+	# @links_array.each do |product_link|
+	# 	url = product_link
+	# 	data = Nokogiri::HTML(open(url))
+	# 	data.xpath('//table[@class="matrixSpecTable"]//thead').each do |table_header|
+	# 		header_columns = table_header.search('th/text()').map(&:to_s)
+	# 		if !header_columns.nil?
+	# 			@table_header_array << [{
+	# 				:row_label_one => header_columns[0],
+	# 				:size_one => header_columns[1],
+	# 				:size_two => header_columns[2],
+	# 				:size_three => header_columns[3],
+	# 				:size_four => header_columns[4],
+	# 				:size_five => header_columns[5],
+	# 				:size_six => header_columns[6],
+	# 				:size_seven => header_columns[7]
+	# 			}]
+	# 		else
+	# 			@table_header_array << [{
+	# 				:row_label_one => "na",
+	# 				:size_one => "na",
+	# 				:size_two => "na",
+	# 				:size_three => "na",
+	# 				:size_four => "na",
+	# 				:size_five => "na",
+	# 				:size_six => "na",
+	# 				:size_seven => "na"
+	# 			}]
+	# 		end
+	# 	end	
 
-	@links_array.each do |product_link|
-		url = product_link
-		data = Nokogiri::HTML(open(url))
-		data.xpath('//table[@class="matrixSpecTable"]//thead').each do |table_header|
-			header_columns = table_header.search('th/text()').map(&:to_s)
-			if !header_columns.nil?
-				@table_header_array << [{
-					:row_label_one => header_columns[0],
-					:size_one => header_columns[1],
-					:size_two => header_columns[2],
-					:size_three => header_columns[3],
-					:size_four => header_columns[4],
-					:size_five => header_columns[5],
-					:size_six => header_columns[6],
-					:size_seven => header_columns[7]
-				}]
-			else
-				@table_header_array << [{
-					:row_label_one => "na",
-					:size_one => "na",
-					:size_two => "na",
-					:size_three => "na",
-					:size_four => "na",
-					:size_five => "na",
-					:size_six => "na",
-					:size_seven => "na"
-				}]
-			end
-		end	
+	# 	data.xpath('//table[@class="matrixSpecTable"]//tr').each do |row|
+	# 		columns = row.search('td/text()').map(&:to_s)
+	# 		if !columns.nil?
+	# 			@table_body_array << [{
+	# 				:row_label => columns[0],
+	# 				:size_one => columns[1],
+	# 				:size_two => columns[2],
+	# 				:size_three => columns[3],
+	# 				:size_four => columns[4],
+	# 				:size_five => columns[5]
+	# 			}]
+	# 		else
+	# 			@table_body_array << [{	
+	# 				:row_label_ => "na",
+	# 				:size_one => "na",
+	# 				:size_two => "na",
+	# 				:size_three => "na",
+	# 				:size_four => "na",
+	# 				:size_five => "na"
+	# 			}]
+	# 		end	
+	# 	end
+	# end	
 
-		data.xpath('//table[@class="matrixSpecTable"]//tr').each do |row|
-			columns = row.search('td/text()').map(&:to_s)
-			if !columns.nil?
-				@table_body_array << [{
-					:row_label => columns[0],
-					:size_one => columns[1],
-					:size_two => columns[2],
-					:size_three => columns[3],
-					:size_four => columns[4],
-					:size_five => columns[5]
-				}]
-			else
-				@table_body_array << [{	
-					:row_label_ => "na",
-					:size_one => "na",
-					:size_two => "na",
-					:size_three => "na",
-					:size_four => "na",
-					:size_five => "na"
-				}]
-			end	
-		end
-		@table_body_array.each do |x|
-			@table_header_array.map{|y| y << x}
-		end
-	end
-
-	puts @table_header_array	
+	# puts @table_header_array.inspect
 	# puts @table_body_array
 
 	####### Sizes Available ########
@@ -280,4 +215,40 @@ task :scrape => :environment do
 	#   end  	  	
 	# puts @sizes
 
+end
+
+
+
+spec = [{
+	:length => 177,
+	:ski_id => 2,
+	:tail_width => 120,
+	:tip_width => 125, 
+	:turning_radius => 25,
+	:waist_width => 100,
+	:weight => 2000
+}]
+
+
+
+specs = []
+doc.css('th').each.with_index do |th, i|
+	next if i == 0
+	specs << { :length => th.text.to_i }
+end
+
+spec_labels = {
+	'Turning Radius (m)' => :turning_radius
+}
+
+doc.css('tr').each do |tr|
+	key = :something
+
+	tr.css('td').each.with_index do |td, i|
+		if i == 0
+			key = spec_labels[td.text]
+		else
+			specs[i-1][key] = td.text
+		end
+	end
 end
