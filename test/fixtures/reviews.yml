@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  average_review: 9.99
+  number_of_reviews: 1
+  ski_id: 1
+  store_id: 1
+
+two:
+  average_review: 9.99
+  number_of_reviews: 1
+  ski_id: 1
+  store_id: 1

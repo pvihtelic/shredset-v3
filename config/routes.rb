@@ -1,4 +1,6 @@
 Shredset::Application.routes.draw do
+  resources :reviews
+
   resources :images
 
   resources :inventories
