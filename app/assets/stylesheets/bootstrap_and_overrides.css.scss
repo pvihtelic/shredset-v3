@@ -14,8 +14,9 @@ body {
 	}
 
 .brand {
-  background: url('http://i.imgur.com/EhZdQ.png') no-repeat left center;
-  height: 30px;
+  background: url('http://i.imgur.com/EhZdQ.png');
+  no-repeat: center center;
+  height: 50px;
 }
 
 .navbar-search {
@@ -26,11 +27,7 @@ body {
 .navbar .brand{
 	padding: 10px 50px 10px 50px;
 	margin-left: 0px;
-	margin-top: 3px;
-}
-
-.navbar .nav {
-	margin: 8px 10px 0px 15px
+	margin-top: -15px;
 }
 
 .navbar-inner {

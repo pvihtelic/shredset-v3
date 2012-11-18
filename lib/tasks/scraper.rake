@@ -133,18 +133,18 @@ task :scrape => :environment do
 	# 	:weight => 2000
 	# }]
 
-@specs = []
+specs = []
 data.xpath('//table[@class="matrixSpecTable"]//thead/tr').search('th').map(&:to_s).each.with_index do |th, i|
 	next if i == 0
 	specs << { :length => th.text.to_i }
 end
 
 spec_labels = {
-	:turning_radius => 'Turning Radius',
-	:tip_width => 'Tip',
-	:waist_width => 'Waist',
-	:tail_width => 'Tail', 
-	:weight => 'Indv.'
+	'Turning Radius' => :turning_radius,
+	'Tip' => :tip_width,
+	'Waist' => :waist_width,
+	'Tail' => :tail_width, 
+	'Indv.' => :weight 
 }
 
 table_row_path = data.xpath('//table[@class="matrixSpecTable"]//tr').each do |tr|
@@ -160,8 +160,7 @@ table_row_path = data.xpath('//table[@class="matrixSpecTable"]//tr').each do |tr
 end
 
 
-
+puts specs
 
 end
-puts @specs
 end
