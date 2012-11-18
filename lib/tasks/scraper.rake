@@ -128,7 +128,7 @@ end
 # table_row_path = data.xpath('//table[@class="matrixSpecTable"]//tr').each do |tr|
 # 	key = :something
 
-# 	tr.table_row_path.search('td').each.with_index do |td, i|
+# 	tr.search('td').each.with_index do |td, i|
 # 		if i == 0
 # 			key = spec_labels[td.text]
 # 		else

@@ -1,4 +1,7 @@
 Shredset::Application.routes.draw do
+  
+  root to: 'pages#home'
+  
   resources :reviews
 
   resources :images
