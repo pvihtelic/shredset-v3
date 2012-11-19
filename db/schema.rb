@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121118215437) do
+ActiveRecord::Schema.define(:version => 20121119181749) do
 
   create_table "brands", :force => true do |t|
     t.string   "company"
@@ -66,8 +66,9 @@ ActiveRecord::Schema.define(:version => 20121118215437) do
     t.integer  "tail_width"
     t.integer  "weight"
     t.integer  "ski_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.boolean  "size_available", :default => false
   end
 
   create_table "stores", :force => true do |t|
