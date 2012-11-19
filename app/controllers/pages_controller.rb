@@ -6,6 +6,9 @@ class PagesController < ApplicationController
     	respond_to do |format|
      	format.html # index.html.erb
       	format.json { render json: @skis }
+
+      	@brands = Brand.all 
+
     	end
 	end
 
