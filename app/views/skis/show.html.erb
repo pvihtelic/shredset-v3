@@ -42,7 +42,7 @@
                   <td>
                   <% store.inventories.where(:ski_id => @ski.id).each do |inventory| %>
                       <li>
-                          <%= inventory.spec.length %>
+                          <%= inventory.size_available %>
                       </li>
                   <% end %>
                   </td>

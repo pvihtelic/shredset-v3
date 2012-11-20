@@ -3,9 +3,9 @@
 <table>
   <tr>
     <th>Ski</th>
-    <th>Spec</th>
     <th>Store</th>
-    <th>Product url</th>
+    <th>URL</th>
+    <th>Size Available</th>
     <th>Price</th>
     <th></th>
     <th></th>
@@ -15,9 +15,9 @@
 <% @inventories.each do |inventory| %>
   <tr>
     <td><%= inventory.ski_id %></td>
-    <td><%= inventory.spec_id %></td>
     <td><%= inventory.store_id %></td>
     <td><%= inventory.product_url %></td>
+    <td><%= inventory.size_available %></td>
     <td><%= inventory.price %></td>
     <td><%= link_to 'Show', inventory %></td>
     <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>

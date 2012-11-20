@@ -133,12 +133,9 @@ task :scrape => :environment do
 			Spec.create(spec)
 		end
 
-		@ultimate_sizes_available = Spec.where(:ski_id => @ski.id, :size_available => true)
-		@ultimate_sizes_available.each do |spec_that_is_available|
-			Inventory.create(:price => @price, :product_url => @url, :ski_id => spec_that_is_available.ski_id, :spec_id => spec_that_is_available.id, :store_id => @store.id)
+		@sizes[0].each do |size_available|
+			Inventory.create(:price => @price, :product_url => @url, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
 		end
-
-		puts @ultimate_sizes_available.inspect
 
 		image = Image.create(:image_url => image_link, :ski_id => @ski.id)
 		# puts image.image_url
@@ -147,15 +144,4 @@ task :scrape => :environment do
 		# puts review.average_review
 
 	end
-end		
-
-	####### Sizes Available ########
-		
-	
-	
-	# @links_array.each do |product_link|
-	#   url = product_link
-	#   data = Nokogiri::HTML(open(url))
-	  
-
-
+end
