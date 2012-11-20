@@ -57,7 +57,8 @@ task :scrape => :environment do
 			gender = "Men's"
 		end
 		
-		@price = data.css("#price").text.strip
+		@price = data.css("#price").text.strip.gsub('$','')
+		puts @price
 
 		image_link_relative = data.css(".mainImageContainer").map{|link| link['href']}
 		image_link = "http://www.evo.com#{image_link_relative.join}"
@@ -106,27 +107,27 @@ task :scrape => :environment do
 		end
 		end			
 
-
 		@ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
 		puts @ski.name
 
 		@sizes = []
 		@placeholder = []
 		@sizes_available_array = data.at_css('.buttonContainer').text.strip.scan(/\d*/)
-	  	@placeholder << @sizes_available_array.select {|string| string.length == 3}
+	  	@placeholder << @sizes_available_array.select{|string| string.length == 3}
 	  	@placeholder.each do |placeholder_object|
-	    @sizes << "#{placeholder_object}"
+	    @sizes << placeholder_object
 	  	end 
+
+	  	# puts @sizes[0][0].to_i.inspect
 
 		specs.each do |spec|
 			spec[:ski_id] = @ski.id
-			@spec = spec
-			@sizes.each do |size|
-				if @spec[:length] == size.to_i
-					@spec[:size_available] = true
+			@sizes[0].each do |size|
+				if spec[:length] == size.to_i
+					spec[:size_available] = true
 				end
 			end
-			Spec.create(@spec)
+			Spec.create(spec)
 		end
 
 		@store = Store.create(:store_url => "http://www.evo.com/", :vendor => "evo.com")
@@ -137,10 +138,10 @@ task :scrape => :environment do
 		end
 
 		image = Image.create(:image_url => image_link, :ski_id => @ski.id)
-		puts image.image_url
+		# puts image.image_url
 
 		review = Review.create(:average_review => average_review, :number_of_reviews => number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-		puts review.average_review
+		# puts review.average_review
 
 	end
 end		
