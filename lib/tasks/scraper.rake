@@ -1,4 +1,5 @@
 desc "scraper"
+
 task :scrape => :environment do 
 	require 'nokogiri'
 	require 'open-uri'
@@ -15,6 +16,8 @@ task :scrape => :environment do
 			@links_array << "http://www.evo.com#{@link_strings}"
 		end
 	end
+
+	@store = Store.create(:store_url => "http://www.evo.com/", :vendor => "evo.com")
 
 	@links_array.each do |product_link|
 		@url = product_link
@@ -130,12 +133,12 @@ task :scrape => :environment do
 			Spec.create(spec)
 		end
 
-		@store = Store.create(:store_url => "http://www.evo.com/", :vendor => "evo.com")
-
-		@ultimate_sizes_available = Spec.where(:size_available => true)
+		@ultimate_sizes_available = Spec.where(:ski_id => @ski.id, :size_available => true)
 		@ultimate_sizes_available.each do |spec_that_is_available|
 			Inventory.create(:price => @price, :product_url => @url, :ski_id => spec_that_is_available.ski_id, :spec_id => spec_that_is_available.id, :store_id => @store.id)
 		end
+
+		puts @ultimate_sizes_available.inspect
 
 		image = Image.create(:image_url => image_link, :ski_id => @ski.id)
 		# puts image.image_url
