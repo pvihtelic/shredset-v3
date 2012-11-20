@@ -134,7 +134,7 @@ task :scrape => :environment do
 
 		@ultimate_sizes_available = Spec.where(:size_available => true)
 		@ultimate_sizes_available.each do |spec_that_is_available|
-			inventory = Inventory.create(:price => @price, :product_url => @url, :ski_id => @ski.id, :spec_id => spec_that_is_available.id, :store_id => @store.id)
+			Inventory.create(:price => @price, :product_url => @url, :ski_id => spec_that_is_available.ski_id, :spec_id => spec_that_is_available.id, :store_id => @store.id)
 		end
 
 		image = Image.create(:image_url => image_link, :ski_id => @ski.id)
