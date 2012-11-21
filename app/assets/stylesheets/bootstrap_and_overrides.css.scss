@@ -3,7 +3,7 @@ body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
 body { 
-    background: url('http://25.media.tumblr.com/tumblr_mbn6imHca41riufsso1_1280.jpg'); 
+    background: url('mountainbackground.jpg'); 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -12,6 +12,11 @@ body {
     background-repeat: no-repeat;
     font-family: 'Sanchez', serif; 
 	}
+
+.field {
+  margin-left: 10px;
+  margin-top: 10px;
+}
 
 .brand {
   background: url('shredsetlogocolor.png');

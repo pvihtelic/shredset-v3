@@ -1,18 +1,26 @@
 
 <div class="row">
-    <div class="content-left-home">
-        Search/Filter Fields
-    </div>        
+	<div class="content-left-home">
+	    <%= form_tag :class => "search-box" do %>
+	    	<div class="field">
+			    <%= collection_select(:ski, :gender, @skis, :ski_type, :ski_type, {}, :multiple => true) %>
+			</div>
+			<div class="field">
+			    <%= collection_select(:ski, :gender, @skis, :id, :gender, {}, :multiple => true) %>
+			</div>
+			<div class="field">
+			    <%= collection_select(:ski, :ability_level, @skis, :id, :ability_level, {}, :multiple => true) %>
+			</div>
+	    <% end %>
+	    Search/Filter Fields
+	</div>        
 
-    <div class="span5">
-    	<div class="content-home-page">
+	<div class="span5">
+		<div class="content-home-page">
 
 			product pictures
 
-    	</div>
+		</div>
 	</div>
 
-</div>      
-<br />
-
-<%= link_to 'New Ski', new_ski_path %>
+</div>

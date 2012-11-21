@@ -8,6 +8,7 @@ class PagesController < ApplicationController
       	format.json { render json: @skis }
 
       	@brands = Brand.all 
+      	
 
     	end
 	end
