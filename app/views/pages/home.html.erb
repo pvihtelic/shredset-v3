@@ -5,13 +5,13 @@
 
 	    <%= form_tag do %>
 	    	<div class="field">
-			    <%= collection_select(:ski, :gender, @skis, :ski_type, :ski_type, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :gender, @ski_types, :ski_type, :ski_type, {}, :multiple => true) %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :gender, @skis, :id, :gender, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :gender, @genders, :id, :gender, {}, :multiple => true) %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :ability_level, @skis, :id, :ability_level, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :ability_level, @ability_levels, :id, :ability_level, {}, :multiple => true) %>
 			</div>
 	    <% end %>
 	</div>        
