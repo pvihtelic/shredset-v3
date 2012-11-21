@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
       	@brands = Brand.all 
       	
+      	
 
     	end
 	end

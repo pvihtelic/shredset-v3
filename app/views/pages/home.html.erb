@@ -1,7 +1,9 @@
 
 <div class="row">
 	<div class="content-left-home">
-	    <%= form_tag :class => "search-box" do %>
+	    <h5 class="search-headline">Search Our Database of over <%= Inventory.all.count %> skis </h5>	
+
+	    <%= form_tag do %>
 	    	<div class="field">
 			    <%= collection_select(:ski, :gender, @skis, :ski_type, :ski_type, {}, :multiple => true) %>
 			</div>
@@ -12,7 +14,6 @@
 			    <%= collection_select(:ski, :ability_level, @skis, :id, :ability_level, {}, :multiple => true) %>
 			</div>
 	    <% end %>
-	    Search/Filter Fields
 	</div>        
 
 	<div class="span5">
