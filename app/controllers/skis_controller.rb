@@ -4,6 +4,17 @@ class SkisController < ApplicationController
   def index
     @skis = Ski.all
 
+    ski_type = params[:ski_type]
+
+    @skis = @skis.where(:ski_type => ski_type) if ski_type.present?
+
+    gender = params[:gender]
+
+    @skis = @skis.where(:gender => gender) if gender.present?
+
+    ability_level = params[:ability_level]
+
+    @skis = @skis.where(:ability_level => ability_level) if ability_level.present?
 
     respond_to do |format|
       format.html # index.html.erb

@@ -3,16 +3,19 @@
 	<div class="content-left-home">
 	    <h5 class="search-headline">Search Our Database of over <%= Inventory.all.count %> skis </h5>	
 
-	    <%= form_tag do %>
+	    <%= form_tag skis_url, :method=>:get do %>
 	    	<div class="field">
 			    <%= collection_select(:ski, :gender, @ski_types, :ski_type, :ski_type, {}, :multiple => true) %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :gender, @genders, :id, :gender, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :gender, @genders, :gender, :gender, {}, :multiple => true) %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :ability_level, @ability_levels, :id, :ability_level, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {}, :multiple => true) %>
 			</div>
+			<div class="field">
+			    <%= submit_tag "Search" %>
+			</div>			
 	    <% end %>
 	</div>        
 
