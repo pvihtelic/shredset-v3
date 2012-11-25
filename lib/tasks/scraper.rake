@@ -118,7 +118,7 @@ task :scrape => :environment do
 		@sizes_available_array = data.at_css('.buttonContainer').text.strip.scan(/\d*/)
 	  	@placeholder << @sizes_available_array.select{|string| string.length == 3}
 	  	@placeholder.each do |placeholder_object|
-	    @sizes << placeholder_object
+	    	@sizes << placeholder_object
 	  	end 
 
 	  	# puts @sizes[0][0].to_i.inspect
