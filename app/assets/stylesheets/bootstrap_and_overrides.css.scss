@@ -60,7 +60,7 @@ body {
   width: 50%;
   font-family: 'Sanchez', serif;
   background-color: #fff;
-  opacity:0.9;
+  opacity:1;
   padding-top: 10px;
   padding-left: 30px;
   padding-right: 30px;
@@ -79,10 +79,10 @@ body {
   left: 0px;
   position: fixed;
   top: 100px;
-  width: 25%;
+  width: 350px;
   font-family: 'Sanchez', serif;
   background-color: #fff;
-  opacity:0.9;
+  opacity:1;
   padding-top: 10px;
   padding-left: 10px;
   margin: 50px -10px; /* negative indent the amount of the padding to maintain the grid system */
@@ -190,6 +190,14 @@ div.thumbnail {
   padding: 0;
   margin-left: 50px;
   margin-right: 50px;
+}
+
+.thumbnail-label {
+  padding-left: 10px;
+}
+
+.chzn-select {
+  width: 300px;
 }
 
 .carousel-control {

@@ -5,13 +5,13 @@
 
 	    <%= form_tag skis_url, :method=>:get do %>
 	    	<div class="field">
-			    <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {}, :multiple => true, :class=>'chzn-select') %>
+			    <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Ski Type") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :gender, @genders, :gender, :gender, {}, :multiple => true, :class=>'chzn-select') %>
+			    <%= collection_select(:ski, :gender, @genders, :gender, :gender, {}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Gender/Youth") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {}, :multiple => true, :class => "chzn-select") %>
+			    <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Ability Level") %>
 			</div>
 			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
@@ -41,22 +41,22 @@
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57940/291387/line-skis-sir-francis-bacon-skis-2013.jpg" alt="">
-				                    <h5>Sir Francis Bacon</h5>
-      								<p>From $649.95</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/58707/291752/salomon-rocker2-108-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				        </ul>
@@ -66,22 +66,22 @@
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57940/291387/line-skis-sir-francis-bacon-skis-2013.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/58707/291752/salomon-rocker2-108-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				        </ul>
@@ -99,22 +99,22 @@
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				        </ul>
@@ -124,22 +124,22 @@
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57940/291387/line-skis-sir-francis-bacon-skis-2013.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				            <li class="span1">
 				                <div class="thumbnail">
 				                    <img src="http://www.evo.com/imgp/1500/58707/291752/salomon-rocker2-108-skis-2013-front.jpg" alt="">
-				                    <h5>Thumbnail label</h5>
-      								<p>Thumbnail caption...</p>
+				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
+      								<p class="thumbnail-label">From $649.95</p>
 				                </div>
 				            </li>
 				        </ul>
