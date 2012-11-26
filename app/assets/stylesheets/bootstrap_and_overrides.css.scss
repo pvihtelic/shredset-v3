@@ -59,8 +59,8 @@ body {
   top: 100px;
   width: 50%;
   font-family: 'Sanchez', serif;
-  background-color: #eee;
-  opacity:1.0;
+  background-color: #fff;
+  opacity:0.9;
   padding-top: 10px;
   padding-left: 30px;
   padding-right: 30px;
@@ -81,8 +81,8 @@ body {
   top: 100px;
   width: 25%;
   font-family: 'Sanchez', serif;
-  background-color: #eee;
-  opacity:1.0;
+  background-color: #fff;
+  opacity:0.9;
   padding-top: 10px;
   padding-left: 10px;
   margin: 50px -10px; /* negative indent the amount of the padding to maintain the grid system */
@@ -103,6 +103,10 @@ body {
 
 .nav li {
 	line-height: 35px;
+}
+
+.nav {
+  margin-bottom: 0px;
 }
 
 .page-header {
@@ -152,8 +156,8 @@ body {
 
 .span8 {
 	float: right;
-	margin-right:10px;
-	margin-left:10px;
+	margin-right:-100px;
+	margin-left:0px;
 }
 
 .span1 {
@@ -165,7 +169,7 @@ body {
 }
 
 div.carousel.slide.span8 {
-  margin-right: -10%;
+  margin-right: -50px;  
 }
 
 div.thumbnail {
@@ -175,6 +179,19 @@ div.thumbnail {
   margin-right: 50px;
 }
 
+.carousel-control {
+  margin-right: 6px;
+}
+
+.carousel-control.right {
+  left: auto;
+  right: 10px;
+}
+
+ul.thumbnails {
+  margin-left: -25px;
+}
+
 #this-carousel-id {
 	width: 100%;
 	float: left;
@@ -182,8 +199,4 @@ div.thumbnail {
 
 .table {
 	float: right;
-}
-
-.carousel-control {
-	margin-right: 17px;
 }
