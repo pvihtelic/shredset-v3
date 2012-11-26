@@ -5,13 +5,13 @@
 
 	    <%= form_tag skis_url, :method=>:get do %>
 	    	<div class="field">
-			    <%= collection_select(:ski, :gender, @ski_types, :ski_type, :ski_type, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {}, :multiple => true, :class=>'chzn-select') %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :gender, @genders, :gender, :gender, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :gender, @genders, :gender, :gender, {}, :multiple => true, :class=>'chzn-select') %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {}, :multiple => true) %>
+			    <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {}, :multiple => true, :class => "chzn-select") %>
 			</div>
 			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
