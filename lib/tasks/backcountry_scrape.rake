@@ -22,8 +22,16 @@ task :scrape2 => :environment do
 @links_array.each do |product_link|
 	@url = product_link
 	data = Nokogiri::HTML(open(@url))
+	
+	#brand
 	brand = Brand.find_or_create_by_company(:company => data.css("h1.header-2.product-name").css("span").text)
 	puts brand.company
+
+	#name
+	name = data.css(".product-group-title .product-name").text
+	name_array = name.split(' ')
+	name_array.delete_at(0)
+	@name = name_array.join " "
 
 	#model year not available
 
@@ -72,7 +80,7 @@ task :scrape2 => :environment do
 		@image_link = link2
 	end
 
-
+	#average review
 	review = data.css(".product-group-title .rating .rating-value").text
 	if review == "0"
 		@average_review = "na"
@@ -80,13 +88,61 @@ task :scrape2 => :environment do
 		@average_review = review
 	end
 
+	#number of reviews
 	number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join ''
 	if number_of_reviews.empty?
 		number_of_reviews = "na"
 	end
-	puts number_of_reviews
 
-	
+	#turning radius
+	table = data.css(".tech-specs")
+	table.search('tr').each do |table|
+		headers = table.search('td').text
+		if headers.include? "Turn Radius" 
+			headers2 = headers.dup
+			headers2[0..11] = ''
+			@turning_radius = headers2
+		end
+	end
+
+		# puts @turning_radius
+
+	#lengths
+	table = data.css(".tech-specs")
+	table.search('tr').each do |table|
+		headers = table.search('td').text
+		if headers.include? "Length" 
+			headers2 = headers.dup
+			headers2[0..6] = ''
+			@length= headers2
+		end
+	end
+
+	#dimensions
+	table = data.css(".tech-specs")
+	table.search('tr').each do |table|
+		headers = table.search('td').text
+		if headers.include? "Dimensions" 
+			headers2 = headers.dup
+			headers2[0..10] = ''
+			@dimensions = headers2
+		end
+	end
+
+	sizes_available = data.css(".ui-dialog")
+	puts sizes_available.inspect
+
+	# puts @dimensions.inspect
+
+	# specs = []
+	# @length.scan(/\d{3}/).each do |length|
+	# 	if @turning_radius.scan(/\d{3}/).include? length
+	# 		:turning_radius => 
+	# 	end
+	# end
+
+	# puts specs
+
 
 
 
