@@ -2,19 +2,22 @@ class SkisController < ApplicationController
   # GET /skis
   # GET /skis.json
   def index
+    @skis = Ski.scoped
 
-    if params[:ski].blank?
+    if params[:ski].present?
 
-      @skis = Ski.all
-
-    else
-
-      ski_type = params[:ski][:ski_type]
-      gender = params[:ski][:gender]
-      ability_level = params[:ski][:ability_level]
-      brand = params[:brand][:company]
-
-      @skis = Ski.where(:ski_type => ski_type[1], :gender => gender[1], :ability_level => ability_level[1], :brand_id => brand[1])
+      ski_type = params[:ski][:ski_type].reject(&:blank?)
+      gender = params[:ski][:gender].reject(&:blank?)
+      ability_level = params[:ski][:ability_level].reject(&:blank?)
+      brand = params[:brand][:company].reject(&:blank?)
+      # raise ski_type.any?.inspect
+      
+      @skis = @skis.where(:ski_type => ski_type) if ski_type.any?
+      @skis = @skis.where(:gender => gender) if gender.any?
+      @skis = @skis.where(:ability_level => ability_level) if ability_level.any?
+      @skis = @skis.where(:brand_id => brand) if brand.any?
+     end 
+      # @skis = Ski.where(:ski_type => ski_type[1], :gender => gender[1], :ability_level => ability_level[1], :brand_id => brand[1])
       # if !ski_type[1].blank?
 
       # @skis2 = Ski.where(:gender => gender[1]) if !gender[1].blank?
@@ -30,7 +33,7 @@ class SkisController < ApplicationController
       # if !@skis3.nil?
       #   @skis.concat(@skis3)
       # end
-    end
+    # end
 
 
 
