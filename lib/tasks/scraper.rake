@@ -4,14 +4,12 @@ task :scrape => :environment do
 	require 'nokogiri'
 	require 'open-uri'
 
-	#@url = ["http://www.evo.com/shop/ski/skis.aspx", "http://www.evo.com/shop/ski/skis/p_2.aspx", "http://www.evo.com/shop/ski/skis/p_3.aspx", "http://www.evo.com/shop/ski/skis/p_4.aspx", "http://www.evo.com/shop/ski/skis/p_5.aspx", "http://www.evo.com/shop/ski/skis/p_6.aspx", "http://www.evo.com/shop/ski/skis/p_7.aspx", "http://www.evo.com/shop/ski/skis/p_8.aspx", "http://www.evo.com/shop/ski/skis/p_9.aspx", "http://www.evo.com/shop/ski/skis/p_10.aspx", "http://www.evo.com/shop/ski/skis/p_11.aspx"]
-	
-	@index_link = ["http://www.evo.com/shop/ski/skis/p_2.aspx"]
+	@url = ["http://www.evo.com/shop/ski/skis.aspx", "http://www.evo.com/a-shop/ski/skis/p_2.aspx", "http://www.evo.com/a-shop/ski/skis/p_3.aspx", "http://www.evo.com/a-shop/ski/skis/p_4.aspx", "http://www.evo.com/a-shop/ski/skis/p_5.aspx", "http://www.evo.com/a-shop/ski/skis/p_6.aspx", "http://www.evo.com/a-shop/ski/skis/p_7.aspx", "http://www.evo.com/a-shop/ski/skis/p_8.aspx", "http://www.evo.com/a-shop/ski/skis/p_9.aspx", "http://www.evo.com/a-shop/ski/skis/p_10.aspx", "http://www.evo.com/a-shop/ski/skis/p_11.aspx"]
 
 	@links_array = []
 
-	@index_link.each do |index_link|
-		data = Nokogiri::HTML(open(index_link))
+	@url.each do |url|
+		data = Nokogiri::HTML(open(url))
 		product_links = data.css("div.product.item.hproduct a")
 		product_links.each do |link|
 			@link_strings = "#{link['href']}"
@@ -116,9 +114,6 @@ task :scrape => :environment do
 		end
 		end			
 
-		@ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
-		puts @ski.name
-
 		@sizes = []
 		@placeholder = []
 		@sizes_available_array = data.at_css('.buttonContainer').text.strip.scan(/\d*/)
@@ -126,6 +121,11 @@ task :scrape => :environment do
 	  	@placeholder.each do |placeholder_object|
 	    	@sizes << placeholder_object
 	  	end 
+
+		# if data.css("div.OutofStock").present?
+			@ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
+		# end
+		puts @ski.name
 
 	  	# puts @sizes[0][0].to_i.inspect
 
