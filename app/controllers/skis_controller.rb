@@ -16,12 +16,7 @@ class SkisController < ApplicationController
       @skis = Ski.where(:ski_type => ski_type[1], :gender => gender[1], :ability_level => ability_level[1])
       # if !ski_type[1].blank?
 
-
-
       # @skis2 = Ski.where(:gender => gender[1]) if !gender[1].blank?
-
-      
-
       # @skis3 = Ski.where(:ability_level => ability_level[1]) if !ability_level[1].blank?
 
       # @skis = []
