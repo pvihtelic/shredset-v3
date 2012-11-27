@@ -4,24 +4,30 @@ task :scrape => :environment do
 	require 'nokogiri'
 	require 'open-uri'
 
-	@url = "http://www.evo.com/shop/ski/skis.aspx"
-		
-	data = Nokogiri::HTML(open(@url))
-	product_links = data.css("div.product.item.hproduct a")
+	#@url = ["http://www.evo.com/shop/ski/skis.aspx", "http://www.evo.com/shop/ski/skis/p_2.aspx", "http://www.evo.com/shop/ski/skis/p_3.aspx", "http://www.evo.com/shop/ski/skis/p_4.aspx", "http://www.evo.com/shop/ski/skis/p_5.aspx", "http://www.evo.com/shop/ski/skis/p_6.aspx", "http://www.evo.com/shop/ski/skis/p_7.aspx", "http://www.evo.com/shop/ski/skis/p_8.aspx", "http://www.evo.com/shop/ski/skis/p_9.aspx", "http://www.evo.com/shop/ski/skis/p_10.aspx", "http://www.evo.com/shop/ski/skis/p_11.aspx"]
+	
+	@index_link = ["http://www.evo.com/shop/ski/skis/p_2.aspx"]
+
 	@links_array = []
-	product_links.each do |link|
-		@link_strings = "#{link['href']}"
-		if @link_strings.blank?
-		else
-			@links_array << "http://www.evo.com#{@link_strings}"
+
+	@index_link.each do |index_link|
+		data = Nokogiri::HTML(open(index_link))
+		product_links = data.css("div.product.item.hproduct a")
+		product_links.each do |link|
+			@link_strings = "#{link['href']}"
+			if @link_strings.blank?
+			else
+				@links_array << "http://www.evo.com#{@link_strings}"
+			end
 		end
 	end
+
+	puts @links_array.inspect
 
 	@store = Store.create(:store_url => "http://www.evo.com/", :vendor => "evo.com")
 
 	@links_array.each do |product_link|
-		@url = product_link
-		data = Nokogiri::HTML(open(@url))
+		data = Nokogiri::HTML(open(product_link))
 		brand = Brand.find_or_create_by_company(:company => data.css("h1.fn").css("strong.brand").text)
 		puts brand.company
 		x = data.at('strong').next.text
@@ -133,8 +139,10 @@ task :scrape => :environment do
 			Spec.create(spec)
 		end
 
+		@product_link = product_link
+
 		@sizes[0].each do |size_available|
-			Inventory.create(:price => @price, :product_url => @url, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
+			Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
 		end
 
 		image = Image.create(:image_url => image_link, :ski_id => @ski.id)
