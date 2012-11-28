@@ -18,9 +18,6 @@ class SkisController < ApplicationController
       @skis = @skis.where(:ability_level => ability_level) if ability_level.any?
       @skis = @skis.where(:brand_id => brand) if brand.any?
       if price_range.any?
-        if price_range.include?("200-400") && price_range.include?("400-600")
-          @skis = @skis.where(:price => 200..600)
-        end 
         if price_range.include?("200-400")
           @skis = @skis.where(:price => 200..400)
         end
