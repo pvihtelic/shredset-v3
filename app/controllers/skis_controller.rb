@@ -10,28 +10,14 @@ class SkisController < ApplicationController
       gender = params[:ski][:gender].reject(&:blank?)
       ability_level = params[:ski][:ability_level].reject(&:blank?)
       brand = params[:brand][:company].reject(&:blank?)
-      price_range = params[:price_range][:price_range].reject(&:blank?)
+
       # raise ski_type.any?.inspect
       
       @skis = @skis.where(:ski_type => ski_type) if ski_type.any?
       @skis = @skis.where(:gender => gender) if gender.any?
       @skis = @skis.where(:ability_level => ability_level) if ability_level.any?
       @skis = @skis.where(:brand_id => brand) if brand.any?
-      if price_range.any?
-        if price_range.include?("200-400")
-          @skis = @skis.where(:price => 200..400)
-        end
-        if price_range.include?("400-600")
-          @skis = @skis.where(:price => 400..600)
-        end
-        if price_range.include?("600-800")
-          @skis = @skis.where(:price => 600..800)
-        end
-        if price_range.include?("800-1000")
-          @skis = @skis.where(:price => 800..1000)
-        end
-      end
-
+     
      end 
       # @skis = Ski.where(:ski_type => ski_type[1], :gender => gender[1], :ability_level => ability_level[1], :brand_id => brand[1])
       # if !ski_type[1].blank?
