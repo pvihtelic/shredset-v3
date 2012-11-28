@@ -13,6 +13,7 @@ class PagesController < ApplicationController
         @genders = Ski.find(:all, :select => "DISTINCT gender")
         @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
         @image = Image.find(:all, :order => "id desc", :limit => 1)
+        @price_ranges = PriceRange.all
     	end
 	end
 

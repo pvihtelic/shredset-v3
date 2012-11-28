@@ -127,7 +127,7 @@ task :scrape => :environment do
 			  	end 
 
 			
-						@ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
+						@ski = Ski.create(:name => name, :price => @price, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
 					
 							specs.each do |spec|
 						spec[:ski_id] = @ski.id
