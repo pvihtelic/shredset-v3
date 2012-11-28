@@ -6,19 +6,64 @@ class SkisController < ApplicationController
 
     if params[:ski].present?
 
-      ski_type = params[:ski][:ski_type].reject(&:blank?)
-      gender = params[:ski][:gender].reject(&:blank?)
-      ability_level = params[:ski][:ability_level].reject(&:blank?)
-      brand = params[:brand][:company].reject(&:blank?)
-
+      @ski_type = params[:ski][:ski_type].reject(&:blank?)
+      @gender = params[:ski][:gender].reject(&:blank?)
+      @ability_level = params[:ski][:ability_level].reject(&:blank?)
+      @brand = params[:brand][:company].reject(&:blank?)
+      @price_range = params[:price_range][:price_range].reject(&:blank?)
       # raise ski_type.any?.inspect
       
-      @skis = @skis.where(:ski_type => ski_type) if ski_type.any?
-      @skis = @skis.where(:gender => gender) if gender.any?
-      @skis = @skis.where(:ability_level => ability_level) if ability_level.any?
-      @skis = @skis.where(:brand_id => brand) if brand.any?
-     
+      @inventories = Inventory.scoped
+
+      @skis_array = []
+      if @price_range.include? "200-400"
+        inventories = @inventories.where(:price => 200..400)
+        inventories.each do |inventory|
+          ski_in_price_range = inventory.ski
+          @skis_array << ski_in_price_range
+        end
+      elsif @price_range.include? "400-600"
+        inventories = @inventories.where(:price => 400..600)
+        inventories.each do |inventory|
+          ski_in_price_range = inventory.ski
+          @skis_array << ski_in_price_range
+        end
+      elsif @price_range.include? "600-800"
+        inventories = @inventories.where(:price => 600..800)
+        inventories.each do |inventory|
+          ski_in_price_range = inventory.ski
+          @skis_array << ski_in_price_range
+        end
+      elsif @price_range.include? "800-1000"
+        inventories = @inventories.where(:price => 800..1000)
+        inventories.each do |inventory|
+          ski_in_price_range = inventory.ski
+          @skis_array<< ski_in_price_range
+        end
+      end
+
+      if @ski_type.any?
+        @skis = @skis.where(:ski_type => @ski_type)
+      end
+      if @gender.any?
+        @skis = @skis.where(:gender => @gender)
+      end
+      if @ability_level.any?
+        @skis = @skis.where(:ability_level => @ability_level)
+      end
+      if @brand.any?
+         @skis = @skis.where(:brand_id => @brand)
+      end
+
+      @overlapping_skis = @skis_array & @skis
+
+      # @skis = @skis.where(:ski_type => ski_type) if ski_type.any?
+      # @skis = @skis.where(:gender => gender) if gender.any?
+      # @skis = @skis.where(:ability_level => ability_level) if ability_level.any?
+      # @skis = @skis.where(:brand_id => brand) if brand.any?
+
      end 
+
       # @skis = Ski.where(:ski_type => ski_type[1], :gender => gender[1], :ability_level => ability_level[1], :brand_id => brand[1])
       # if !ski_type[1].blank?
 

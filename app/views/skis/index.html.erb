@@ -6,7 +6,7 @@
 
 <div class="row">
     <ul class="products">
-    <% @skis.each do |ski| %>
+    <% @overlapping_skis.each do |ski| %>
             <li class="product-item">
             <%= link_to image_tag(ski.images.first.image_url, :class => "index-product-image"), ski_url(ski.id) %>
             <br />
