@@ -16,7 +16,13 @@ class SkisController < ApplicationController
       @inventories = Inventory.scoped
 
       @skis_array = []
-      if @price_range.include? "200-400"
+      if @price_range.include? "-200"
+        inventories = @inventories.where(:price => 0..200)
+        inventories.each do |inventory|
+          ski_in_price_range = inventory.ski
+          @skis_array << ski_in_price_range
+        end
+      elsif @price_range.include? "200-400"
         inventories = @inventories.where(:price => 200..400)
         inventories.each do |inventory|
           ski_in_price_range = inventory.ski
@@ -39,6 +45,12 @@ class SkisController < ApplicationController
         inventories.each do |inventory|
           ski_in_price_range = inventory.ski
           @skis_array<< ski_in_price_range
+        end
+      elsif @price_range.include? "1000+"
+        inventories = @inventories.where(:price => 1000..2000)
+        inventories.each do |inventory|
+          ski_in_price_range = inventory.ski
+          @skis_array << ski_in_price_range
         end
       end
 

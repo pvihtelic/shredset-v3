@@ -17,7 +17,7 @@
 			    <%= collection_select(:brand, :company, @brands, :id, :company, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Price Search Broken") %>
+			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
 			</div>
 			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
