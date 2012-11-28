@@ -129,8 +129,8 @@ task :scrape2 => :environment do
 		end
 	end
 
-	sizes_available = data.css(".ui-dialog")
-	puts sizes_available.inspect
+	sizes_available = data.xpath('//option[contains(@data-img-title, "One Color")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
+	puts sizes_available
 
 	# puts @dimensions.inspect
 
@@ -142,13 +142,5 @@ task :scrape2 => :environment do
 	# end
 
 	# puts specs
-
-
-
-
 end
-
-
-
-
 end
