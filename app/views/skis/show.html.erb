@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
 
       <div class="page-header">
-          <h2><%= @ski.brand.company %> <%= @ski.name %> <small><%= @ski.model_year %> | <%= @ski.gender %> | <%= @ski.ski_type %></small></h2>
+          <h2><%= @ski.brand.company %> <%= @ski.name %> <small> <%= @ski.gender %> | <%= @ski.ski_type %></small></h2>
       </div>
       <div class="row">
         <div class="span4">
@@ -47,7 +47,7 @@
                   <% end %>
                   </td>
                   <td>
-                      $<%= store.inventories.where(:ski_id => @ski.id).first.price %>
+                      <%= number_to_currency(store.inventories.where(:ski_id => @ski.id).first.price) %>
                       </td>
                   </tr>
                 <% end %>
@@ -56,36 +56,39 @@
           <h4>Description</h4>
           <p><%= @ski.description %></p>
           <ul>
-                <li><%= @ski.ski_type %></li>
-                <li><%= @ski.ability_level %></li>
-                <li><%= @ski.rocker_type %></li>
+                <li><strong>Ski Type: </strong><%= @ski.ski_type %></li>
+                <li><strong>Ability Level: </strong><%= @ski.ability_level %></li>
+                <li><strong>Rocker Type: </strong><%= @ski.rocker_type %></li>
           </ul>
         </br>
+          <% if @spec.any? %>
           <h4>Manufacturer Specs</h4>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Sizes (cm)</th>
-                <th>Turning Radius (m)</th>
-                <th>Tip Width (mm)</th>
-                <th>Waist Width (mm)</th>
-                <th>Tail Width (mm)</th>
-                <th>Individual Ski Weight (g)</th>
-              </tr>
-              </thead>
-              <tbody>
-                <% @spec.each do |spec| %>
-                  <tr>
-                  <td><%= spec.length %></td>
-                  <td><%= spec.turning_radius %></td>
-                  <td><%= spec.tip_width %></td>
-                  <td><%= spec.waist_width %></td>
-                  <td><%= spec.tail_width %></td>
-                  <td><%= spec.weight %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-          </table>    
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sizes (cm)</th>
+                  <th>Turning Radius (m)</th>
+                  <th>Tip Width (mm)</th>
+                  <th>Waist Width (mm)</th>
+                  <th>Tail Width (mm)</th>
+                  <th>Individual Ski Weight (g)</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <% @spec.each do |spec| %>
+                    <tr>
+                    <td><%= spec.length %></td>
+                    <td><%= spec.turning_radius %></td>
+                    <td><%= spec.tip_width %></td>
+                    <td><%= spec.waist_width %></td>
+                    <td><%= spec.tail_width %></td>
+                    <td><%= spec.weight %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+            </table>    
+          <% else %>
+          <% end %>
         </div>
       </div>
     </div>

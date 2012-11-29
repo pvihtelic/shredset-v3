@@ -72,6 +72,7 @@ task :scrape => :environment do
 
 				image_link_relative = data.css(".mainImageContainer").map{|link| link['href']}
 				image_link = "http://www.evo.com#{image_link_relative.join}"
+				puts image_link.class
 
 				average_review_object = data.css(".average").text
 				if !average_review_object.empty?
@@ -126,10 +127,9 @@ task :scrape => :environment do
 			    	@sizes << placeholder_object
 			  	end 
 
-			
 						@ski = Ski.create(:name => name, :ability_level => ability_level, :description => description, :gender => gender, :model_year => model_year, :rocker_type => rocker_type, :ski_type => ski_type, :brand_id => brand.id)
 					
-							specs.each do |spec|
+						specs.each do |spec|
 						spec[:ski_id] = @ski.id
 						@sizes[0].each do |size|
 							if spec[:length] == size.to_i

@@ -68,6 +68,8 @@ class SkisController < ApplicationController
       end
 
       @overlapping_skis = @skis_array & @skis
+    else
+      @overlapping_skis = Ski.all
 
       # @skis = @skis.where(:ski_type => ski_type) if ski_type.any?
       # @skis = @skis.where(:gender => gender) if gender.any?
