@@ -50,7 +50,7 @@
 				            		<div class="thumbnail">
                             			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
                         				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
-      									<p class="thumbnail-label">$
+      									<p class="thumbnail-label">
       										<% @price_array = [] %>
       											<% top_ski.inventories.each do |inventory| %>
       												<% @price_array << number_to_currency(inventory.price) %>
@@ -58,7 +58,6 @@
       											<% @price_array.sort! {|x,y| x <=> y} %>
       											<%= @price_array.first %>
       									</p>
->>>>>>> b67506e7f57e0b478253fbd834304477e182afa6
                         			</div>
                         		</li>
                         		<% end %>
@@ -81,10 +80,10 @@
 				            		<div class="thumbnail">
                             			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
                         				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
-      									<p class="thumbnail-label">$
+      									<p class="thumbnail-label">
       										<% @price_array = []%>
 	    									  <% top_ski.inventories.each do |inventory| %>
-	    									    <% @price_array << inventory.price %>
+	    									    <% @price_array << number_to_currency(inventory.price) %>
 	    									  <% end %>
 	    									  <!-- not sure that sort is working -->
 	    									  <% @price_array.sort! {|x,y| x <=> y } %>

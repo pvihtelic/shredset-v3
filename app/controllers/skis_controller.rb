@@ -57,13 +57,9 @@ class SkisController < ApplicationController
       #   end
       # end
 
-<<<<<<< HEAD
       @overlapping_skis = @skis_array & @skis
     else
       @overlapping_skis = Ski.all
-=======
-     
->>>>>>> b67506e7f57e0b478253fbd834304477e182afa6
 
       # @skis = @skis.where(:ski_type => ski_type) if ski_type.any?
       # @skis = @skis.where(:gender => gender) if gender.any?
