@@ -8,19 +8,23 @@
       <div class="row">
         <div class="span4">
               <div id="this-carousel-id" class="carousel slide">
-              <div class="carousel-inner">
-                        <% @image.each_with_index do |item_image, index| %>
-                        <div class="<% if index == 0 %>item active
-                          <% else %>item
+                <div class="carousel-inner">
+                          <% @image.each_with_index do |item_image, index| %>
+                          <div class="<% if index == 0 %>item active
+                            <% else %>item
 
-                          <% end %>">
-                            <%= link_to(image_tag(item_image.image_url, :class=>"ski-image"), item_image.image_url, ) %>
-                        </div>
-                        <% end %>
-                  <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
-                  <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+                            <% end %>">
+                              <%= link_to(image_tag(item_image.image_url, :class=>"ski-image"), item_image.image_url, ) %>
+                          </div>
+                          <% end %>
+                    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+                    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
                 </div>
-        </div>
+              </div>
+              <div>
+                <h5>Average Review: <%= @reviews.first.average_review %> out of 5.0</h5>
+                <h5>Total Reviews Across Network: <%= @reviews.first.number_of_reviews %></h5>
+              </div>
         </div>
       
         <div class="span5">

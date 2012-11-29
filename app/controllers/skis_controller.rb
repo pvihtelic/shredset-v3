@@ -47,6 +47,8 @@ class SkisController < ApplicationController
 
     @images = Image.where(:ski_id => params[:id])
 
+    @reviews = Review.where(:ski_id => params[:id])
+
 
     respond_to do |format|
       format.html # show.html.erb

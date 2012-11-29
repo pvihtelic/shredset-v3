@@ -98,8 +98,8 @@ task :scrape2 => :environment do
 		end
 
 		#number of reviews
-		number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join ''
-		if number_of_reviews.empty?
+		@number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join ''
+		if @number_of_reviews.empty?
 			@number_of_reviews = "na"
 		end
 
