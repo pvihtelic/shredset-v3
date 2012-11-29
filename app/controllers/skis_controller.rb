@@ -10,7 +10,7 @@ class SkisController < ApplicationController
       @gender = params[:ski][:gender].reject(&:blank?)
       @ability_level = params[:ski][:ability_level].reject(&:blank?)
       @brand = params[:brand][:company].reject(&:blank?)
-      @price_range = params[:price_range][:price_range].reject(&:blank?)
+      @price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect
       
       @inventories = Inventory.scoped
