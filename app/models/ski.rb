@@ -9,7 +9,7 @@ class Ski < ActiveRecord::Base
   belongs_to :brand
 
 
-  def self.search_characteristics(ski_type, gender, ability_level, brand)
+  def self.search_characteristics(ski_type, gender, ability_level, brand, name)
   	@skis = Ski.scoped
   	if ski_type.any?
         @skis = @skis.where(:ski_type => ski_type)
@@ -22,6 +22,9 @@ class Ski < ActiveRecord::Base
     end
     if brand.any?
       @skis = @skis.where(:brand_id => brand)
+    end
+    if name.any?
+      @skis = @skis.where(:name => name)
     end
     return @skis
    end

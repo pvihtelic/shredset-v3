@@ -8,14 +8,17 @@ class SkisController < ApplicationController
       gender = params[:ski][:gender].reject(&:blank?)
       ability_level = params[:ski][:ability_level].reject(&:blank?)
       brand = params[:brand][:company].reject(&:blank?)
+      name = params[:ski][:name].reject(&:blank?)
       price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect
       
       skis_array = Inventory.search_price(price_range)
 
-      skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, brand)
+      skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, brand, name)
 
       @overlapping_skis = skis_array & skis_refined
+    else
+      @overlapping_skis = Ski.all
     end
 
     respond_to do |format|

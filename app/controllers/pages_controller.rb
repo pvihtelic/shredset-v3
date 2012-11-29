@@ -12,6 +12,7 @@ class PagesController < ApplicationController
       	@ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
         @genders = Ski.find(:all, :select => "DISTINCT gender")
         @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
+        @names = Ski.find(:all, :select => "DISTINCT name")
         @price_ranges = PriceRange.all
 
         top_reviews = Review.order("average_review desc")
