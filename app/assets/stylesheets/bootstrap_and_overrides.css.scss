@@ -137,9 +137,6 @@ body {
 
 .ski-image {
 	width: 350px;
-	border-style: solid;
-	border-width: 2px;
-	border-color: #CCC;
 }
 
 .products {
@@ -202,12 +199,12 @@ div.thumbnail {
 }
 
 .carousel-control {
-  margin-right: 6px;
+  margin-right: 10px;
 }
 
 .carousel-control.right {
   left: auto;
-  right: 10px;
+  right: 45px;
 }
 
 ul.thumbnails {

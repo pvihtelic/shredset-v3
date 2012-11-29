@@ -5,6 +5,7 @@ class Ski < ActiveRecord::Base
   has_many :inventories
   has_many :stores, :through => :inventories
   has_many :images
+  has_many :reviews
   belongs_to :brand
 
 end

@@ -42,86 +42,49 @@
 			    <div class="tab-pane active" id="tab1">  
 			    <div class="carousel slide span8" id="myCarousel">
 				<div class="carousel-inner">
-					<% @image.each_with_index do |item_image, index| %>
-                        <div class="<% if index == 0 %>item active
-                          <% else %>item
-
-                          <% end %>">
+					<% @all_mountain_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
-                            	<% 3.times do |x| %>
+                            	<% top_three_skis.each do |top_ski| %>
                             	<li class="span1">
 				            		<div class="thumbnail">
-                            			<%= link_to(image_tag(item_image.image_url, :class=>"ski-image"), item_image.image_url, ) %>
-                        				<h5 class="thumbnail-label">Testing</h5>
-      									<p class="thumbnail-label">From $649.95</p>
+                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
+                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
+      									<p class="thumbnail-label">$
+      										<% @inventory_object = top_ski.inventories.order("price asc").first.price %>
+      										<%= @inventory_object.price %></p>
                         			</div>
                         		</li>
                         		<% end %>
-                        	</ul>
+                        	</ul>	
+                  		</div>
                         <% end %>
-				  </div>
-				  </div>
+						<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+						<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>		
 				</div>
-				<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
-				<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+				</div>
 				</div>
 			    <div class="tab-pane" id="tab2">
 			    <div class="carousel slide span8" id="myCarousel">
 				<div class="carousel-inner">
-				  <div class="item active">
-				        <ul class="thumbnails">
-				            <li class="span1">
-				                <div class="thumbnail">
-				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
-      								<p class="thumbnail-label">From $649.95</p>
-				                </div>
-				            </li>
-				            <li class="span1">
-				                <div class="thumbnail">
-				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
-      								<p class="thumbnail-label">From $649.95</p>
-				                </div>
-				            </li>
-				            <li class="span1">
-				                <div class="thumbnail">
-				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
-      								<p class="thumbnail-label">From $649.95</p>
-				                </div>
-				            </li>
-				        </ul>
-				  </div>
-				  <div class="item">
-				        <ul class="thumbnails">
-				            <li class="span1">
-				                <div class="thumbnail">
-				                    <img src="http://www.evo.com/imgp/1500/57940/291387/line-skis-sir-francis-bacon-skis-2013.jpg" alt="">
-				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
-      								<p class="thumbnail-label">From $649.95</p>
-				                </div>
-				            </li>
-				            <li class="span1">
-				                <div class="thumbnail">
-				                    <img src="http://www.evo.com/imgp/1500/57859/297544/armada-jj-skis-2013-front.jpg" alt="">
-				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
-      								<p class="thumbnail-label">From $649.95</p>
-				                </div>
-				            </li>
-				            <li class="span1">
-				                <div class="thumbnail">
-				                    <img src="http://www.evo.com/imgp/1500/58707/291752/salomon-rocker2-108-skis-2013-front.jpg" alt="">
-				                    <h5 class="thumbnail-label">Sir Francis Bacon</h5>
-      								<p class="thumbnail-label">From $649.95</p>
-				                </div>
-				            </li>
-				        </ul>
-				  </div>
-				  </div>
+					<% @powder_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
+                        	<ul class="thumbnails">
+                            	<% top_three_skis.each do |top_ski| %>
+                            	<li class="span1">
+				            		<div class="thumbnail">
+                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
+                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
+      									<p class="thumbnail-label">$<%= top_ski.inventories.order("price asc").first %></p>
+                        			</div>
+                        		</li>
+                        		<% end %>
+                        	</ul>	
+                  		</div>
+                        <% end %>
+						<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
+						<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>		
 				</div>
-				<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
-				<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
 				</div>
 			    </div>
 			  </div>
