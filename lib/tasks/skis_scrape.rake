@@ -111,15 +111,40 @@ task :scrape3 => :environment do
 		@rocker_type = data.css(":nth-child(14) .value").text.strip
 		
 		#ski type
-		@ski_type = data.css("#pdpTab3 :nth-child(3) .value").text.strip
-		@ski_type = @ski_type.slice(/[a-zA-z]*/)
-		puts @ski_type.inspect
+		# @ski_type = data.css("#pdpTab3 :nth-child(3) .value").text.strip
+		# @ski_type = @ski_type.slice(/[a-zA-z]*/)
+		# puts @ski_type.inspect
+
+
+		#gender
+		gender_text = data.css("#pdpTab3 :nth-child(2) .value").text.strip
+		if gender_text.include? "Women"
+			@gender = "Women's"
+		elsif gender_text.include? "Girl"
+			@gender = "Youth"
+		elsif gender_text.include? "Kid"
+			@gender = "Youth"
+		else
+			@gender = "Men's"
+		end
 
 		#price 
 		price = data.css(".productinfo .salesprice")
 		price = price.text.strip.inspect
 		@price = price.delete("$")
 
+		#image link
+		# data.css('script').each do |script|
+  	#   puts script.
+  	# end
+
+  	#average review
+  	# review = data.css(".pr-snippet-stars .pr-snippet-rating-decimal")
+  	# puts review.inspect
+
+  	#number of reviews
+  	number_of_reviews = data.css(".pr-snippet-read-write a.pr-snippet-link span")
+  	puts number_of_reviews.inspect
 
 
 	# @links_array = []
