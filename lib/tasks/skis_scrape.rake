@@ -58,34 +58,70 @@ task :scrape3 => :environment do
 		name = data.css(".productdetail h1.productname").text
 		if name.include? "4 FRNT"
 			@name = name.delete("4 FRNT")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "5th Element"
 			@name = name.delete("5th Element")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "Black Diamond"
 			@name = name.delete("Black Diamond")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "Crazy Creek"
 			@name = name.delete("Crazy Creek")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "Epic Planks"
 			@name = name.delete("Epic Planks")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "Hyper Flex"
 			@name = name.delete("Hyper Flex")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "Lucky Bums"
 			@name = name.delete("Lucky Bums")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "P Tech"
 			@name = name.delete("P Tech")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "SA Snowblades"
 			@name = name.delete("SA Snowblades")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "Snow Carve"
 			@name = name.delete("Snow Carve")
+			@name = @name.delete(-1..-4)
 		elsif name.include? "South Line"
 			@name = name.delete("South Line")
+			@name = @name.delete(-1..-4)
 		else
 			name_array = name.split ' '
-			name_array.delete_at(0	)
+			name_array.delete_at(0)
+			name_array.delete_at(-1)
 			@name = name_array.join ' '
 		end
 		puts @name
 
+		#model year
+		model_year = data.css(".productdetail h1.productname").text
+		@model_year = model_year.slice(/\d{4}/)
 	
+
+		#description
+		@description = data.css("#pdpTab2 p").text
+		
+		#ability level no available
+
+		#rocker type
+		@rocker_type = data.css(":nth-child(14) .value").text.strip
+		
+		#ski type
+		@ski_type = data.css("#pdpTab3 :nth-child(3) .value").text.strip
+		@ski_type = @ski_type.slice(/[a-zA-z]*/)
+		puts @ski_type.inspect
+
+		#price 
+		price = data.css(".productinfo .salesprice")
+		price = price.text.strip.inspect
+		@price = price.delete("$")
+
+
+
 	# @links_array = []
 	# product_links.each do |link|
 	# 	@link_strings = "#{link['href']}"
