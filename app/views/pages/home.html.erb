@@ -17,7 +17,7 @@
 			    <%= collection_select(:brand, :company, @brands, :id, :company, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => false, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
+			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
 			</div>
 			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
@@ -51,8 +51,13 @@
                             			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
                         				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
       									<p class="thumbnail-label">$
-      										<% @inventory_object = top_ski.inventories.order("price asc").first.price %>
-      										<%= @inventory_object.price %></p>
+      										<% @price_array = [] %>
+      											<% top_ski.inventories.each do |inventory| %>
+      												<% @price_array << inventory.price %>
+      											<% end %>
+      											<% @price_array.sort! {|x,y| x <=> y} %>
+      											<%= @price_array.first %>
+      									</p>
                         			</div>
                         		</li>
                         		<% end %>

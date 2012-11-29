@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128041121) do
+ActiveRecord::Schema.define(:version => 20121129170946) do
 
   create_table "brands", :force => true do |t|
     t.string   "company"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20121128041121) do
     t.string   "price_range"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "low"
+    t.integer  "high"
   end
 
   create_table "reviews", :force => true do |t|
