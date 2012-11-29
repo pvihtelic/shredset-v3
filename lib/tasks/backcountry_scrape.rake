@@ -75,8 +75,9 @@ task :scrape2 => :environment do
 
 
 		#price
-		@price = data.css(".buy-box .product-price").text.strip.gsub('$', '')
-		
+		@price = data.css(".price-integer, .price-fraction").text.gsub(',','')
+		puts @price
+
 		#image link
 		image_href = data.css("#product_image .wraptocenter a")
 		image_href.each do |link|
@@ -86,8 +87,6 @@ task :scrape2 => :environment do
 		end
 
 		image_link = @image_link
-
-		puts @image_link.class
 
 		#average review
 		review = data.css(".product-group-title .rating .rating-value").text
@@ -140,7 +139,7 @@ task :scrape2 => :environment do
 
 		#sizes_available
 		@sizes = []
-		@sizes_available_array = data.xpath('//option[contains(@data-img-title, "One Color")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
+		@sizes_available_array = data.xpath('//option[contains(@data-img-title, "One Color") or contains(@data-img-title, "Black") or contains(@data-img-title, "White") or contains(@data-img-title, "Blue") or contains(@data-img-title, "Purple") or contains(@data-img-title, "Green")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
 		@sizes_available_array.each do |sizes_available|
 			@sizes << sizes_available
 		end
