@@ -4,18 +4,18 @@ class SkisController < ApplicationController
   def index
     if params[:ski].present?
 
-      @ski_type = params[:ski][:ski_type].reject(&:blank?)
-      @gender = params[:ski][:gender].reject(&:blank?)
-      @ability_level = params[:ski][:ability_level].reject(&:blank?)
-      @brand = params[:brand][:company].reject(&:blank?)
-      @price_range = params[:price_range][:price_range]
+      ski_type = params[:ski][:ski_type].reject(&:blank?)
+      gender = params[:ski][:gender].reject(&:blank?)
+      ability_level = params[:ski][:ability_level].reject(&:blank?)
+      brand = params[:brand][:company].reject(&:blank?)
+      price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect
       
-      @skis_array = Inventory.search_price(@price_range)
+      skis_array = Inventory.search_price(price_range)
 
-      @skis_refined = Ski.search_characteristics(@ski_type, @gender, @ability_level, @brand)
+      skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, brand)
 
-      @overlapping_skis = @skis_array & @skis_refined
+      @overlapping_skis = skis_array & skis_refined
 
     end
       # @skis_array = []
