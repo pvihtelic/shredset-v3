@@ -4,21 +4,18 @@ class Backcountry
 		require 'nokogiri'
 		require 'open-uri'
 
-		@url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6"]
+		@url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat51100011&page=1"]
 
 		@links_array = []
 
 		@url.each do |url|
 			data = Nokogiri::HTML(open(url))
-			out_of_stock = data.css(".out-of-stock").text
-			if !out_of_stock.present?
-				product_links = data.css("div.product.item-listing a")
-				product_links.each do |link|
-					@link_strings = "#{link['href']}"
-					if @link_strings.blank?
-					else
-						@links_array << "http://www.backcountry.com#{@link_strings}"
-					end
+			product_links = data.css("div.product.item-listing a")
+			product_links.each do |link|
+				@link_strings = "#{link['href']}"
+				if @link_strings.blank?
+				else
+					@links_array << "http://www.backcountry.com#{@link_strings}"
 				end
 			end
 		end
@@ -31,16 +28,15 @@ class Backcountry
 			data = Nokogiri::HTML(open(product_link))
 			
 			#brand
-			brand = data.css("h1.header-2.product-name").css("span").text.gsub(' Skis','')
-			brand = brand.gsub('USA','')
-			brand = Brand.find_or_create_by_company(:company => brand)
-			puts brand.company
+			brand = Brand.find_or_create_by_company(:company => data.css("h1.header-2.product-name").css("span").text)
+			# puts brand.company
 
 			#name
 			name = data.css(".product-group-title .product-name").text
 			name_array = name.split(' ')
 			name_array.delete_at(0)
 			@name = name_array.join " "
+			puts name
 
 			#model year not available
 
@@ -76,12 +72,16 @@ class Backcountry
 			else @ski_type = "na"
 			end
 
-			#gender not available
-
+			#gender
+			if ski_type.include? "Women's" || "Rockette"
+				@gender = "Women's"
+				else
+				@gender = "Men's"
+			end	
 
 			#price
 			@price = data.css(".price-integer, .price-fraction").text.gsub(',','')
-			puts @price
+			# puts @price
 
 			#image link
 			image_href = data.css("#product_image .wraptocenter a")
@@ -149,7 +149,7 @@ class Backcountry
 				@sizes << sizes_available
 			end
 
-			@ski = Ski.create(:name => @name, :ability_level => "na", :description => description, :gender => "Men's", :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => brand.id)
+			@ski = Ski.create(:name => @name, :ability_level => "na", :description => description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => brand.id)
 
 			@product_link = product_link
 
@@ -161,7 +161,7 @@ class Backcountry
 			# puts image.image_url
 
 			review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-			puts review.average_review
+			# puts review.average_review
 
 
 
@@ -174,8 +174,8 @@ class Backcountry
 			# 	end
 			# end
 
-			# puts specs
-	end
+		# puts specs
+		end
 
 	end
 end
