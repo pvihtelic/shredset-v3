@@ -27,7 +27,8 @@ class Evo
 				@links_array.each do |product_link|
 					data = Nokogiri::HTML(open(product_link))
 					if !data.css("#detailsPage div.OutOfStock h2").present?
-						brand = Brand.find_or_create_by_company(:company => data.css("h1.fn").css("strong.brand").text)
+						brand = data.css("h1.fn").css("strong.brand").text.gsub(' Skis','')
+					  brand = Brand.find_or_create_by_company(:company => brand)
 						puts brand.company
 						x = data.at('strong').next.text
 						name = x.slice(0...(x.index('Skis')))

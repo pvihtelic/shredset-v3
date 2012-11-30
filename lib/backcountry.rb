@@ -10,12 +10,15 @@ class Backcountry
 
 		@url.each do |url|
 			data = Nokogiri::HTML(open(url))
-			product_links = data.css("div.product.item-listing a")
-			product_links.each do |link|
-				@link_strings = "#{link['href']}"
-				if @link_strings.blank?
-				else
-					@links_array << "http://www.backcountry.com#{@link_strings}"
+			out_of_stock = data.css(".out-of-stock").text
+			if !out_of_stock.present?
+				product_links = data.css("div.product.item-listing a")
+				product_links.each do |link|
+					@link_strings = "#{link['href']}"
+					if @link_strings.blank?
+					else
+						@links_array << "http://www.backcountry.com#{@link_strings}"
+					end
 				end
 			end
 		end
@@ -28,7 +31,9 @@ class Backcountry
 			data = Nokogiri::HTML(open(product_link))
 			
 			#brand
-			brand = Brand.find_or_create_by_company(:company => data.css("h1.header-2.product-name").css("span").text)
+			brand = data.css("h1.header-2.product-name").css("span").text.gsub(' Skis','')
+			brand = brand.gsub('USA','')
+			brand = Brand.find_or_create_by_company(:company => brand)
 			puts brand.company
 
 			#name
