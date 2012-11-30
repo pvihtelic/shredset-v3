@@ -192,6 +192,7 @@ div.thumbnail {
 
 .thumbnail-label {
   padding-left: 10px;
+  margin: 0;
 }
 
 .chzn-select {
@@ -248,10 +249,9 @@ html {
 }
 
 .footer {
-position: relative;
+position: fixed;
 margin-top: -150px; /* negative value of footer height */
 height: 150px;
-clear:both;
 padding-top:20px;
 color:#fff;
 } 

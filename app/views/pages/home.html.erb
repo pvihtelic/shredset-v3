@@ -59,8 +59,8 @@
       												<% @price_array << number_to_currency(inventory.price) %>
       											<% end %>
       											<% @price_array.sort! {|x,y| x <=> y} %>
-      											<%= @price_array.first %>
-      									</p>
+      											<%= @price_array.first %></p>
+      									<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
                         		</li>
                         		<% end %>
@@ -73,7 +73,7 @@
 				</div>
 				</div>
 			    <div class="tab-pane" id="tab2">
-			    <div class="carousel slide span8" id="myCarousel">
+			    <div class="carousel slide span8" id="myCarousel2">
 				<div class="carousel-inner">
 					<% @powder_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
@@ -91,14 +91,139 @@
 	    									  <!-- not sure that sort is working -->
 	    									  <% @price_array.sort! {|x,y| x <=> y } %>
 	    									  <%= @price_array.first %></p>
+	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
                         		</li>
                         		<% end %>
                         	</ul>	
                   		</div>
                         <% end %>
-						<a data-slide="prev" href="#myCarousel" class="left carousel-control">‹</a>
-						<a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>		
+				<a data-slide="prev" href="#myCarousel2" class="left carousel-control">‹</a>
+				<a data-slide="next" href="#myCarousel2" class="right carousel-control">›</a>			
+				</div>
+				</div>
+			    </div>
+			    <div class="tab-pane" id="tab3">
+			    <div class="carousel slide span8" id="myCarousel3">
+				<div class="carousel-inner">
+					<% @carving_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
+                        	<ul class="thumbnails">
+                            	<% top_three_skis.each do |top_ski| %>
+                            	<li class="span1">
+				            		<div class="thumbnail">
+                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
+                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
+      									<p class="thumbnail-label">
+      										<% @price_array = []%>
+	    									  <% top_ski.inventories.each do |inventory| %>
+	    									    <% @price_array << number_to_currency(inventory.price) %>
+	    									  <% end %>
+	    									  <!-- not sure that sort is working -->
+	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <%= @price_array.first %></p>
+	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
+                        			</div>
+                        		</li>
+                        		<% end %>
+                        	</ul>	
+                  		</div>
+                        <% end %>
+				<a data-slide="prev" href="#myCarousel3" class="left carousel-control">‹</a>
+				<a data-slide="next" href="#myCarousel3" class="right carousel-control">›</a>			
+				</div>
+				</div>
+			    </div>
+			    <div class="tab-pane" id="tab4">
+			    <div class="carousel slide span8" id="myCarousel4">
+				<div class="carousel-inner">
+					<% @twin_tip_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
+                        	<ul class="thumbnails">
+                            	<% top_three_skis.each do |top_ski| %>
+                            	<li class="span1">
+				            		<div class="thumbnail">
+                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
+                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
+      									<p class="thumbnail-label">
+      										<% @price_array = []%>
+	    									  <% top_ski.inventories.each do |inventory| %>
+	    									    <% @price_array << number_to_currency(inventory.price) %>
+	    									  <% end %>
+	    									  <!-- not sure that sort is working -->
+	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <%= @price_array.first %></p>
+	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
+                        			</div>
+                        		</li>
+                        		<% end %>
+                        	</ul>	
+                  		</div>
+                        <% end %>
+				<a data-slide="prev" href="#myCarousel4" class="left carousel-control">‹</a>
+				<a data-slide="next" href="#myCarousel4" class="right carousel-control">›</a>			
+				</div>
+				</div>
+			    </div>
+			    <div class="tab-pane" id="tab5">
+			    <div class="carousel slide span8" id="myCarousel5">
+				<div class="carousel-inner">
+					<% @park_and_pipe_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
+                        	<ul class="thumbnails">
+                            	<% top_three_skis.each do |top_ski| %>
+                            	<li class="span1">
+				            		<div class="thumbnail">
+                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
+                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
+      									<p class="thumbnail-label">
+      										<% @price_array = []%>
+	    									  <% top_ski.inventories.each do |inventory| %>
+	    									    <% @price_array << number_to_currency(inventory.price) %>
+	    									  <% end %>
+	    									  <!-- not sure that sort is working -->
+	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <%= @price_array.first %></p>
+	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
+                        			</div>
+                        		</li>
+                        		<% end %>
+                        	</ul>	
+                  		</div>
+                        <% end %>
+				<a data-slide="prev" href="#myCarousel5" class="left carousel-control">‹</a>
+				<a data-slide="next" href="#myCarousel5" class="right carousel-control">›</a>			
+				</div>
+				</div>
+			    </div>
+			    <div class="tab-pane" id="tab6">
+			    <div class="carousel slide span8" id="myCarousel6">
+				<div class="carousel-inner">
+					<% @alpine_touring_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
+                        	<ul class="thumbnails">
+                            	<% top_three_skis.each do |top_ski| %>
+                            	<li class="span1">
+				            		<div class="thumbnail">
+                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
+                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
+      									<p class="thumbnail-label">
+      										<% @price_array = []%>
+	    									  <% top_ski.inventories.each do |inventory| %>
+	    									    <% @price_array << number_to_currency(inventory.price) %>
+	    									  <% end %>
+	    									  <!-- not sure that sort is working -->
+	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <%= @price_array.first %></p>
+	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
+                        			</div>
+                        		</li>
+                        		<% end %>
+                        	</ul>	
+                  		</div>
+                        <% end %>
+				<a data-slide="prev" href="#myCarousel6" class="left carousel-control">‹</a>
+				<a data-slide="next" href="#myCarousel6" class="right carousel-control">›</a>			
 				</div>
 				</div>
 			    </div>
