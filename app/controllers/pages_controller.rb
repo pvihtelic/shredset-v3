@@ -47,7 +47,7 @@ class PagesController < ApplicationController
             @ski_object = ski_object
             @park_and_pipe_top_skis << @ski_object
           end
-          alpine_touring_top_ski = Ski.where(:ski_type => "Park & Pipe Skis", :id => review.ski_id)
+          alpine_touring_top_ski = Ski.where(:ski_type => "Alpine Touring Skis", :id => review.ski_id)
           alpine_touring_top_ski.each do |ski_object|
             @ski_object = ski_object
             @alpine_touring_top_skis << @ski_object
