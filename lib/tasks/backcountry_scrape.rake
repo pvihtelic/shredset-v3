@@ -4,7 +4,7 @@ task :scrape2 => :environment do
 	require 'nokogiri'
 	require 'open-uri'
 
-	@url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6"]
+	@url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat51100011&page=1"]
 
 	@links_array = []
 
@@ -29,7 +29,7 @@ task :scrape2 => :environment do
 		
 		#brand
 		brand = Brand.find_or_create_by_company(:company => data.css("h1.header-2.product-name").css("span").text)
-		puts brand.company
+		# puts brand.company
 
 		#name
 		name = data.css(".product-group-title .product-name").text
@@ -71,12 +71,16 @@ task :scrape2 => :environment do
 		else @ski_type = "na"
 		end
 
-		#gender not available
-
+		#gender
+		if ski_type.include? "Women's" || "Rockette"
+			@gender = "Women's"
+			else
+			@gender = "Men's"
+		end	
 
 		#price
 		@price = data.css(".price-integer, .price-fraction").text.gsub(',','')
-		puts @price
+		# puts @price
 
 		#image link
 		image_href = data.css("#product_image .wraptocenter a")
@@ -144,7 +148,7 @@ task :scrape2 => :environment do
 			@sizes << sizes_available
 		end
 
-		@ski = Ski.create(:name => @name, :ability_level => "na", :description => description, :gender => "Men's", :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => brand.id)
+		@ski = Ski.create(:name => @name, :ability_level => "na", :description => description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => brand.id)
 
 		@product_link = product_link
 
@@ -156,7 +160,7 @@ task :scrape2 => :environment do
 		# puts image.image_url
 
 		review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-		puts review.average_review
+		# puts review.average_review
 
 
 
@@ -169,6 +173,7 @@ task :scrape2 => :environment do
 		# 	end
 		# end
 
-		# puts specs
-end
+	# puts specs
+	end
+
 end
