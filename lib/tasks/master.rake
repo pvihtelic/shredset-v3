@@ -4,7 +4,7 @@ require 'evo.rb'
 require 'backcountry.rb'
 
 task :all => :environment do
-  Evo.scrape
+  # Evo.scrape
   Backcountry.scrape
   # Skis.scrape
 end

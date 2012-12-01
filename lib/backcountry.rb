@@ -4,7 +4,10 @@ class Backcountry
 		require 'nokogiri'
 		require 'open-uri'
 
-		@url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat51100011&page=1"]
+		@url = ["http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4"]
+			#"http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", 
+			
+			#, "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat51100011&page=1"]
 
 		@links_array = []
 
@@ -37,7 +40,14 @@ class Backcountry
 
 			puts @first_word
 
-			if Brand.exists?(['company LIKE ?', "%#{@first_word}%"])
+			lib_tech = Brand.where(:company => 'Lib Technologies').first
+
+			if @first_word == 'Lib' && !lib_tech
+				@brand = Brand.create(:company => 'Lib Technologies')
+			elsif @first_word == 'Lib' and lib_tech
+				@brand = Brand.where(:company => 'Lib Technologies').first
+			elsif Brand.exists?(['company LIKE ?', "%#{@first_word}%"]) 
+				@brand = Brand.where("company LIKE ?", "%#{@first_word}%").first
 			else	
 				@brand = Brand.create(:company => @brand_object)
 			end
@@ -45,150 +55,184 @@ class Backcountry
 			# brand = Brand.find_or_create_by_company(:company => brand)
 			# puts brand.company
 
-		# 	#name
-		# 	name = data.css(".product-group-title .product-name").text
-		# 	name_array = name.split(' ')
-		# 	name_array.delete_at(0)
-		# 	@name = name_array.join " "
-		# 	puts name
+			#name
+			name = data.css(".product-group-title .product-name").text
+			if name.include? 'Binding'	
+				name_array = name.split(' ')
+				name_array.delete_at(0)
+				@name = name_array.join " "
+			else
+				name_array = name.split(' ')
+				name_array.delete_at(0)
+				nam = name_array.join " "
+				@name = nam.gsub(' Ski', '')
+				@name = @name.gsub(' Skis', '')
+				@name = @name.gsub('Skis ', '')
+				@name = @name.gsub('Diamond ', '')
+				@name = @name.gsub('Technologies ', '')
+			end
 
-		# 	#model year not available
+			puts @name
+			
+			#model year not available
 
-		# 	#description
-		# 	description = data.css(".product-information p").text
+			#description
+			@description = data.css(".product-information p").text
 
-		# 	#ability level not available
+			#ability level not available
 
-		# 	#rocker type
-		# 	table = data.css(".tech-specs")
-		# 	table.search('tr').each do |table|
-		# 		headers = table.search('td').text
-		# 		if headers.include? "Profile" 
-		# 			headers2 = headers.dup
-		# 			headers2[0..7] = ''
-		# 			@rocker_type = headers2
-		# 		end
-		# 	end
+			#rocker type
+			table = data.css(".tech-specs")
+			table.search('tr').each do |table|
+				headers = table.search('td').text
+				if headers.include? "Profile" 
+					headers2 = headers.dup
+					headers2[0..7] = ''
+					@rocker_type = headers2
+				end
+			end
 
 			
-		# 	#ski type
-		# 	ski_type = data.css(".breadcrumb .current a").text
-		# 	if ski_type.include? "Big Mountain"
-		# 		@ski_type = "Powder Skis"
-		# 	elsif ski_type.include? "Carve"
-		# 		@ski_type = "Carving Skis"
-		# 	elsif ski_type.include? "All Mountain"
-		# 		@ski_type = "All Mountain Skis"
-		# 	elsif ski_type.include? "Fat"
-		# 		@ski_type = "Powder Skis"
-		# 	elsif ski_type.include? "Alpine Park"
-		# 		@ski_type = "Park & Pipe Skis"
-		# 	else @ski_type = "na"
-		# 	end
+			#ski type
+			ski_type = data.css(".breadcrumb .current a").text
+			if ski_type.include? "Big Mountain"
+				@ski_type = "Powder Skis"
+			elsif ski_type.include? "Carve"
+				@ski_type = "Carving Skis"
+			elsif ski_type.include? "All Mountain"
+				@ski_type = "All Mountain Skis"
+			elsif ski_type.include? "Fat"
+				@ski_type = "Powder Skis"
+			elsif ski_type.include? "Alpine Park"
+				@ski_type = "Park & Pipe Skis"
+			else @ski_type = "na"
+			end
 
-		# 	#gender
-		# 	if ski_type.include? "Women's" || "Rockette"
-		# 		@gender = "Women's"
-		# 		else
-		# 		@gender = "Men's"
-		# 	end	
+			#gender
+			if ski_type.include? "Women's" || "Rockette"
+				@gender = "Women's"
+				else
+				@gender = "Men's"
+			end	
 
-		# 	#price
-		# 	@price = data.css(".price-integer, .price-fraction").text.gsub(',','')
-		# 	# puts @price
+			#price
+			@price = data.css(".price-integer, .price-fraction").text.gsub(',','')
+			# puts @price
 
-		# 	#image link
-		# 	image_href = data.css("#product_image .wraptocenter a")
-		# 	image_href.each do |link|
-		# 		link2 = link['href'].dup
-		# 		link2[0..1] = ''
-		# 		@image_link = "http://#{link2}"
-		# 	end
+			#image link
+			image_href = data.css("#product_image .wraptocenter a")
+			image_href.each do |link|
+				link2 = link['href'].dup
+				link2[0..1] = ''
+				@image_link = "http://#{link2}"
+			end
 
-		# 	image_link = @image_link
+			image_link = @image_link
 
-		# 	#average review
-		# 	review = data.css(".product-group-title .rating .rating-value").text
-		# 	if review == "0"
-		# 		@average_review = "na"
-		# 	else
-		# 		@average_review = review
-		# 	end
+			#average review
+			review = data.css(".product-group-title .rating .rating-value").text
+			if review == "0"
+				@average_review = "na"
+			else
+				@average_review = review
+			end
 
-		# 	#number of reviews
-		# 	@number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join ''
-		# 	if @number_of_reviews.empty?
-		# 		@number_of_reviews = "na"
-		# 	end
+			#number of reviews
+			@number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join ''
+			if @number_of_reviews.empty?
+				@number_of_reviews = "na"
+			end
 
-		# 	#turning radius
-		# 	table = data.css(".tech-specs")
-		# 	table.search('tr').each do |table|
-		# 		headers = table.search('td').text
-		# 		if headers.include? "Turn Radius" 
-		# 			headers2 = headers.dup
-		# 			headers2[0..11] = ''
-		# 			@turning_radius = headers2
-		# 		end
-		# 	end
+			#turning radius
+			table = data.css(".tech-specs")
+			table.search('tr').each do |table|
+				headers = table.search('td').text
+				if headers.include? "Turn Radius" 
+					headers2 = headers.dup
+					headers2[0..11] = ''
+					@turning_radius = headers2
+				end
+			end
 
-		# 		# puts @turning_radius
+				# puts @turning_radius
 
-		# 	#lengths
-		# 	table = data.css(".tech-specs")
-		# 	table.search('tr').each do |table|
-		# 		headers = table.search('td').text
-		# 		if headers.include? "Length" 
-		# 			headers2 = headers.dup
-		# 			headers2[0..6] = ''
-		# 			@length= headers2
-		# 		end
-		# 	end
+			#lengths
+			table = data.css(".tech-specs")
+			table.search('tr').each do |table|
+				headers = table.search('td').text
+				if headers.include? "Length" 
+					headers2 = headers.dup
+					headers2[0..6] = ''
+					@length= headers2
+				end
+			end
 
-		# 	#dimensions
-		# 	table = data.css(".tech-specs")
-		# 	table.search('tr').each do |table|
-		# 		headers = table.search('td').text
-		# 		if headers.include? "Dimensions" 
-		# 			headers2 = headers.dup
-		# 			headers2[0..10] = ''
-		# 			@dimensions = headers2
-		# 		end
-		# 	end
+			#dimensions
+			table = data.css(".tech-specs")
+			table.search('tr').each do |table|
+				headers = table.search('td').text
+				if headers.include? "Dimensions" 
+					headers2 = headers.dup
+					headers2[0..10] = ''
+					@dimensions = headers2
+				end
+			end
 
-		# 	#sizes_available
-		# 	@sizes = []
-		# 	@sizes_available_array = data.xpath('//option[contains(@data-img-title, "One Color") or contains(@data-img-title, "Black") or contains(@data-img-title, "White") or contains(@data-img-title, "Blue") or contains(@data-img-title, "Purple") or contains(@data-img-title, "Green")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
-		# 	@sizes_available_array.each do |sizes_available|
-		# 		@sizes << sizes_available
-		# 	end
+			#sizes_available
+			@sizes = []
+			@sizes_available_array = data.xpath('//option[contains(@data-img-title, "One Color") or contains(@data-img-title, "Black") or contains(@data-img-title, "White") or contains(@data-img-title, "Blue") or contains(@data-img-title, "Purple") or contains(@data-img-title, "Green")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
+			@sizes_available_array.each do |sizes_available|
+				@sizes << sizes_available
+			end
 
-		# 	@ski = Ski.create(:name => @name, :ability_level => "na", :description => description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => brand.id)
+		if @name.include? "Binding"
 
-		# 	@product_link = product_link
+			@ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
-		# 	@sizes.each do |size_available|
-		# 		Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
-		# 	end
+		end	
 
-		# 	image = Image.create(:image_url => image_link, :ski_id => @ski.id)
-		# 	# puts image.image_url
+		@product_link = product_link
 
-		# 	review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-		# 	# puts review.average_review
+		if Ski.exists?(['name LIKE ?', "%#{@name.split(' ')[0]}%"]) && !@name.include?("Binding")
+
+			# @ski = Ski.where(:name => @name).first
+
+			@ski = Ski.where("name LIKE ?", "%#{@name.split(' ')[0]}%").first
+
+			@sizes.each do |size_available|
+				Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
+			end
+
+			image = Image.create(:image_url => image_link, :ski_id => @ski.id)
+			# puts image.image_url
+
+			review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
+		else
+			@ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+
+			@sizes.each do |size_available|
+				Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
+			end
+
+			image = Image.create(:image_url => image_link, :ski_id => @ski.id)
+			# puts image.image_url
+
+			review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
+			# puts review.average_review
 
 
 
-		# 	# puts @dimensions.inspect
+			# puts @dimensions.inspect
 
-		# 	# specs = []
-		# 	# @length.scan(/\d{3}/).each do |length|
-		# 	# 	if @turning_radius.scan(/\d{3}/).include? length
-		# 	# 		:turning_radius => 
-		# 	# 	end
-		# 	# end
+			# specs = []
+			# @length.scan(/\d{3}/).each do |length|
+			# 	if @turning_radius.scan(/\d{3}/).include? length
+			# 		:turning_radius => 
+			# 	end
+			# end
 
-		# # puts specs
+		# puts specs
+		end
 		end
 
 	end
