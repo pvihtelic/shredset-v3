@@ -52,7 +52,7 @@ class Skis
 			end
 			
 			brand_final = Brand.find_or_create_by_company(:company => @brand)
-			puts brand_final.company
+      puts brand_final.company
 
 			#name
 			name = data.css(".productdetail h1.productname").text
@@ -95,7 +95,7 @@ class Skis
 				name_array.delete_at(-1)
 				@name = name_array.join ' '
 			end
-			puts @name
+      # puts @name
 
 			#model year
 			model_year = data.css(".productdetail h1.productname").text
@@ -134,9 +134,8 @@ class Skis
 			@price = price.delete("$")
 
 			#image link
-			# data.css('script').each do |script|
-	  	#   puts script.
-	  	# end
+		  image_link = data.css("img")
+		  puts image_link
 
 	  	#average review
 	  	# review = data.css(".pr-snippet-stars .pr-snippet-rating-decimal")
@@ -144,7 +143,7 @@ class Skis
 
 	  	#number of reviews
 	  	number_of_reviews = data.css(".pr-snippet-read-write a.pr-snippet-link span")
-	  	puts number_of_reviews.inspect
+      # puts number_of_reviews.inspect
 
 
 		# @links_array = []

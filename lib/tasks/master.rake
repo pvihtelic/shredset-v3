@@ -1,8 +1,10 @@
 desc "master"
-require 'evo.rb'
+# require 'skis.rb'
+require 'evo.rb' 
 require 'backcountry.rb'
 
 task :all => :environment do
-	Evo.scrape
-	Backcountry.scrape
+  Evo.scrape
+  Backcountry.scrape
+  # Skis.scrape
 end
