@@ -31,12 +31,15 @@ class Backcountry
 			data = Nokogiri::HTML(open(product_link))
 			
 			#brand
-			brand = data.css("h1.header-2.product-name").css("span").text.strip.gsub(' Skis','')
-			brand = brand.gsub(' USA ','').split ' '
-			first_word = brand[0]
-			if Brand.exists?(['company LIKE?', "%#{first_word}%"])
+			@brand_object = data.css("h1.header-2.product-name").css("span").text.strip.gsub(' Skis','')
+			@brand_rename = @brand_object.split(' ')
+			@first_word = @brand_rename[0]
+
+			puts @first_word
+
+			if Brand.exists?(['company LIKE ?', "%#{@first_word}%"])
 			else	
-				@brand = Brand.create(:company => brand)
+				@brand = Brand.create(:company => @brand_object)
 			end
 
 			# brand = Brand.find_or_create_by_company(:company => brand)

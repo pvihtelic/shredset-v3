@@ -2,6 +2,47 @@
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
+
+.navbar .nav {
+  padding: 0;
+  margin-left: 25px;
+  font-family: 'Sanchez', serif;
+  font-size: 15px;
+}
+
+.nav li {
+  line-height: 35px;
+}
+
+.nav {
+  margin-bottom: 0px;
+}
+
+.navbar .brand{
+  padding: 10px 50px 10px 50px;
+  margin-left: 0px;
+  margin-top: -19px;
+}
+
+.navbar-inner {
+  background-color: #F0F0F0;
+  background-image: none;
+  background-repeat: no-repeat;
+  filter: none;
+  }
+
+.brand {
+  background: url('shredsetlogocolor.png');
+  no-repeat: center center;
+  height: 50px;
+  width: 25px;
+}
+
+.navbar-search {
+  padding-top: 6px;
+  padding-right: 60px;
+}
+
 body { 
     background: url('mountainbackground.jpg'); 
     -webkit-background-size: cover;
@@ -14,40 +55,15 @@ body {
     height: 100%; 
 	}
 
-.field {
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
 .search-headline {
   margin-left: 10px;
   margin-top: 10px; 
 }
 
-.brand {
-  background: url('shredsetlogocolor.png');
-  no-repeat: center center;
-  height: 50px;
-  width: 25px;
+.field {
+  margin-left: 10px;
+  margin-top: 10px;
 }
-
-.navbar-search {
-	padding-top: 6px;
-	padding-right: 60px;
-}
-
-.navbar .brand{
-	padding: 10px 50px 10px 50px;
-	margin-left: 0px;
-	margin-top: -19px;
-}
-
-.navbar-inner {
-  background-color: #F0F0F0;
-  background-image: none;
-  background-repeat: no-repeat;
-  filter: none;
-	}
 
 .span5 {
   float: right;
@@ -55,16 +71,30 @@ body {
   margin-left:10px;
 }
 
+.span4 {
+  position: fixed;
+}
+
+.span6 {
+  float: left;
+}
+
+.tagline {
+  color: #fff;
+  position: fixed;
+  margin-top: 30px;
+  left: 40px;
+  float: left;
+  font-size: 35px;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
 .content-home-page {
-  position:relative;
-  top: 100px;
+  position: fixed;
+  float: left;
   font-family: 'Sanchez', serif;
   background-color: #fff;
-  opacity:1;
-  padding-top: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin: 50px -10px; /* negative indent the amount of the padding to maintain the grid system */
+  margin: 70px -10px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -75,17 +105,11 @@ body {
 
 
 .content-left-home {
-  display: block;
-  left: 0px;
-  position: relative;
+  position: fixed;
   height: 345px;
-  top: 100px;
   font-family: 'Sanchez', serif;
   background-color: #fff;
-  opacity:1;
-  padding-top: 10px;
-  padding-left: 10px;
-  margin: 50px -10px; /* negative indent the amount of the padding to maintain the grid system */
+  margin: 70px 50px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -119,21 +143,6 @@ input.btn {
   margin-top: 0;
   margin-bottom: 15px;
   font-family: 'Sanchez', serif;
-}
-
-.navbar .nav {
-	padding: 0;
-	margin-left: 25px;
-	font-family: 'Sanchez', serif;
-	font-size: 15px;
-}
-
-.nav li {
-	line-height: 35px;
-}
-
-.nav {
-  margin-bottom: 0px;
 }
 
 .page-header {
@@ -176,17 +185,6 @@ input.btn {
 	width: auto;
     margin-left: 225px;
     margin-right: 225px;
-}
-
-.span4 {
-  float: left;
-  margin-left:-100px;
-}
-
-.span8 {
-	float: right;
-	margin-right:-100px;
-	margin-left:0px;
 }
 
 .span1 {
