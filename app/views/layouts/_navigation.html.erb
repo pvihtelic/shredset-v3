@@ -2,7 +2,7 @@
  <ul class="nav">
       <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
       <li class="<%= 'active' if current_page?(skis_url) %>"><%= link_to "All Skis", skis_url %></li>
-      <li ><a href="#">About</a></li>
+      <li class="<%= 'active' if current_page?(about_url) %>"><%= link_to "About", about_url %></li>
       <li ><a href="#">Find</a></li>
       <li ><a href="#">Discover</a></li>
       <li ><a href="#">Learn</a></li>
