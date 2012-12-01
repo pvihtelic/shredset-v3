@@ -1,6 +1,14 @@
 Shredset::Application.routes.draw do
   
   root to: 'pages#home'
+
+  get '/about' => 'pages#about', :as => 'about'
+  get '/faq' => 'pages#faq', :as => 'faq'
+  get '/blog' => 'pages#blog', :as => 'blog'
+  get '/share' => 'pages#share', :as => 'share'
+  get '/contact' => 'pages#contact', :as => 'contact'
+  get '/privacy' => 'pages#privacy', :as => 'privacy'
+  get '/tos' => 'pages#tos', :as => 'tos'
   
   resources :reviews
 
