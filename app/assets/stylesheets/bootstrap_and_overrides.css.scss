@@ -61,15 +61,22 @@ body {
   margin-top: 10px; 
 }
 
+.img {
+  opacity: 1;
+}
+
 .field {
   margin-left: 10px;
   margin-top: 10px;
 }
 
 .span4 {
-  position: fixed;
   margin-left: 50px;
   left: 0px;
+}
+
+.span5 {
+  float: left;
 }
 
 .span6 {
@@ -183,8 +190,14 @@ input.btn {
 
 .container {
 	width: auto;
-    margin-left: 225px;
-    margin-right: 225px;
+  margin-left: 225px;
+  margin-right: 225px;
+}
+
+#span-for-show-carousel {
+  float: left;
+  margin-left: 30px;
+  position: relative;
 }
 
 .span1 {
@@ -196,6 +209,11 @@ input.btn {
 }
 
 div.carousel.slide.span7 {
+  margin-right: auto;
+  margin-left: auto;  
+}
+
+div.carousel.slide.span4 {
   margin-right: auto;
   margin-left: auto;  
 }

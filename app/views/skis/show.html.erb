@@ -6,8 +6,8 @@
           <h2><%= @ski.brand.company %> <%= @ski.name %> <small> <%= @ski.gender %> | <%= @ski.ski_type %></small></h2>
       </div>
       <div class="row">
-        <div class="span4">
-              <div id="this-carousel-id" class="carousel slide">
+        <div class="span4 offset2" id="span-for-show-carousel">
+              <div class="carousel slide span4" id="myCarousel">
                 <div class="carousel-inner">
                           <% @image.each_with_index do |item_image, index| %>
                           <div class="<% if index == 0 %>item active
