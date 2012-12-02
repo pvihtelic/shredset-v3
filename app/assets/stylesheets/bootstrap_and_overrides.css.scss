@@ -2,7 +2,6 @@
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
 
-
 .navbar .nav {
   padding: 0;
   margin-left: 25px;
@@ -12,10 +11,12 @@ body { padding-top: 60px; }
 
 .nav li {
   line-height: 35px;
+  font-family: 'Sanchez', serif; 
 }
 
 .nav {
   margin-bottom: 0px;
+  font-family: 'Sanchez', serif; 
 }
 
 .navbar .brand{
@@ -53,7 +54,7 @@ body {
     background-repeat: no-repeat;
     font-family: 'Sanchez', serif;
     height: 100%; 
-  }
+	}
 
 .search-headline {
   margin-left: 10px;
@@ -65,14 +66,10 @@ body {
   margin-top: 10px;
 }
 
-.span5 {
-  float: right;
-  margin-right:100px;
-  margin-left:10px;
-}
-
 .span4 {
   position: fixed;
+  margin-left: 50px;
+  left: 0px;
 }
 
 .span6 {
@@ -87,14 +84,14 @@ body {
   float: left;
   font-size: 35px;
   text-shadow: black 0.1em 0.1em 0.2em;
+  font-family: 'Sanchez', serif;
 }
 
 .content-home-page {
-  position: fixed;
-  float: left;
   font-family: 'Sanchez', serif;
   background-color: #fff;
-  margin: 70px -10px; /* negative indent the amount of the padding to maintain the grid system */
+  padding: 10px;
+  margin: 90px -10px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -103,19 +100,22 @@ body {
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-
 .content-left-home {
-  position: fixed;
   height: 345px;
   font-family: 'Sanchez', serif;
   background-color: #fff;
-  margin: 70px 50px; /* negative indent the amount of the padding to maintain the grid system */
+  padding: 10px;
+  margin: 90px -10px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+div.tabbable {
+  font-family: 'Sanchez', serif; 
 }
 
 .btn {
@@ -146,19 +146,19 @@ input.btn {
 }
 
 .page-header {
-  margin-bottom: 0px;
+	margin-bottom: 0px;
 }
 
 .index-product-image {
    width: 250px;
-  text-align: center;
-  height: 250px;
-  overflow: hidden;
-  border: 2px solid #CCC;
+	text-align: center;
+	height: 250px;
+	overflow: hidden;
+	border: 2px solid #CCC;
 }
 
 .ski-image {
-  width: 350px;
+	width: 350px;
 }
 
 .products {
@@ -167,12 +167,12 @@ input.btn {
 }
 
 .product-details {
-  list-style-type: none;
-  margin: 0;
+	list-style-type: none;
+	margin: 0;
 }
 
 .product-title {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .product-item {
@@ -182,7 +182,7 @@ input.btn {
 }
 
 .container {
-  width: auto;
+	width: auto;
     margin-left: 225px;
     margin-right: 225px;
 }
@@ -195,46 +195,54 @@ input.btn {
   display: inline;
 }
 
-div.carousel.slide.span8 {
-  margin-right: -50px;  
+div.carousel.slide.span7 {
+  margin-right: auto;
+  margin-left: auto;  
+}
+
+.thumbnails > li {
+  margin-left: 25px;
 }
 
 div.thumbnail {
   width: 200px;
   padding: 0;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .thumbnail-label {
   padding-left: 10px;
   margin: 0;
+  font-family: 'Sanchez', serif;
 }
 
 .chzn-select {
   width: 300px;
 }
 
-.carousel-control {
-  margin-right: 10px;
+a.carousel-control.right {
+  margin-right: 0px;
+  margin-left: auto;
 }
 
-.carousel-control.right {
-  left: auto;
-  right: 45px;
+a.carousel-control.left {
+  margin-right: auto;
+  margin-left: 0px;
 }
 
 ul.thumbnails {
-  margin-left: -25px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #this-carousel-id {
-  width: 100%;
-  float: left;
+	width: 100%;
+	float: left;
 }
 
 .table {
-  float: right;
+	float: right;
 }
 
 .footer-nav {
@@ -248,7 +256,11 @@ ul.footer-nav {
   display: inline;
   list-style-type: none;
   width: 100%;
+  font-family: 'Sanchez', serif; 
+}
 
+a.brand a:hover {
+  background-color: none;
 }
 
 html {
@@ -270,4 +282,4 @@ margin-top: -150px; /* negative value of footer height */
 height: 150px;
 padding-top:20px;
 color:#fff;
-}
+} 
