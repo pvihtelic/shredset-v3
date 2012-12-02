@@ -1,5 +1,7 @@
 Shredset::Application.routes.draw do
   
+  resources :posts
+
   root to: 'pages#home'
 
   get '/about' => 'pages#about', :as => 'about'

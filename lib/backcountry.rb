@@ -4,11 +4,7 @@ class Backcountry
 		require 'nokogiri'
 		require 'open-uri'
 
-		@url = ["http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4"]
-			#"http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", 
-			
-			#, "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat51100011&page=1"]
-
+		@url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis"]
 		@links_array = []
 
 		@url.each do |url|
@@ -30,6 +26,12 @@ class Backcountry
 
 		@store = Store.create(:store_url => "http://www.backcountry.com/", :vendor => "backcountry.com")
 
+		womens_array = ["http://www.backcountry.com/rossignol-temptation-88-ski-womens", "http://www.backcountry.com/armada-tryst-ski-womens", "http://www.backcountry.com/moment-sierra-ski-womens", "http://www.backcountry.com/line-shadow-ski-womens", "http://www.backcountry.com/blizzard-dakota-ski-womens", "http://www.backcountry.com/g3-cake-ski-womens", "http://www.backcountry.com/atomic-millennium-ski-womens", "http://www.backcountry.com/4frnt-skis-madonna-ski-womens", "http://www.backcountry.com/armada-cantika-ski-womens", "http://www.backcountry.com/fischer-koa-98-ski", "http://www.backcountry.com/armada-arw-alpine-ski-womens", "http://www.backcountry.com/fischer-koa-110-ski-womens", "http://www.backcountry.com/salomon-rockette-92-ski-womens", "http://www.backcountry.com/moment-reagan-ski-womens", "http://www.backcountry.com/k2-empress-ski-womens", "http://www.backcountry.com/armada-arvw-alpine-ski-womens", "http://www.backcountry.com/moment-hot-mess-ski-womens", "http://www.backcountry.com/nordica-la-nina-ski-womens", "http://www.backcountry.com/volkl-tierra-ski-w-attiva-motion-ipt-11.0-binding-womens", "http://www.backcountry.com/rossignol-s2-ski-womens", "http://www.backcountry.com/rossignol-attraxion-echo-6-ski-with-wtpi2-sapphire-110-binding", "http://www.backcountry.com/k2-superburnin-ski-w-marker-ers-11.0-tc-binding-womens-k2s0932", "http://www.backcountry.com/scott-rosa-ski-womens"]  
+		womens_array.each do |link|
+			@links_array << link
+		end
+
+
 		@links_array.each do |product_link|
 			data = Nokogiri::HTML(open(product_link))
 			
@@ -38,14 +40,14 @@ class Backcountry
 			@brand_rename = @brand_object.split(' ')
 			@first_word = @brand_rename[0]
 
-			puts @first_word
+			# puts @first_word
 
-			lib_tech = Brand.where(:company => 'Lib Technologies').first
+			lib_tech = Brand.where(:company => 'Lib Tech').first
 
 			if @first_word == 'Lib' && !lib_tech
-				@brand = Brand.create(:company => 'Lib Technologies')
-			elsif @first_word == 'Lib' and lib_tech
-				@brand = Brand.where(:company => 'Lib Technologies').first
+				@brand = Brand.create(:company => 'Lib Tech')
+			elsif @first_word == 'Lib' && lib_tech
+				@brand = Brand.where(:company => 'Lib Tech').first
 			elsif Brand.exists?(['company LIKE ?', "%#{@first_word}%"]) 
 				@brand = Brand.where("company LIKE ?", "%#{@first_word}%").first
 			else	
@@ -70,6 +72,7 @@ class Backcountry
 				@name = @name.gsub('Skis ', '')
 				@name = @name.gsub('Diamond ', '')
 				@name = @name.gsub('Technologies ', '')
+				@name = @name.gsub('USA ', '')
 			end
 
 			puts @name
@@ -180,20 +183,38 @@ class Backcountry
 
 			#sizes_available
 			@sizes = []
-			@sizes_available_array = data.xpath('//option[contains(@data-img-title, "One Color") or contains(@data-img-title, "Black") or contains(@data-img-title, "White") or contains(@data-img-title, "Blue") or contains(@data-img-title, "Purple") or contains(@data-img-title, "Green")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
-			@sizes_available_array.each do |sizes_available|
-				@sizes << sizes_available
+			
+			if data.xpath('//option[contains(@data-img-title, "One Color") or contains(@data-img-title, "Black") or contains(@data-img-title, "White") or contains(@data-img-title, "Blue") or contains(@data-img-title, "Purple") or contains(@data-img-title, "Green") or contains(@data-img-title, "Beige") or contains(@data-img-title, "Pink")or contains(@data-img-title, "Orange")or contains(@data-img-title, "Gray")or contains(@data-img-title, "Red")or contains(@data-img-title, "Brown") or contains(@data-img-title, "Pepper") or contains(@data-img-title, "Turquoise") or contains(@data-img-title, "Sand") or contains(@data-img-title, "Corail") or contains(@data-img-title, "Lime")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/).present?
+				@sizes_available_array = data.xpath('//option[contains(@data-img-title, "One Color") or contains(@data-img-title, "Black") or contains(@data-img-title, "White") or contains(@data-img-title, "Blue") or contains(@data-img-title, "Purple") or contains(@data-img-title, "Green") or contains(@data-img-title, "Beige") or contains(@data-img-title, "Pink")or contains(@data-img-title, "Orange")or contains(@data-img-title, "Gray")or contains(@data-img-title, "Red")or contains(@data-img-title, "Brown") or contains(@data-img-title, "Pepper") or contains(@data-img-title, "Turquoise") or contains(@data-img-title, "Sand") or contains(@data-img-title, "Corail") or contains(@data-img-title, "Lime")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
+				@sizes_available_array.each do |sizes_available|
+					@sizes << sizes_available
+				end
+			else
+				@sizes_available_array = data.xpath('//option[contains(@data-img-title, "cm")]').text.gsub(/\(.*?\)/, "").scan(/\d{3}/)
+				@sizes_available_array.each do |sizes_available|
+					@sizes << sizes_available
+				end
 			end
 
-		if @name.include? "Binding"
-
-			@ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
-
-		end	
+			puts @sizes
 
 		@product_link = product_link
 
-		if Ski.exists?(['name LIKE ?', "%#{@name.split(' ')[0]}%"]) && !@name.include?("Binding")
+		@skis = Ski.scoped
+
+		if @name.include?("Binding")
+			@ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id) 
+		
+			@sizes.each do |size_available|
+				Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
+			end
+
+			image = Image.create(:image_url => @image_link, :ski_id => @ski.id)
+			# puts image.image_url
+
+			review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
+
+		elsif @skis.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists? && !@name.include?("Binding")
 
 			# @ski = Ski.where(:name => @name).first
 
@@ -203,7 +224,7 @@ class Backcountry
 				Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
 			end
 
-			image = Image.create(:image_url => image_link, :ski_id => @ski.id)
+			image = Image.create(:image_url => @image_link, :ski_id => @ski.id)
 			# puts image.image_url
 
 			review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
@@ -214,12 +235,12 @@ class Backcountry
 				Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
 			end
 
-			image = Image.create(:image_url => image_link, :ski_id => @ski.id)
+			image = Image.create(:image_url => @image_link, :ski_id => @ski.id)
 			# puts image.image_url
 
 			review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
 			# puts review.average_review
-
+		end
 
 
 			# puts @dimensions.inspect
@@ -232,7 +253,6 @@ class Backcountry
 			# end
 
 		# puts specs
-		end
 		end
 
 	end

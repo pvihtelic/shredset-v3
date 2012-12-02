@@ -38,6 +38,8 @@ class Evo
 						ability_level_input = data.at_css('span.values').text
 						ability_level = if ability_level_input.include?("/") || ability_level_input.include?("@")
 							"na"
+						elsif ability_level_input.include?("11")
+							"Beginner-Intermediate"
 						else
 							ability_level_input
 						end
