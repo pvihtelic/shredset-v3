@@ -49,15 +49,15 @@ class Evo
       if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
         ski_type = data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
       elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
-        ski_type = data.xpath('//span/a[contains(@href, "/powder.aspx")]').text
+        ski_type = "Powder Skis"
       elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
-        ski_type = data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text
+        ski_type = "Twin Tip Skis"
       elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
-        ski_type = data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text
+        ski_type = "Park & Pipe Skis"
       elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
-        ski_type = data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text
+        ski_type = "Alpine Touring Skis"
       elsif !data.xpath('//span/a[contains(@href, "/carving.aspx")]').text.empty?
-        ski_type = data.xpath('//span/a[contains(@href, "/carving.aspx")]').text
+        ski_type = "Carving Skis"
       else
         ski_type = "na"
       end

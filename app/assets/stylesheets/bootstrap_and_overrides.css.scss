@@ -108,7 +108,7 @@ body {
 }
 
 .content-left-home {
-  height: 345px;
+  height: 100%;
   font-family: 'Sanchez', serif;
   background-color: #fff;
   padding: 10px;
@@ -119,6 +119,10 @@ body {
   -webkit-box-shadow: 10px 10px 5px rgba(0,0,0,.5);
   -moz-box-shadow: 10px 10px 5px rgba(0,0,0,.5);
   box-shadow: 10px 10px 5px rgba(0,0,0,.5);
+}
+
+form {
+  margin: 0;
 }
 
 div.tabbable {
@@ -148,7 +152,6 @@ input.btn {
   margin-right: auto;
   margin-bottom: auto;
   margin-top: 0;
-  margin-bottom: 15px;
   font-family: 'Sanchez', serif;
 }
 

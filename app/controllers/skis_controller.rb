@@ -4,6 +4,14 @@ class SkisController < ApplicationController
   def index
     if params[:ski].present?
 
+      @brands = Brand.all 
+        
+      @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
+      @genders = Ski.find(:all, :select => "DISTINCT gender")
+      @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
+      @names = Ski.find(:all, :select => "DISTINCT name")
+      @price_ranges = PriceRange.all
+
       ski_type = params[:ski][:ski_type].reject(&:blank?)
       gender = params[:ski][:gender].reject(&:blank?)
       ability_level = params[:ski][:ability_level].reject(&:blank?)
@@ -18,6 +26,14 @@ class SkisController < ApplicationController
 
       @overlapping_skis = skis_array & skis_refined
     else
+        @brands = Brand.all 
+        
+        @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
+        @genders = Ski.find(:all, :select => "DISTINCT gender")
+        @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
+        @names = Ski.find(:all, :select => "DISTINCT name")
+        @price_ranges = PriceRange.all
+
       @overlapping_skis = Ski.all
     end
 
