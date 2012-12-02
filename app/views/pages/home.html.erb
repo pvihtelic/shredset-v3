@@ -5,7 +5,7 @@
 </row>
 
 <div class="row">
-	<div class="span4">
+	<div class="span4 offset1">
 	<div class="content-left-home">
 	    <h5 class="search-headline">Search <%= Ski.all.count %> skis </h5>	
 	    <%= form_tag skis_url, :method=>:get do %>
@@ -34,7 +34,7 @@
 	</div>
 	</div>        
 
-	<div class="span7 offset3">
+	<div class="span7 offset1">
 		<div class="content-home-page">
 			<h5>Top 3 Reviewed Skis by Category</h5>
 
@@ -79,7 +79,7 @@
 				</div>
 				</div>
 			    <div class="tab-pane" id="tab2">
-			    <div class="carousel slide span8" id="myCarousel2">
+			    <div class="carousel slide span7" id="myCarousel2">
 				<div class="carousel-inner">
 					<% @powder_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
@@ -110,7 +110,7 @@
 				</div>
 			    </div>
 			    <div class="tab-pane" id="tab3">
-			    <div class="carousel slide span8" id="myCarousel3">
+			    <div class="carousel slide span7" id="myCarousel3">
 				<div class="carousel-inner">
 					<% @carving_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
@@ -141,7 +141,7 @@
 				</div>
 			    </div>
 			    <div class="tab-pane" id="tab4">
-			    <div class="carousel slide span8" id="myCarousel4">
+			    <div class="carousel slide span7" id="myCarousel4">
 				<div class="carousel-inner">
 					<% @twin_tip_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
@@ -172,7 +172,7 @@
 				</div>
 			    </div>
 			    <div class="tab-pane" id="tab5">
-			    <div class="carousel slide span8" id="myCarousel5">
+			    <div class="carousel slide span7" id="myCarousel5">
 				<div class="carousel-inner">
 					<% @park_and_pipe_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
@@ -203,7 +203,7 @@
 				</div>
 			    </div>
 			    <div class="tab-pane" id="tab6">
-			    <div class="carousel slide span8" id="myCarousel6">
+			    <div class="carousel slide span7" id="myCarousel6">
 				<div class="carousel-inner">
 					<% @alpine_touring_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
