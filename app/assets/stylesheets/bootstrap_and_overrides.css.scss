@@ -86,7 +86,7 @@ body {
 .tagline {
   color: #fff;
   position: fixed;
-  margin-top: 30px;
+  margin-top: 25px;
   left: 40px;
   float: left;
   font-size: 35px;
@@ -102,9 +102,9 @@ body {
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -webkit-box-shadow: 10px 10px 5px rgba(0,0,0,.5);
+  -moz-box-shadow: 10px 10px 5px rgba(0,0,0,.5);
+  box-shadow: 10px 10px 5px rgba(0,0,0,.5);
 }
 
 .content-left-home {
@@ -116,9 +116,9 @@ body {
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -webkit-box-shadow: 10px 10px 5px rgba(0,0,0,.5);
+  -moz-box-shadow: 10px 10px 5px rgba(0,0,0,.5);
+  box-shadow: 10px 10px 5px rgba(0,0,0,.5);
 }
 
 div.tabbable {
@@ -295,7 +295,7 @@ html {
 }
 
 .footer {
-position: fixed;
+position: absolute;
 margin-top: -150px; /* negative value of footer height */
 height: 150px;
 padding-top:20px;
