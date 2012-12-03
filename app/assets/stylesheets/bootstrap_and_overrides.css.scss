@@ -59,7 +59,7 @@ body {
 
 .search-headline-index {
   margin-left: 10px;
-  margin-top: 0px; 
+  margin-top: 10px; 
 }
 
 .carousel-tagline-homepage {
@@ -80,6 +80,7 @@ body {
 .field-index {
   display: inline;
   margin-left: 10px;
+  margin-right: 10px;
   margin-top: 10px;  
 }
 
@@ -125,6 +126,7 @@ div.content-index {
   background-color: rgba(255,255,255,0.9);
   padding-top: 20px;
   padding-left: 25px;
+  padding-right: 25px;
   height: 100%;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
@@ -182,7 +184,7 @@ form {
   background-color: #fff;
   margin-left: 5px;
   padding-top: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 0px;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -222,6 +224,19 @@ input.btn {
   color: white !important;
   margin-right: auto;
   margin-bottom: auto;
+  margin-top: 0;
+  font-family: 'Sanchez', serif;
+}
+
+input.btn.index {
+  width: 150px;
+  background-color: #FF6600 !important;
+  background-repeat: repeat-x;
+  background-image: -webkit-linear-gradient(top, #FF8000, #FF6600);
+  border-color: #FF5900;
+  color: white !important;
+  margin-right: auto;
+  margin-bottom: 20px;
   margin-top: 0;
   font-family: 'Sanchez', serif;
 }
