@@ -38,7 +38,7 @@
                 <tbody>
                   <% @stores_array.each do |store| %>
                     <tr>
-                      <% store.inventories.where(:ski_id => @ski.id).group('store_id').each do |i| %>
+                      <% store.inventories.where(:ski_id => @ski.id).each do |i| %>
                     <td><%= link_to store.vendor, i.product_url %></td>
                     <% end %>
                     <td>
