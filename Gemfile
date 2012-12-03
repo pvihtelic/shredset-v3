@@ -4,7 +4,11 @@ gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development do 
+	gem 'sqlite3'
+end
 
+<<<<<<< HEAD
 group :development, :test do
   gem 'pg'
 end
@@ -15,6 +19,8 @@ group :production do
   gem 'pg'
 end
 
+=======
+>>>>>>> 562df8c268c2fdf1b1fe4068a51646632d5a1ac6
 gem 'nokogiri'
 
 # Gems used only for assets and not required
@@ -30,6 +36,10 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+group :production do
+	gem 'pg'
+end
 
 gem 'bootstrap-sass'
 
