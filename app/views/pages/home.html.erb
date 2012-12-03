@@ -1,13 +1,10 @@
-<row>
-<div class="Tagline">
+<div class="page-header">
 	<h1 class="tagline">The only comparison shopping site for skis.</h1>
 </div>
-</row>
-
 <div class="row">
-	<div class="span4 offset1">
+	<div class="span3 offset1">
 	<div class="content-left-home">
-	    <h5 class="search-headline">Search <%= Ski.all.count %> skis </h5>	
+	    <h5 class="search-headline-home">Search <%= Ski.all.count %> skis </h5>	
 	    <%= form_tag skis_url, :method=>:get do %>
 	    	<div class="field">
 			    <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Ski Type") %>
@@ -36,7 +33,7 @@
 
 	<div class="span7 offset1">
 		<div class="content-home-page">
-			<h5>Top 3 Reviewed Skis by Category</h5>
+			<h5 class="carousel-tagline-homepage">Top 3 Reviewed Skis by Category</h5>
 
 			<div class="tabbable"> <!-- Only required for left/right tabs -->
 			  <ul class="nav nav-tabs">

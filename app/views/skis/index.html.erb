@@ -1,9 +1,10 @@
 <div class="container">
-<div class="content">
+<div class="content-index">
 
 <div class="row">
-        <h5 class="search-headline">Your search returned <%= @overlapping_skis.count %> skis </h5>  
+        <div class="search-fields">
         <%= form_tag skis_url, :method=>:get do %>
+            <h5 class="search-headline-index">Your search returned <%= @overlapping_skis.count %> skis </h5>  
             <div class="field-index">
                 <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Ski Type") %>
             </div>
@@ -24,8 +25,9 @@
             </div>
             <div class="field-index">
                 <%= submit_tag "Search", :class=>"btn" %>
-            </div>          
+            </div>
         <% end %>
+        </div>
     <ul class="products">
     <% @overlapping_skis.each do |ski| %>
             <li class="product-item">
@@ -60,6 +62,3 @@
 </div>
 </div>
 <br />
-
-<%= link_to 'New Ski', new_ski_path %>
-</div>
