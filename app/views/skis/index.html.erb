@@ -15,7 +15,7 @@
                 <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {:selected => @ability_level}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Ability Level") %>
             </div>
             <div class="field-index">
-                <%= collection_select(:brand, :company, @brands, :id, :company, {:selected => @brand}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
+                <%= collection_select(:brand, :company, @companies, :id, :company, {:selected => @company}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
             </div>
             <div class="field-index">
                 <%= collection_select(:ski, :name, @names, :name, :name, {:selected => @name}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Specific Model") %>

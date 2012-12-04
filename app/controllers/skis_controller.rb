@@ -2,45 +2,37 @@ class SkisController < ApplicationController
   # GET /skis
   # GET /skis.json
   def index
-    if params[:ski].present? || params[:brand].present?
+    
+    @companies = Brand.find(:all, :select => "DISTINCT company")
+    @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
+    @genders = Ski.find(:all, :select => "DISTINCT gender")
+    @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
+    @names = Ski.find(:all, :select => "DISTINCT name")
+    @price_ranges = PriceRange.all
 
-      @brands = Brand.all 
-        
-      @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
-      @genders = Ski.find(:all, :select => "DISTINCT gender")
-      @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
-      @names = Ski.find(:all, :select => "DISTINCT name")
-      @price_ranges = PriceRange.all
+    if params[:ski].present? || params[:brand].present? || params[:price_range].present?
 
-      @ski_type = params[:ski][:ski_type].reject(&:blank?)
-      @gender = params[:ski][:gender].reject(&:blank?)
-      @ability_level = params[:ski][:ability_level].reject(&:blank?)
-      @brand = params[:brand][:id].reject(&:blank?)
-      @name = params[:ski][:name].reject(&:blank?)
-      @price_range = params[:price_range][:price_range]
+      ski_type = params[:ski][:ski_type].reject(&:blank?)
+      gender = params[:ski][:gender].reject(&:blank?)
+      ability_level = params[:ski][:ability_level].reject(&:blank?)
+      company = params[:brand][:company].reject(&:blank?)
+      name = params[:ski][:name].reject(&:blank?)
+      price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect
       
-      skis_array = Inventory.search_price(@price_range)
+      skis_array = Inventory.search_price(price_range)
 
-      skis_refined = Ski.search_characteristics(@ski_type, @gender, @ability_level, @brand, @name)
+      skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, company, name)
 
       @overlapping_skis = skis_array & skis_refined
     else
-        @brands = Brand.all 
-        
-        @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
-        @genders = Ski.find(:all, :select => "DISTINCT gender")
-        @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
-        @names = Ski.find(:all, :select => "DISTINCT name")
-        @price_ranges = PriceRange.all
 
         @ski_type = nil
         @gender = nil
         @ability_level = nil
-        @brand = nil
+        @company = nil
         @name = nil
         @price_range = nil
-
 
       @overlapping_skis = Ski.all
     end

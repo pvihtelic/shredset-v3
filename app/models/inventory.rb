@@ -12,6 +12,7 @@ class Inventory < ActiveRecord::Base
   	
   	@skis_array = []
 
+    
   	prices.each do |price|
   		price_range = PriceRange.where(:price_range => price)
   		price_range = price_range.first
