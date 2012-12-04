@@ -99,8 +99,6 @@ body {
 
 .tagline {
   color: #fff;
-  position: fixed;
-  float: left;
   font-size: 35px;
   text-shadow: black 0.1em 0.1em 0.2em;
   font-family: 'Sanchez', serif;
@@ -141,7 +139,7 @@ div.content-index {
   font-family: 'Sanchez', serif;
   background-color: #fff;
   padding: 10px;
-  margin: 50px -10px; /* negative indent the amount of the padding to maintain the grid system */
+  margin: 0px 0px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -155,7 +153,7 @@ div.content-index {
   font-family: 'Sanchez', serif;
   background-color: #fff;
   padding: 10px;
-  margin: 50px -10px; /* negative indent the amount of the padding to maintain the grid system */
+  margin: 0px 0px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -341,7 +339,7 @@ div.thumbnail {
 }
 
 .chzn-select {
-  width: 250px;
+  width: 230px;
 }
 
 a.carousel-control.right {

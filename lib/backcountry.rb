@@ -245,7 +245,7 @@ class Backcountry
       review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski6.id, :store_id => @store.id)
 
     elsif @name.include? "Prophet" || "BBR" || "Cham" || "Rockette" || "Experience" || "Koa" || "Exclusive" || "Tempation" || "Influence" || "Celebrity" || "Jib" || "El" || "Rocker2"
-
+      if @name.exclude?("Binding")
       @name_search2 = @name.split(' ')[0]
       @model2 = @name.split(' ')[1]
       @ski5 = Ski.where("name LIKE ?", "%#{@name_search2}%").where("name LIKE ?", "%#{@model2}%").first
@@ -258,7 +258,7 @@ class Backcountry
       # puts image.image_url
 
       review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski5.id, :store_id => @store.id)
-
+      end
     elsif @skis.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists?
       if @name.exclude?("Binding")
         # @ski = Ski.where(:name => @name).first
