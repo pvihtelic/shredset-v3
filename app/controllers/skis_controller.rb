@@ -2,7 +2,7 @@ class SkisController < ApplicationController
   # GET /skis
   # GET /skis.json
   def index
-    if params[:ski].present?
+    if params[:ski].present? || params[:brand].present?
 
       @brands = Brand.all 
         
@@ -15,7 +15,7 @@ class SkisController < ApplicationController
       @ski_type = params[:ski][:ski_type].reject(&:blank?)
       @gender = params[:ski][:gender].reject(&:blank?)
       @ability_level = params[:ski][:ability_level].reject(&:blank?)
-      @brand = params[:brand][:company].reject(&:blank?)
+      @brand = params[:brand][:id].reject(&:blank?)
       @name = params[:ski][:name].reject(&:blank?)
       @price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect

@@ -241,7 +241,7 @@ input.btn.index {
 .page-header {
   margin-top: 20px;
   margin-left: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: none;
 }
 
@@ -366,41 +366,12 @@ ul.thumbnails {
 	float: right;
 }
 
+.footer {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 .footer-nav {
   display: inline;
   list-style-type: none;
 }
-
-ul.footer-nav {
-  position: fixed;
-  left: 30%;
-  display: inline;
-  list-style-type: none;
-  width: 100%;
-  font-family: 'Sanchez', serif; 
-}
-
-a.brand a:hover {
-  background-color: none;
-}
-
-html {
-  height: 100%;
-}
-
-#wrap {
-  min-height: 100%;
-}
-
-#main {
-  overflow:auto;
-  padding-bottom:180px; /* this needs to be bigger than footer height*/
-}
-
-.footer {
-position: absolute;
-margin-top: -150px; /* negative value of footer height */
-height: 150px;
-padding-top:20px;
-color:#fff;
-} 

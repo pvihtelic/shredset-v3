@@ -6,22 +6,22 @@
         <%= form_tag skis_url, :method=>:get do %>
             <h5 class="search-headline-index">Your search returned <%= @overlapping_skis.count %> skis </h5>  
             <div class="field-index">
-                <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {:selected => params[:ski][:ski_type]}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Ski Type") %>
+                <%= collection_select(:ski, :ski_type, @ski_types, :ski_type, :ski_type, {:selected => @ski_type}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Ski Type") %>
             </div>
             <div class="field-index">
-                <%= collection_select(:ski, :gender, @genders, :gender, :gender, {:selected => params[:ski][:gender]}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Gender/Youth") %>
+                <%= collection_select(:ski, :gender, @genders, :gender, :gender, {:selected => @gender}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Gender/Youth") %>
             </div>
             <div class="field-index">
-                <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {:selected => params[:ski][:ability_level]}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Ability Level") %>
+                <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {:selected => @ability_level}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Ability Level") %>
             </div>
             <div class="field-index">
-                <%= collection_select(:brand, :company, @brands, :company, :company, {:selected => params[:brand][:company]}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
+                <%= collection_select(:brand, :company, @brands, :id, :company, {:selected => @brand}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
             </div>
             <div class="field-index">
-                <%= collection_select(:ski, :name, @names, :name, :name, {:selected => params[:ski][:name]}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Specific Model") %>
+                <%= collection_select(:ski, :name, @names, :name, :name, {:selected => @name}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Specific Model") %>
             </div>
             <div class="field-index">
-                <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {:selected => params[:price_range][:price_range]}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
+                <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {:selected => @price_range}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
             </div>
             <div class="field-index">
                 <%= submit_tag "Search", :class=>"btn index" %>
