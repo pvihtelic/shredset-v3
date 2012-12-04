@@ -12,12 +12,12 @@ class SkisController < ApplicationController
       @names = Ski.find(:all, :select => "DISTINCT name")
       @price_ranges = PriceRange.all
 
-      ski_type = params[:ski][:ski_type].reject(&:blank?)
-      gender = params[:ski][:gender].reject(&:blank?)
-      ability_level = params[:ski][:ability_level].reject(&:blank?)
-      brand = params[:brand][:company].reject(&:blank?)
-      name = params[:ski][:name].reject(&:blank?)
-      price_range = params[:price_range][:price_range]
+      @ski_type = params[:ski][:ski_type].reject(&:blank?)
+      @gender = params[:ski][:gender].reject(&:blank?)
+      @ability_level = params[:ski][:ability_level].reject(&:blank?)
+      @brand = params[:brand][:company].reject(&:blank?)
+      @name = params[:ski][:name].reject(&:blank?)
+      @price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect
       
       skis_array = Inventory.search_price(price_range)
@@ -33,6 +33,14 @@ class SkisController < ApplicationController
         @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
         @names = Ski.find(:all, :select => "DISTINCT name")
         @price_ranges = PriceRange.all
+
+        @ski_type = nil
+        @gender = nil
+        @ability_level = nil
+        @brand = nil
+        @name = nil
+        @price_range = nil
+
 
       @overlapping_skis = Ski.all
     end
