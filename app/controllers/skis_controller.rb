@@ -26,14 +26,6 @@ class SkisController < ApplicationController
 
       @overlapping_skis = skis_array & skis_refined
     else
-
-        @ski_type = nil
-        @gender = nil
-        @ability_level = nil
-        @company = nil
-        @name = nil
-        @price_range = nil
-
       @overlapping_skis = Ski.all
     end
 
