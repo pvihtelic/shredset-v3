@@ -31,7 +31,10 @@
     <ul class="products">
     <% @overlapping_skis.each do |ski| %>
             <li class="product-item">
+            <% if ski.images.first.present? %>
             <%= link_to image_tag(ski.images.first.image_url, :class => "index-product-image"), ski_url(ski.id) %>
+            <% else %>
+            <% end %>
             <br />
             <ul class="product-details">
                 <li class="product-details">
