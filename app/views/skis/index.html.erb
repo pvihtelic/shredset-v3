@@ -51,7 +51,7 @@
                     <% ski.inventories.each do |inventory| %>
                         <% a.push(number_to_currency(inventory.price)) %>
                         <% end %>
-                        <% @lowest_price = a.sort { |x,y| x <=> y} %>
+                        <% @lowest_price = a.compact.sort { |x,y| x <=> y} %>
                         from <%= @lowest_price.first %>
                     </br>
                 </li>

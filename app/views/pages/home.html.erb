@@ -63,7 +63,7 @@
       											<% top_ski.inventories.each do |inventory| %>
       												<% @price_array << number_to_currency(inventory.price) %>
       											<% end %>
-      											<% @price_array.sort! {|x,y| x <=> y} %>
+      											<% @price_array.compact.sort! {|x,y| x <=> y} %>
       											<%= @price_array.first %></p>
       									<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
@@ -94,7 +94,7 @@
 	    									    <% @price_array << number_to_currency(inventory.price) %>
 	    									  <% end %>
 	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
 	    									  <%= @price_array.first %></p>
 	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
@@ -125,7 +125,7 @@
 	    									    <% @price_array << number_to_currency(inventory.price) %>
 	    									  <% end %>
 	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
 	    									  <%= @price_array.first %></p>
 	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
@@ -156,7 +156,7 @@
 	    									    <% @price_array << number_to_currency(inventory.price) %>
 	    									  <% end %>
 	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
 	    									  <%= @price_array.first %></p>
 	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
@@ -187,7 +187,7 @@
 	    									    <% @price_array << number_to_currency(inventory.price) %>
 	    									  <% end %>
 	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
 	    									  <%= @price_array.first %></p>
 	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
@@ -218,7 +218,7 @@
 	    									    <% @price_array << number_to_currency(inventory.price) %>
 	    									  <% end %>
 	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.sort! {|x,y| x <=> y } %>
+	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
 	    									  <%= @price_array.first %></p>
 	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %>/5.0</p>
                         			</div>
