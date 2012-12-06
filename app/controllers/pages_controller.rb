@@ -7,9 +7,8 @@ class PagesController < ApplicationController
      	format.html # index.html.erb
       	format.json { render json: @skis }
 
-      	@brands = Brand.all 
-      	
-      	@ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
+      	@companies = Brand.find(:all, :select => "DISTINCT company")
+        @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
         @genders = Ski.find(:all, :select => "DISTINCT gender")
         @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
         @names = Ski.find(:all, :select => "DISTINCT name")
