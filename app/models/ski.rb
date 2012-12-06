@@ -21,7 +21,17 @@ class Ski < ActiveRecord::Base
       @skis = @skis.where(:ability_level => ability_level)
     end
     if company.any?
-      @skis = @skis.where(:brand_id => company)
+      brand_object = Brand.where(:company => company)
+     
+      # @id_array = []
+      # brand_object.each do |brand|
+      #   @id_array << brand.id
+      # end 
+
+      @id_array = brand_object.map(&:id)
+
+
+      @skis = @skis.where(:brand_id => @id_array)
     end
     if name.any?
       @skis = @skis.where(:name => name)

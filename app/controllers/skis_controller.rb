@@ -2,8 +2,8 @@ class SkisController < ApplicationController
   # GET /skis
   # GET /skis.json
   def index
-    
-    @companies = Brand.find(:all, :select => "DISTINCT company")
+
+    @companies = Brand.all
     @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
     @genders = Ski.find(:all, :select => "DISTINCT gender")
     @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
@@ -12,6 +12,8 @@ class SkisController < ApplicationController
 
     if params[:ski].present? || params[:brand].present? || params[:price_range].present?
 
+    # Creates references for collection select
+   
       ski_type = params[:ski][:ski_type].reject(&:blank?)
       gender = params[:ski][:gender].reject(&:blank?)
       ability_level = params[:ski][:ability_level].reject(&:blank?)
@@ -20,6 +22,18 @@ class SkisController < ApplicationController
       price_range = params[:price_range][:price_range]
       # raise ski_type.any?.inspect
       
+      @ski = Ski.new
+      @ski.ski_type = ski_type
+      @ski.gender = gender
+      @ski.ability_level = ability_level
+      @ski.name = name
+
+      @price_range = PriceRange.new
+      @price_range.price_range = price_range
+
+      @brand = Brand.new
+      @brand.company = company
+
       skis_array = Inventory.search_price(price_range)
 
       skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, company, name)
