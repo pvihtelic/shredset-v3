@@ -59,12 +59,14 @@ class Backcountry
 
       #name
       name = data.css(".product-group-title .product-name").text
-      if name.include? 'Binding'
+      if name.include?('Binding')
         name_array = name.split(' ')
         name_array.delete_at(0)
         @name = name_array.join " "
+      elsif name.include?('Belafonte Ski')
+        @name = 'Belefonte'
       else
-        name_array = name.split(' ')
+        name_array = @name.split(' ')
         name_array.delete_at(0)
         nam = name_array.join " "
         @name = nam.gsub(' Ski', '')
@@ -114,7 +116,7 @@ class Backcountry
       end
 
       #gender
-      if ski_type.include? "Women's" || "Rockette"
+      if ski_type.include?("Women's") || if ski_type.include?("Rockette")
         @gender = "Women's"
       else
         @gender = "Men's"
@@ -149,39 +151,39 @@ class Backcountry
       end
 
       #turning radius
-      table = data.css(".tech-specs")
-      table.search('tr').each do |table|
-        headers = table.search('td').text
-        if headers.include? "Turn Radius"
-          headers2 = headers.dup
-          headers2[0..11] = ''
-          @turning_radius = headers2
-        end
-      end
+      # table = data.css(".tech-specs")
+      # table.search('tr').each do |table|
+      #   headers = table.search('td').text
+      #   if headers.include? "Turn Radius"
+      #     headers2 = headers.dup
+      #     headers2[0..11] = ''
+      #     @turning_radius = headers2
+      #   end
+      # end
 
       # puts @turning_radius
 
       #lengths
-      table = data.css(".tech-specs")
-      table.search('tr').each do |table|
-        headers = table.search('td').text
-        if headers.include? "Length"
-          headers2 = headers.dup
-          headers2[0..6] = ''
-          @length= headers2
-        end
-      end
+      # table = data.css(".tech-specs")
+      # table.search('tr').each do |table|
+      #   headers = table.search('td').text
+      #   if headers.include? "Length"
+      #     headers2 = headers.dup
+      #     headers2[0..6] = ''
+      #     @length= headers2
+      #   end
+      # end
 
       #dimensions
-      table = data.css(".tech-specs")
-      table.search('tr').each do |table|
-        headers = table.search('td').text
-        if headers.include? "Dimensions"
-          headers2 = headers.dup
-          headers2[0..10] = ''
-          @dimensions = headers2
-        end
-      end
+      # table = data.css(".tech-specs")
+      # table.search('tr').each do |table|
+      #   headers = table.search('td').text
+      #   if headers.include? "Dimensions"
+      #     headers2 = headers.dup
+      #     headers2[0..10] = ''
+      #     @dimensions = headers2
+      #   end
+      # end
 
       #sizes_available
       @sizes = []
@@ -202,102 +204,101 @@ class Backcountry
 
       @product_link = product_link
 
-      @skis = Ski.scoped
+      if @name.include?("Binding") || @name.include?("Backcountry.com")
+          @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
-    if @name.include?("Binding") || @name.include?("Backcountry.com")
-        @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
+          end
 
-        @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
-        end
+          image = Image.create(:image_url => @image_link, :ski_id => @ski.id)
+          # puts image.image_url
 
-        image = Image.create(:image_url => @image_link, :ski_id => @ski.id)
-        # puts image.image_url
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
 
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
+      elsif @name.include?("Rocker 2") || @name.include?("6th Sense") || @name.include?("Big Stix")
 
-    elsif @name.include?("Rocker 2") || @name.include?("6th Sense") || @name.include?("Big Stix")
-
-      @name_search1 = @name.split(' ')[0]
-      @model1 = @name.split(' ')[2]
-      @ski4 = Ski.where("name LIKE ?", "%#{@name_search1}%").where("name LIKE ?", "%#{@model1}%").first
-
-      @sizes.each do |size_available|
-        Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
-      end
-
-      image = Image.create(:image_url => @image_link, :ski_id => @ski4.id)
-      # puts image.image_url
-
-      review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski4.id, :store_id => @store.id)
-    
-    elsif @name.include? "Rocker2 92"
-
-      @ski6 = Ski.where(:name => "Rocker2 92").first
-
-      @sizes.each do |size_available|
-        Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski6.id, :size_available => size_available, :store_id => @store.id)
-      end
-
-      image = Image.create(:image_url => @image_link, :ski_id => @ski6.id)
-      # puts image.image_url
-
-      review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski6.id, :store_id => @store.id)
-
-    elsif @name.include?("Prophet") || @name.include?("BBR") || @name.include?("Cham") || @name.include?("Rockette") || @name.include?("Experience") || @name.include?("Koa") || @name.include?("Exclusive") || @name.include?("Tempation") || @name.include?("Influence") || @name.include?("Celebrity") || @name.include?("Jib") || @name.include?("El") || @name.include?("Rocker2")
-      if @name.exclude?("Binding")
-      @name_search2 = @name.split(' ')[0]
-      @model2 = @name.split(' ')[1]
-      @ski5 = Ski.where("name LIKE ?", "%#{@name_search2}%").where("name LIKE ?", "%#{@model2}%").first
-
-      @sizes.each do |size_available|
-        Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski5.id, :size_available => size_available, :store_id => @store.id)
-      end
-
-      image = Image.create(:image_url => @image_link, :ski_id => @ski5.id)
-      # puts image.image_url
-
-      review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski5.id, :store_id => @store.id)
-      end
-    elsif @skis.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists?
-      if @name.exclude?("Binding")
-        # @ski = Ski.where(:name => @name).first
-
-        @ski2 = Ski.where("name LIKE ?", "%#{@name.split(' ')[0]}%").first
+        @name_search1 = @name.split(' ')[0]
+        @model1 = @name.split(' ')[2]
+        @ski4 = Ski.where("name LIKE ?", "%#{@name_search1}%").where("name LIKE ?", "%#{@model1}%").first
 
         @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
+          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
         end
 
-        image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
+        image = Image.create(:image_url => @image_link, :ski_id => @ski4.id)
         # puts image.image_url
 
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
+        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski4.id, :store_id => @store.id)
+      
+      elsif @name.include? "Rocker2 92"
+
+        @ski6 = Ski.where(:name => "Rocker2 92").first
+
+        @sizes.each do |size_available|
+          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski6.id, :size_available => size_available, :store_id => @store.id)
+        end
+
+        image = Image.create(:image_url => @image_link, :ski_id => @ski6.id)
+        # puts image.image_url
+
+        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski6.id, :store_id => @store.id)
+
+      elsif @name.include?("Prophet") || @name.include?("BBR") || @name.include?("Cham") || @name.include?("Rockette") || @name.include?("Experience") || @name.include?("Koa") || @name.include?("Exclusive") || @name.include?("Tempation") || @name.include?("Influence") || @name.include?("Celebrity") || @name.include?("Jib") || @name.include?("El") || @name.include?("Rocker2")
+        if @name.exclude?("Binding")
+        @name_search2 = @name.split(' ')[0]
+        @model2 = @name.split(' ')[1]
+        @ski5 = Ski.where("name LIKE ?", "%#{@name_search2}%").where("name LIKE ?", "%#{@model2}%").first
+
+        @sizes.each do |size_available|
+          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski5.id, :size_available => size_available, :store_id => @store.id)
+        end
+
+        image = Image.create(:image_url => @image_link, :ski_id => @ski5.id)
+        # puts image.image_url
+
+        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski5.id, :store_id => @store.id)
+        end
+      elsif Ski.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists?
+        if @name.exclude?("Binding")
+          # @ski = Ski.where(:name => @name).first
+
+          @ski2 = Ski.where("name LIKE ?", "%#{@name.split(' ')[0]}%").first
+
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
+          end
+
+          image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
+          # puts image.image_url
+
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
+        end
+      elsif Ski.where(:name => @name).exists?
+        @ski7 = Ski.where(:name => @name).first
+
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski7.id, :size_available => size_available, :store_id => @store.id)
+          end
+
+          image = Image.create(:image_url => @image_link, :ski_id => @ski7.id)
+          # puts image.image_url
+
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski7.id, :store_id => @store.id)
+      else
+          @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski3.id, :size_available => size_available, :store_id => @store.id)
+          end
+
+          image = Image.create(:image_url => @image_link, :ski_id => @ski3.id)
+          # puts image.image_url
+
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski3.id, :store_id => @store.id)
+          # puts review.average_review
       end
-    elsif @skis.where(:name => @name).exists?
-      @ski7 = Ski.where(:name => @name).first
-
-        @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski7.id, :size_available => size_available, :store_id => @store.id)
-        end
-
-        image = Image.create(:image_url => @image_link, :ski_id => @ski7.id)
-        # puts image.image_url
-
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski7.id, :store_id => @store.id)
-    else
-        @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => "na", :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
-
-        @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski3.id, :size_available => size_available, :store_id => @store.id)
-        end
-
-        image = Image.create(:image_url => @image_link, :ski_id => @ski3.id)
-        # puts image.image_url
-
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski3.id, :store_id => @store.id)
-        # puts review.average_review
-    end
+      end
     end
   end
 end  
