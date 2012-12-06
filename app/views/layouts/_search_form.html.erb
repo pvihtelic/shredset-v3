@@ -13,7 +13,7 @@
 			    <%= collection_select(:brand, :company, @companies, :company, :company, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :name, @names, :name, :name, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Specific Model") %>
+			    <%= collection_select(:ski, :name, @names, :name, :name, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Model") %>
 			</div>
 			<div class="field">
 			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>

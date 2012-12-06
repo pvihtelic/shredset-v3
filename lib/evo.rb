@@ -31,7 +31,14 @@ class Evo
         brand = Brand.find_or_create_by_company(:company => brand)
         puts brand.company
         x = data.at('strong').next.text
-        name = x.slice(1...(x.index(' Skis')))
+        if x.include? "Binding"
+          name = x.gsub(" Skis", '')
+          name = name.gsub("2012", '')
+          name = name.gsub("2013", '')
+        else
+          name = x.slice(1...(x.index(' Skis')))
+        end
+
         model_year = data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
         description = data.css(".description").text
 

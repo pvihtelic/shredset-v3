@@ -22,14 +22,8 @@ class Ski < ActiveRecord::Base
     end
     if company.any?
       brand_object = Brand.where(:company => company)
-     
-      # @id_array = []
-      # brand_object.each do |brand|
-      #   @id_array << brand.id
-      # end 
 
       @id_array = brand_object.map(&:id)
-
 
       @skis = @skis.where(:brand_id => @id_array)
     end
