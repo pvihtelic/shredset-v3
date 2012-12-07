@@ -39,6 +39,10 @@ body { padding-top: 60px; }
   width: 25px;
 }
 
+html {
+  height: 100%;
+}
+
 body { 
     background: url('mountainbackground.jpg'); 
     -webkit-background-size: cover;
@@ -74,7 +78,7 @@ body {
 
 .field {
   margin-left: 5px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .field-index {
@@ -92,7 +96,6 @@ body {
 .span3 {
   float: left;
   width: 270px;
-  background-color: #fff;
 }
 
 .span3.offset1.index {
@@ -180,6 +183,9 @@ div.content-index {
   background-color: #fff;
   padding: 10px;
   margin: 0px 0px; /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
   -webkit-box-shadow: 5px 5px 4px rgba(0,0,0,.5);
   -moz-box-shadow: 5px 5px 4px rgba(0,0,0,.5);
   box-shadow: 5px 5px 4px rgba(0,0,0,.5);
@@ -279,10 +285,6 @@ input.btn.index {
   border-radius: 6px 6px 6px 6px;
 }
 
-.ski-image {
-	width: 350px;
-}
-
 .products {
   list-style-type: none;
   margin-top:21px;
@@ -326,17 +328,10 @@ input.btn.index {
   margin-top: 10px;
 }
 
-.span1 {
-  float: right;
-  margin-top:25px;
-  margin-right:115px;
-  margin-left:115px;
-  display: inline;
-}
-
 div.carousel.slide.span7 {
   margin-right: auto;
-  margin-left: auto;  
+  margin-left: auto;
+  margin-bottom: 1px;  
 }
 
 div.carousel.slide.span4 {
@@ -348,29 +343,42 @@ div.carousel.slide.span4 {
   margin-left: 25px;
 }
 
-div.thumbnail {
-  width: 200px;
-  padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .thumbnail-label {
   padding-left: 10px;
   margin: 0;
   font-family: 'Sanchez', serif;
 }
 
+.span1 {
+  margin-left: 40px;
+  margin-top: 20px;
+  list-style-type: none;
+  width: 184px;
+  display: inline;
+}
+
+div.thumbnail {
+  padding: 0;
+  list-style-type: none;
+}
+
 .chzn-select {
   width: 230px;
 }
 
-a.carousel-control.right {
-  margin-right: 0px;
-  margin-left: auto;
+.carousel-control {
+  background: none;
+  color: black;
+}
+.carousel-control.right {
+  right: 7px;
 }
 
-a.carousel-control.left {
+a.left.carousel-control {
+  left: -11px;
+}
+
+a.right.carousel-control {
   margin-right: auto;
   margin-left: 0px;
 }
