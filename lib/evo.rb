@@ -80,11 +80,11 @@ class Evo
       end
 
       @price = data.css("#price").text.strip.gsub('$','')
-      puts @price
+      # puts @price
 
       image_link_relative = data.css(".mainImageContainer").map{|link| link['href']}
       image_link = "http://www.evo.com#{image_link_relative.join}"
-      puts image_link
+      # puts image_link
 
       average_review_object = data.css(".average").text
       if !average_review_object.empty?

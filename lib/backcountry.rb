@@ -56,8 +56,8 @@ class Backcountry
       # puts brand.company
 
       #name
-      @scraped_name = data.css(".product-group-title .product-name").text[0..-2]
-      puts @scraped_name
+      @scraped_name = data.css(".product-group-title .product-name").text
+
       name_array = [
         ["Armada El Rey Ski", "El Rey"], 
         ["Dynastar 6th Sense Distorter Ski", "6th Sense Distorter"], 
@@ -86,7 +86,7 @@ class Backcountry
         ["Line Prophet Flite Ski","Prophet Flite"], 
         ["Moment Belafonte Ski", "Belefonte"],
         ["Rossignol Experience 88 Ski","Experience 88"], 
-        ["Rossignol Experience 98 Ski","Temptation 98"], 
+        ["Rossignol Experience 98 Ski","Experience 98"], 
         ["Rossignol Temptation 82 Ski - Women's","Temptation 82"], 
         ["Rossignol Temptation 88 Ski - Women's","Temptation 88"], 
         ["Salomon BBR 10.0 Ski","BBR 10.0"], 
@@ -106,8 +106,9 @@ class Backcountry
         ["Scott Jib TW Ski", "Jib TW"]]
 
       name_array.each do |name_pair|
-        if name_pair[0].include?("#{@scraped_name}")
-          @name = name_pair[1]
+        if @scraped_name.include?("#{name_pair[0]}")
+           @name = "#{name_pair[1]}"
+           break
         else
           name_array2 = @scraped_name.split(' ')
           name_array2.delete_at(0)
@@ -261,7 +262,7 @@ class Backcountry
         end
       end
 
-      puts @sizes
+      # puts @sizes
 
       @product_link = product_link
 
