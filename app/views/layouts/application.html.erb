@@ -30,16 +30,18 @@
             
     </div> <!--! end of #main -->
   </div>
-  <footer class="footer">
-            <ul class="footer-nav">
-              <li class="footer-nav"><%= link_to "About Us", root_url %></li> |
-              <li class="footer-nav"><%= link_to "FAQ", root_url %></li> |
-              <li class="footer-nav"><%= link_to "Blog", root_url %></li> |
-              <li class="footer-nav"><%= link_to "Share", root_url %></li> |
-              <li class="footer-nav"><%= link_to "Contact", root_url %></li> |
-              <li class="footer-nav"><%= link_to "Privacy", root_url %></li> |
-              <li class="footer-nav"><%= link_to "Terms of Service", root_url %></li> 
-            </ul>
-          </footer>
+    <footer class="footer">
+      <div class="navbar navbar-fixed-bottom">
+        <ul class="footer-nav">
+          <li class="footer-nav"><%= link_to "About Us", "/about" %></li> |
+          <li class="footer-nav"><%= link_to "FAQ", root_url %></li> |
+          <li class="footer-nav"><%= link_to "Blog", root_url %></li> |
+          <li class="footer-nav"><%= link_to "Share", root_url %></li> |
+          <li class="footer-nav"><%= link_to "Contact", root_url %></li> |
+          <li class="footer-nav"><%= link_to "Privacy", root_url %></li> |
+          <li class="footer-nav"><%= link_to "Terms of Service", root_url %></li> 
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>

@@ -403,6 +403,23 @@ ul.thumbnails {
 }
 
 .footer-nav {
+  color: #fff;
+  margin-right: auto;
+  margin-left: auto;
   display: inline;
   list-style-type: none;
 }
+
+.btn.learn {
+  background-color: #D0D0D0 !important;
+  background-repeat: repeat-x;
+  background-image: -webkit-linear-gradient(top, #D0D0D0, #C8C8C8);
+  border-color: #C0C0C0;
+  color: white !important;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: 0;
+  margin-left: 10px;
+  float: none;
+  font-family: 'Sanchez', serif;
+} 
