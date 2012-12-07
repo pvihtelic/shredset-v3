@@ -20,7 +20,7 @@ class Evo
       end
     end
 
-    puts @links_array.inspect
+    # puts @links_array.inspect
 
     @store = Store.create(:store_url => "http://www.evo.com/", :vendor => "evo.com")
 
@@ -29,15 +29,17 @@ class Evo
       if !data.css("#detailsPage div.OutOfStock h2").present?
         brand = data.css("h1.fn").css("strong.brand").text.gsub(' Skis','')
         brand = Brand.find_or_create_by_company(:company => brand)
-        puts brand.company
-        x = data.at('strong').next.text
-        if x.include? "Binding"
-          name = x.gsub(" Skis", '')
+        # puts brand.company
+        initial_name = data.at('strong').next.text
+        if initial_name.include? "Binding"
+          name = initial_name.gsub(" Skis", '')
           name = name.gsub("2012", '')
           name = name.gsub("2013", '')
         else
-          name = x.slice(1...(x.index(' Skis')))
+          name = initial_name.slice(1...(initial_name.index(' Skis')))
         end
+
+        puts name
 
         model_year = data.css("h1.fn").text.gsub(/[^\d]/,"").slice(-4..-1).to_i
         description = data.css(".description").text

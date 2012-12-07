@@ -40,8 +40,6 @@ class Backcountry
       @brand_rename = @brand_object.split(' ')
       @first_word = @brand_rename[0]
 
-      # puts @first_word
-
       lib_tech = Brand.where(:company => 'Lib Tech').first
 
       if @first_word == 'Lib' && !lib_tech
@@ -54,32 +52,95 @@ class Backcountry
         @brand = Brand.create(:company => @brand_object)
       end
 
-      # brand = Brand.find_or_create_by_company(:company => brand)
+      brand = Brand.find_or_create_by_company(:company => brand)
       # puts brand.company
 
       #name
-      name = data.css(".product-group-title .product-name").text
-      if name.include?('Binding')
-        name_array = name.split(' ')
-        name_array.delete_at(0)
-        @name = name_array.join " "
-      elsif name.include?('Belafonte Ski')
-        @name = 'Belefonte'
-      else
-        name_array = @name.split(' ')
-        name_array.delete_at(0)
-        nam = name_array.join " "
-        @name = nam.gsub(' Ski', '')
-        @name = @name.gsub(' Skis', '')
-        @name = @name.gsub('Skis ', '')
-        @name = @name.gsub('Diamond ', '')
-        @name = @name.gsub('Technologies ', '')
-        @name = @name.gsub('USA ', '')
+      @scraped_name = data.css(".product-group-title .product-name").text[0..-2]
+      puts @scraped_name
+      name_array = [
+        ["Armada El Rey Ski", "El Rey"], 
+        ["Dynastar 6th Sense Distorter Ski", "6th Sense Distorter"], 
+        ["Dynastar 6th Sense Huge Ski", "6th Sense Huge"],
+        ["Dynastar 6th Sense Slicer Ski", "6th Sense Slicer"], 
+        ["Dynastar 6th Sense Superpipe Ski", "6th Sense Superpipe"], 
+        ["Dynastar Cham 107 Ski", "Cham 107"], 
+        ["Dynastar Cham 127 Ski", "Cham 127"], 
+        ["Dynastar Cham 87 Ski", "Cham 87"], 
+        ["Dynastar Cham 97 Ski", "Cham 97"], 
+        ["Dynastar Exclusive Legend Eden Ski - Women's", "Legend Eden"], 
+        ["Dynastar Exclusive Legend Paradise Ski - Women's", "Legend Paradise"], 
+        ["Fischer Big Stix 110 Ski", "Big Stix 110"], 
+        ["Fischer Big Stix 120 Ski", "Big Stix 120"],
+        ["Fischer Big Stix 98 Ski", "Big Stix 98"], 
+        ["Fischer Koa 110 Ski - Women's", "Fischer Koa 110"], 
+        ["Fischer Koa 88 Ski - Women's", "Fischer Koa 88"], 
+        ["Fischer Koa 98 Ski - Women's", "Koa 98"], 
+        ["Line Celebrity 85 Ski - Women's", "Celebrity 85"], 
+        ["Line Celebrity 90 Ski - Women's", "Celebrity 90"], 
+        ["Line Influence 105 Ski", "Influence 105"], 
+        ["Line Influence 115 Ski", "Influence 115"], 
+        ["Line Prophet 85 Ski", "Prophet 85"], 
+        ["Line Prophet 90 Ski", "Prophet 90"], 
+        ["Line Prophet 98 Ski", "Prophet 98"], 
+        ["Line Prophet Flite Ski","Prophet Flite"], 
+        ["Moment Belafonte Ski", "Belefonte"],
+        ["Rossignol Experience 88 Ski","Experience 88"], 
+        ["Rossignol Experience 98 Ski","Temptation 98"], 
+        ["Rossignol Temptation 82 Ski - Women's","Temptation 82"], 
+        ["Rossignol Temptation 88 Ski - Women's","Temptation 88"], 
+        ["Salomon BBR 10.0 Ski","BBR 10.0"], 
+        ["Salomon BBR 8.0 Ski","BBR 8.0"], 
+        ["Salomon BBR 8.9 Ski","BBR 8.9"], 
+        ["Salomon BBR Sunlite Ski - Women's","BBR Sunlite"], 
+        ["Salomon El Dictator Ski","El Dictator"], 
+        ["Salomon Rocker 2 108 Ski","Rocker2 108"], 
+        ["Salomon Rocker 2 115 Ski","Rocker2 115"], 
+        ["Salomon Rocker 2 122 Ski","Rocker2 122"], 
+        ["Salomon Rocker 2 90 Ski","Rocker2 90"], 
+        ["Salomon Rocker2 92 Ski","Rocker2 92"], 
+        ["Salomon Rockette 115 Ski", "Rockette 115"], 
+        ["Salomon Rockette 90 Ski - Women's", "Rockette 90"], 
+        ["Salomon Rockette 92 Ski - Women's", "Rockette 92"], 
+        ["Scott Jib Ski", "Jib"], 
+        ["Scott Jib TW Ski", "Jib TW"]]
+
+      name_array.each do |name_pair|
+        if name_pair[0].include?("#{@scraped_name}")
+          @name = name_pair[1]
+        else
+          name_array2 = @scraped_name.split(' ')
+          name_array2.delete_at(0)
+          nam = name_array2.join " "
+          @name = nam.gsub(' Ski', '')
+          @name = @name.gsub(' Skis', '')
+          @name = @name.gsub('Skis ', '')
+          @name = @name.gsub('Diamond ', '')
+          @name = @name.gsub('Technologies ', '')
+          @name = @name.gsub('USA ', '')
+        end
       end
-
+        
       puts @name
+      # if name.include?('Binding')
+      #   name_array = name.split(' ')
+      #   name_array.delete_at(0)
+      #   @name = name_array.join " "
+      # elsif name.include?('Belafonte Ski')
+      #   @name = 'Belefonte'
+      # else
+      #   name_array = @name.split(' ')
+      #   name_array.delete_at(0)
+      #   nam = name_array.join " "
+      #   @name = nam.gsub(' Ski', '')
+      #   @name = @name.gsub(' Skis', '')
+      #   @name = @name.gsub('Skis ', '')
+      #   @name = @name.gsub('Diamond ', '')
+      #   @name = @name.gsub('Technologies ', '')
+      #   @name = @name.gsub('USA ', '')
+      # end
 
-      #model year not available
+      # #model year not available
 
       #description
       @description = data.css(".product-information p").text
@@ -216,64 +277,19 @@ class Backcountry
 
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
 
-      elsif @name.include?("Rocker 2") || @name.include?("6th Sense") || @name.include?("Big Stix")
+      # elsif Ski.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists?
+      #     # @ski = Ski.where(:name => @name).first
 
-        @name_search1 = @name.split(' ')[0]
-        @model1 = @name.split(' ')[2]
-        @ski4 = Ski.where("name LIKE ?", "%#{@name_search1}%").where("name LIKE ?", "%#{@model1}%").first
+      #     @ski2 = Ski.where("name LIKE ?", "%#{@name.split(' ')[0]}%").first
 
-        @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
-        end
+      #     @sizes.each do |size_available|
+      #       Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
+      #     end
 
-        image = Image.create(:image_url => @image_link, :ski_id => @ski4.id)
-        # puts image.image_url
+      #     image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
+      #     # puts image.image_url
 
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski4.id, :store_id => @store.id)
-      
-      elsif @name.include? "Rocker2 92"
-
-        @ski6 = Ski.where(:name => "Rocker2 92").first
-
-        @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski6.id, :size_available => size_available, :store_id => @store.id)
-        end
-
-        image = Image.create(:image_url => @image_link, :ski_id => @ski6.id)
-        # puts image.image_url
-
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski6.id, :store_id => @store.id)
-
-      elsif @name.include?("Prophet") || @name.include?("BBR") || @name.include?("Cham") || @name.include?("Rockette") || @name.include?("Experience") || @name.include?("Koa") || @name.include?("Exclusive") || @name.include?("Tempation") || @name.include?("Influence") || @name.include?("Celebrity") || @name.include?("Jib") || @name.include?("El") || @name.include?("Rocker2")
-        if @name.exclude?("Binding")
-        @name_search2 = @name.split(' ')[0]
-        @model2 = @name.split(' ')[1]
-        @ski5 = Ski.where("name LIKE ?", "%#{@name_search2}%").where("name LIKE ?", "%#{@model2}%").first
-
-        @sizes.each do |size_available|
-          Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski5.id, :size_available => size_available, :store_id => @store.id)
-        end
-
-        image = Image.create(:image_url => @image_link, :ski_id => @ski5.id)
-        # puts image.image_url
-
-        review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski5.id, :store_id => @store.id)
-        end
-      elsif Ski.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists?
-        if @name.exclude?("Binding")
-          # @ski = Ski.where(:name => @name).first
-
-          @ski2 = Ski.where("name LIKE ?", "%#{@name.split(' ')[0]}%").first
-
-          @sizes.each do |size_available|
-            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
-          end
-
-          image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
-          # puts image.image_url
-
-          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
-        end
+      #     review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
       elsif Ski.where(:name => @name).exists?
         @ski7 = Ski.where(:name => @name).first
 
