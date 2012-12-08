@@ -262,12 +262,14 @@ class Backcountry
         end
       end
 
+      @model_year = 2013
+
       # puts @sizes
 
       @product_link = product_link
 
       if @name.include?("Binding") || @name.include?("Backcountry.com")
-          @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => 2013, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+          @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
           @sizes.each do |size_available|
             Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
@@ -292,7 +294,9 @@ class Backcountry
 
       #     review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
       elsif Ski.where(:name => @name).exists?
-        @ski7 = Ski.where(:name => @name).first
+        if Ski.where(:name => @name).where(:model_year => @model_year).exists?
+
+          @ski7 = Ski.where(:name => @name).where(:model_year => @model_year).first
 
           @sizes.each do |size_available|
             Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski7.id, :size_available => size_available, :store_id => @store.id)
@@ -302,6 +306,18 @@ class Backcountry
           # puts image.image_url
 
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski7.id, :store_id => @store.id)
+        else
+          @ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
+          end
+
+          image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
+          # puts image.image_url
+
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)    
+        end  
       else
           @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => 2013, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 

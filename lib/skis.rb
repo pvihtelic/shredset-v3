@@ -197,8 +197,19 @@ class Skis
 		 #  image_link = match[0]
 		 #  big_image_link = image_link.gsub(/\$\d+\$$/, "$600$")
 		
-
-
+		 	#average_review
+		 	@average_review = data.css(".pr-rating .pr-rounded .average").text
+		 	if review == "0"
+		        @average_review = "na"
+			    else
+			    @average_review = review
+		    end
+		    
+		    #number of reviews
+		    @number_of_reviews = data.css("span.count").text.scan(/\d/).join ''
+		      if @number_of_reviews.empty?
+		        @number_of_reviews = "na"
+		      end
 		
 		end
 	end

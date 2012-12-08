@@ -10,7 +10,6 @@ class PagesController < ApplicationController
       	@companies = Brand.find(:all, :select => "DISTINCT company")
         @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
         @genders = Ski.find(:all, :select => "DISTINCT gender")
-        @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
         @names = Ski.find(:all, :select => "DISTINCT name")
         @price_ranges = PriceRange.all
         @model_years = Ski.find(:all, :select => "DISTINCT model_year")
