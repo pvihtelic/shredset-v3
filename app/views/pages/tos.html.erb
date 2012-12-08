@@ -1,7 +1,5 @@
-<div class="content">
-	<div class="page-header">
-    	<h3>We have no terms. don't even think about getting service.</h3>  
-    	
-
-	</div>
-</div>
+<ul>
+<% @overlapping_skis.each do |ski| %>
+    <li><%= ski.name %></li>
+<% end %>
+</ul>

@@ -104,7 +104,7 @@ class Skis
 
 
 			if @name.include?("Binding")
-          @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => 2013, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+          @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
           @sizes.each do |size_available|
             Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski.id, :size_available => size_available, :store_id => @store.id)
@@ -116,7 +116,7 @@ class Skis
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
 		
       elsif Ski.where(:name => @name).exists?
-      	if Ski.where(:model_year => @model_year).exists?
+      	if Ski.where(:name => @name).where(:model_year => @model_year).exists?
 
       		@ski1 = Ski.where(:name => @name).where(:model_year => @model_year).first
 
@@ -129,7 +129,20 @@ class Skis
 
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski1.id, :store_id => @store.id)
         else
-        	@
+        	
+        	 @ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
+          end
+
+          image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
+          # puts image.image_url
+
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
+        end
+      end
+
 
 
 			# #description

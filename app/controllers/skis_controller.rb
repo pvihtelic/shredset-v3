@@ -6,7 +6,6 @@ class SkisController < ApplicationController
     @companies = Brand.all
     @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
     @genders = Ski.find(:all, :select => "DISTINCT gender")
-    @ability_levels = Ski.find(:all, :select => "DISTINCT ability_level")
     @names = Ski.find(:all, :select => "DISTINCT name")
     @price_ranges = PriceRange.all
     @model_years = Ski.find(:all, :select => "DISTINCT model_year")
@@ -17,7 +16,6 @@ class SkisController < ApplicationController
    
       ski_type = params[:ski][:ski_type].reject(&:blank?)
       gender = params[:ski][:gender].reject(&:blank?)
-      ability_level = params[:ski][:ability_level].reject(&:blank?)
       company = params[:brand][:company].reject(&:blank?)
       name = params[:ski][:name].reject(&:blank?)
       price_range = params[:price_range][:price_range]
@@ -27,7 +25,6 @@ class SkisController < ApplicationController
       @ski = Ski.new
       @ski.ski_type = ski_type
       @ski.gender = gender
-      @ski.ability_level = ability_level
       @ski.name = name
       @ski.model_year = model_year
 
@@ -39,7 +36,7 @@ class SkisController < ApplicationController
 
       skis = Inventory.search_price(price_range)
 
-      skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, company, name, model_year)
+      skis_refined = Ski.search_characteristics(ski_type, gender, company, name, model_year)
 
       ski_ids2 = skis.map(&:id) & skis_refined.map(&:id)
 

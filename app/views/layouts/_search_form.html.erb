@@ -7,9 +7,6 @@
 			    <%= collection_select(:ski, :gender, @genders, :gender, :gender, {}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Gender/Youth") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :ability_level, @ability_levels, :ability_level, :ability_level, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Ability Level") %>
-			</div>
-			<div class="field">
 			    <%= collection_select(:brand, :company, @companies, :company, :company, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Brand") %>
 			</div>
 			<div class="field">
