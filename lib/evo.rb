@@ -4,7 +4,7 @@ class Evo
     require 'nokogiri'
     require 'open-uri'
 
-    @url = ["http://www.evo.com/shop/ski/skis.aspx", "http://www.evo.com/a-shop/ski/skis/p_2.aspx", "http://www.evo.com/a-shop/ski/skis/p_3.aspx", "http://www.evo.com/a-shop/ski/skis/p_4.aspx", "http://www.evo.com/a-shop/ski/skis/p_5.aspx", "http://www.evo.com/a-shop/ski/skis/p_6.aspx", "http://www.evo.com/a-shop/ski/skis/p_7.aspx", "http://www.evo.com/a-shop/ski/skis/p_8.aspx", "http://www.evo.com/a-shop/ski/skis/p_9.aspx", "http://www.evo.com/a-shop/ski/skis/p_10.aspx", "http://www.evo.com/a-shop/ski/skis/p_11.aspx"]
+    @url = ["http://www.evo.com/shop/ski/skis.aspx", "http://www.evo.com/a-shop/ski/skis/p_2.aspx", "http://www.evo.com/a-shop/ski/skis/p_3.aspx", "http://www.evo.com/a-shop/ski/skis/p_4.aspx", "http://www.evo.com/a-shop/ski/skis/p_5.aspx", "http://www.evo.com/a-shop/ski/skis/p_6.aspx", "http://www.evo.com/a-shop/ski/skis/p_7.aspx", "http://www.evo.com/a-shop/ski/skis/p_8.aspx", "http://www.evo.com/a-shop/ski/skis/p_9.aspx", "http://www.evo.com/a-shop/ski/skis/p_10.aspx", "http://www.evo.com/a-shop/ski/skis/p_11.aspx", "http://www.evo.com/a-outlet-shop/ski/skis.aspx", "http://www.evo.com/a-outlet-shop/ski/skis/p_2.aspx", "http://www.evo.com/a-outlet-shop/ski/skis/p_3.aspx", "http://www.evo.com/a-outlet-shop/ski/skis/p_4.aspx", "http://www.evo.com/a-outlet-shop/ski/skis/p_5.aspx"]
 
     @links_array = []
 
@@ -45,12 +45,14 @@ class Evo
         description = data.css(".description").text
 
         ability_level_input = data.at_css('span.values').text
-        ability_level = if ability_level_input.include?("/") || ability_level_input.include?("@")
+        ability_level = if ability_level_input.include?("Beginner-Intermediate")
+        "Beginner"
+      elsif ability_level_input.include?("Intermediate-Advanced")
+        "Intermediate"
+      elsif ability_level_input.include?("Advanced-Expert")
+        "Expert"
+      else 
         "na"
-      elsif ability_level_input.include?("11")
-        "Beginner-Intermediate"
-      else
-        ability_level_input
       end
 
       rocker_type = data.xpath('//span[contains(text(), "Rocker Type")]').first.next_element.text

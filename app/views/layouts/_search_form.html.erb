@@ -19,6 +19,9 @@
 			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
 			</div>
 			<div class="field">
+			    <%= collection_select(:ski, :model_year, @model_years, :model_year, :model_year, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Model Year") %>
+			</div>
+			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
 			</div>			
 	    <% end %>
