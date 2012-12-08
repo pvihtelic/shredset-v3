@@ -5,7 +5,10 @@
                 <%= render 'layouts/search_form' %>
             </div>
     </div>
-</div>    
+</div>
+<div class="custom-pagination" > 
+    <%= paginate @overlapping_skis %>
+</div>
 <div class="container index">
     <div class="row">    
         <div class="span4">
@@ -50,4 +53,5 @@
         </div>
     </div>
 </div>
+
 <br />

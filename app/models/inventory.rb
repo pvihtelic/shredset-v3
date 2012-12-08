@@ -18,15 +18,24 @@ class Inventory < ActiveRecord::Base
   		price_range = price_range.first
   		if price_range.present?
         inventories = self.where(:price => price_range.low..price_range.high)
-        inventories.each do |inventory|
-    			ski_in_price_range = inventory.ski
-    			@skis_array << ski_in_price_range
-    		end
+        ski_ids = inventories.map(&:ski_id)
+        @skis = Ski.where(:id => ski_ids)
+
+        # @skis = Ski.where(:id => inventories.ski_id) 
+        
+        
+      #   inventories.each do |inventory|
+    		# 	ski_in_price_range = inventory.ski
+    		# 	@skis_array << ski_in_price_range
+    		# end
+
+
+
       else
-        @skis_array = Ski.all
+        @skis = Ski.scoped
       end
   	end
-  	return @skis_array
+  	return @skis
   end
 
 

@@ -34,13 +34,17 @@ class SkisController < ApplicationController
       @brand = Brand.new
       @brand.company = company
 
-      skis_array = Inventory.search_price(price_range)
+      skis = Inventory.search_price(price_range)
 
       skis_refined = Ski.search_characteristics(ski_type, gender, ability_level, company, name)
 
-      @overlapping_skis = skis_array & skis_refined
+      ski_ids2 = skis.map(&:id) & skis_refined.map(&:id)
+
+      @overlapping_skis = Ski.where(:id => ski_ids2) 
+
+      @overlapping_skis = @overlapping_skis.order("name").page(params[:page])
     else
-      @overlapping_skis = Ski.all
+      @overlapping_skis = Ski.order("name").page(params[:page])
     end
 
     respond_to do |format|
