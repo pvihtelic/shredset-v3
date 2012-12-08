@@ -10,7 +10,7 @@ Shredset::Application.routes.draw do
   get '/share' => 'pages#share', :as => 'share'
   get '/contact' => 'pages#contact', :as => 'contact'
   get '/privacy' => 'pages#privacy', :as => 'privacy'
-  get '/tos' => 'pages#tos', :as => 'tos'
+  get '/learn' => 'pages#learn', :as => 'learn'
   
   resources :reviews
 
