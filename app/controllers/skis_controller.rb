@@ -3,11 +3,11 @@ class SkisController < ApplicationController
   # GET /skis.json
   def index
 
-    @companies = Brand.all
+    @companies = Brand.scoped
     @ski_types = Ski.find(:all, :select => "DISTINCT ski_type")
     @genders = Ski.find(:all, :select => "DISTINCT gender")
     @names = Ski.find(:all, :select => "DISTINCT name")
-    @price_ranges = PriceRange.all
+    @price_ranges = PriceRange.scoped
     @model_years = Ski.find(:all, :select => "DISTINCT model_year")
 
     if params[:ski].present? || params[:brand].present? || params[:price_range].present?
