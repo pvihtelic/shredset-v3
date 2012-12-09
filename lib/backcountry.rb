@@ -52,14 +52,38 @@ class Backcountry
         @brand = Brand.create(:company => @brand_object)
       end
 
-      brand = Brand.find_or_create_by_company(:company => brand)
       # puts brand.company
 
       #name
       @scraped_name = data.css(".product-group-title .product-name").text
 
+     #ski type
+      ski_type = data.css(".breadcrumb .current a").text
+      if @scraped_name.include?("Binding")
+        @ski_type = "All Mountain Ski Packages"
+      elsif ski_type.include? "Big Mountain"
+        @ski_type = "Powder Skis"
+      elsif ski_type.include? "All Mountain"
+        @ski_type = "All Mountain Skis"
+      elsif ski_type.include? "Carve"
+        @ski_type = "Carving Skis"
+      elsif ski_type.include? "Fat"
+        @ski_type = "Powder Skis"
+      elsif ski_type.include? "Alpine Park"
+        @ski_type = "Park & Pipe Skis"
+      else @ski_type = "na"
+      end
+
+      #gender
+      if ski_type.include?("Women's") || if ski_type.include?("Rockette") || @scraped_name.include?("Women")
+        @gender = "Women's"
+      else
+        @gender = "Men's"
+      end
+
       name_array = [
         ["Armada El Rey Ski", "El Rey"], 
+        ["Aretha - Women", "Aretha"],
         ["Dynastar 6th Sense Distorter Ski", "6th Sense Distorter"], 
         ["Dynastar 6th Sense Huge Ski", "6th Sense Huge"],
         ["Dynastar 6th Sense Slicer Ski", "6th Sense Slicer"], 
@@ -84,11 +108,14 @@ class Backcountry
         ["Line Prophet 90 Ski", "Prophet 90"], 
         ["Line Prophet 98 Ski", "Prophet 98"], 
         ["Line Prophet Flite Ski","Prophet Flite"], 
+        ["Madonna - Women", "Madonna"],
         ["Moment Belafonte Ski", "Belefonte"],
         ["Rossignol Experience 88 Ski","Experience 88"], 
         ["Rossignol Experience 98 Ski","Experience 98"], 
         ["Rossignol Temptation 82 Ski - Women's","Temptation 82"], 
         ["Rossignol Temptation 88 Ski - Women's","Temptation 88"], 
+        ["S7", "S7"],
+        ["Samba - Women", "Samba"],
         ["Salomon BBR 10.0 Ski","BBR 10.0"], 
         ["Salomon BBR 8.0 Ski","BBR 8.0"], 
         ["Salomon BBR 8.9 Ski","BBR 8.9"], 
@@ -197,29 +224,6 @@ class Backcountry
       end
 
 
-      #ski type
-      ski_type = data.css(".breadcrumb .current a").text
-      if @name.include?("Binding")
-      	@ski_type = "All Mountain Ski Packages"
-      elsif ski_type.include? "Big Mountain"
-        @ski_type = "Powder Skis"
-      elsif ski_type.include? "All Mountain"
-        @ski_type = "All Mountain Skis"
-      elsif ski_type.include? "Carve"
-        @ski_type = "Carving Skis"
-      elsif ski_type.include? "Fat"
-        @ski_type = "Powder Skis"
-      elsif ski_type.include? "Alpine Park"
-        @ski_type = "Park & Pipe Skis"
-      else @ski_type = "na"
-      end
-
-      #gender
-      if ski_type.include?("Women's") || if ski_type.include?("Rockette")
-        @gender = "Women's"
-      else
-        @gender = "Men's"
-      end
 
       #price
       @price = data.css(".price-integer, .price-fraction").text.gsub(',','')
@@ -343,20 +347,6 @@ class Backcountry
           # puts image.image_url
 
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski8.id, :store_id => @store.id)
-
-        elsif Ski.where(:name => @name).where(:model_year => @model_year).exists?
-
-          @ski7 = Ski.where(:name => @name).where(:model_year => @model_year).first
-
-          @sizes.each do |size_available|
-            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski7.id, :size_available => size_available, :store_id => @store.id)
-          end
-
-          image = Image.create(:image_url => @image_link, :ski_id => @ski7.id)
-          # puts image.image_url
-
-          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski7.id, :store_id => @store.id)
-
         else
           @ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 

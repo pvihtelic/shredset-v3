@@ -402,7 +402,16 @@ class Skis
           review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski.id, :store_id => @store.id)
 		
 	      elsif Ski.where(:name => @name).exists?
-	      	if Ski.where(:name => @name).where(:model_year => @model_year).exists?
+	      	if Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).exists?
+	      		@ski4 = Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).first
+
+	          @sizes.each do |size_available|
+	            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
+	          end
+
+	          image = Image.create(:image_url => @big_image_link, :ski_id => @ski4.id)
+
+	      	elsif Ski.where(:name => @name).where(:model_year => @model_year).exists?
 
 	      		@ski1 = Ski.where(:name => @name).where(:model_year => @model_year).first
 
