@@ -4,7 +4,8 @@ class Backcountry
     require 'nokogiri'
     require 'open-uri'
 
-    @url = ["http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", "http://www.backcountry.com/womens-skis"]
+    @url = ["http://www.backcountry.com/womens-skis"]
+    # "http://www.backcountry.com/skis", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=1", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=2", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=3", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=4", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=5", "http://www.backcountry.com/Store/catalog/categoryLanding.jsp?categoryId=bcsCat5110005&page=6", 
     @links_array = []
 
     @url.each do |url|
@@ -26,7 +27,7 @@ class Backcountry
 
     @store = Store.create(:store_url => "http://www.backcountry.com/", :vendor => "backcountry.com")
 
-    womens_array = ["http://www.backcountry.com/rossignol-temptation-88-ski-womens", "http://www.backcountry.com/armada-tryst-ski-womens", "http://www.backcountry.com/moment-sierra-ski-womens", "http://www.backcountry.com/line-shadow-ski-womens", "http://www.backcountry.com/blizzard-dakota-ski-womens", "http://www.backcountry.com/g3-cake-ski-womens", "http://www.backcountry.com/atomic-millennium-ski-womens", "http://www.backcountry.com/4frnt-skis-madonna-ski-womens", "http://www.backcountry.com/armada-cantika-ski-womens", "http://www.backcountry.com/fischer-koa-98-ski", "http://www.backcountry.com/armada-arw-alpine-ski-womens", "http://www.backcountry.com/fischer-koa-110-ski-womens", "http://www.backcountry.com/salomon-rockette-92-ski-womens", "http://www.backcountry.com/moment-reagan-ski-womens", "http://www.backcountry.com/k2-empress-ski-womens", "http://www.backcountry.com/armada-arvw-alpine-ski-womens", "http://www.backcountry.com/moment-hot-mess-ski-womens", "http://www.backcountry.com/nordica-la-nina-ski-womens", "http://www.backcountry.com/volkl-tierra-ski-w-attiva-motion-ipt-11.0-binding-womens", "http://www.backcountry.com/rossignol-s2-ski-womens", "http://www.backcountry.com/rossignol-attraxion-echo-6-ski-with-wtpi2-sapphire-110-binding", "http://www.backcountry.com/k2-superburnin-ski-w-marker-ers-11.0-tc-binding-womens-k2s0932", "http://www.backcountry.com/scott-rosa-ski-womens"]
+    womens_array = ["http://www.backcountry.com/rossignol-temptation-88-ski-womens", "http://www.backcountry.com/armada-tryst-ski-womens", "http://www.backcountry.com/moment-sierra-ski-womens", "http://www.backcountry.com/line-shadow-ski-womens", "http://www.backcountry.com/blizzard-dakota-ski-womens", "http://www.backcountry.com/g3-cake-ski-womens", "http://www.backcountry.com/atomic-millennium-ski-womens", "http://www.backcountry.com/4frnt-skis-madonna-ski-womens", "http://www.backcountry.com/armada-cantika-ski-womens", "http://www.backcountry.com/fischer-koa-98-ski", "http://www.backcountry.com/armada-arw-alpine-ski-womens", "http://www.backcountry.com/fischer-koa-110-ski-womens", "http://www.backcountry.com/salomon-rockette-92-ski-womens", "http://www.backcountry.com/moment-reagan-ski-womens", "http://www.backcountry.com/k2-empress-ski-womens", "http://www.backcountry.com/armada-arvw-alpine-ski-womens", "http://www.backcountry.com/moment-hot-mess-ski-womens", "http://www.backcountry.com/nordica-la-nina-ski-womens", "http://www.backcountry.com/volkl-tierra-ski-w-attiva-motion-ipt-11.0-binding-womens", "http://www.backcountry.com/rossignol-s2-ski-womens", "http://www.backcountry.com/rossignol-attraxion-echo-6-ski-with-wtpi2-sapphire-110-binding", "http://www.backcountry.com/k2-superburnin-ski-w-marker-ers-11.0-tc-binding-womens-k2s0932"]
     womens_array.each do |link|
       @links_array << link
     end
@@ -75,7 +76,7 @@ class Backcountry
       end
 
       #gender
-      if ski_type.include?("Women's") || if ski_type.include?("Rockette") || @scraped_name.include?("Women")
+      if(ski_type.include?("Women's") || ski_type.include?("Rockette") || @scraped_name.include?("Women"))
         @gender = "Women's"
       else
         @gender = "Men's"
@@ -374,5 +375,5 @@ class Backcountry
       end
       end
     end
-  end
+  
 end  
