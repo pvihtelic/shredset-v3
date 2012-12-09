@@ -103,7 +103,44 @@ class Backcountry
         ["Salomon Rockette 90 Ski - Women's", "Rockette 90"], 
         ["Salomon Rockette 92 Ski - Women's", "Rockette 92"], 
         ["Scott Jib Ski", "Jib"], 
-        ["Scott Jib TW Ski", "Jib TW"]]
+        ["Scott Jib TW Ski", "Jib TW"],
+        ["AMP", "AMPerge"],
+        ["Aura - Women", "Aura" ],
+        ["VJJ - Women", "VJJ"],
+        ["TSTw - Women", "TSTw"],
+        ["Cantika - Women", "Cantika"],
+        ["Century - Women", "Century"],
+        ["Cody", "CODY"],
+        ["DarkSide", "Darkside"],
+        ["Deathwish", "Death Wish"],
+        ["Empress - Women", "Empress"],
+        ["SuperSweet with Marker ER3 10.0 Binding - Women", "SuperSweet + Marker ER3 10.0 Bindings - Women's"],
+        ["SuperStitious with Marker ERS 11.0 TC Binding - Women", "SuperStitious + Marker ERS 11.0 TC Bindings - Women's"],
+        ["Superific with Marker ER3 10.0 Binding - Women", "SuperIfic + Marker ER3 10.0 Bindings - Women's"],
+        ["SuperGlide with Marker ERS 11.0 TC Binding - Women", "SuperGlide + Marker ERS 11.0 TC Bindings - Women's"],
+        ["SuperFree with Marker ER3 10.0 Binding - Women", "SuperFree + Marker ER3 10.0 Bindings - Women's"],
+        ["Enforcer Ti", "Enforcer"],
+        ["SuperBurnin with Marker ERS 11.0 TC Binding - Women", "SuperBurnin + Marker ERS 11.0 TC Bindings - Women's"],
+        ["Sierra - Women", "Sierra"],
+        ["SideKick - Women", "SideKick"],
+        ["Shadow - Women", "Shadow"],
+        ["Samba - Women", "Samba"],
+        ["S7 - Women", "S7"],
+        ["S3 - Women", "S3"],
+        ["S2 - Women", "S2"],
+        ["RTM 84 with IPT Wideride 12.0 D Binding", "RTM 84 + iPT Wide Ride 12.0 Bindings"],
+        ["Nemesis - Women", "Nemesis"],
+        ["Freeride NAS reCurve", "Freeride NAS ReCurve"],
+        ["MissDemeanor - Women", "MissDemeanor"], 
+        ["MissConduct - Women", "MissConduct"], 
+        ["MissBehaved - Women", "MissBehaved"],
+        ["Fully Functional Five NAS", "Fully Functional Five ReCurve"],
+        ["Geisha 100 - Women", "Geisha 100"],
+        ["Hell and Back", "Hell & Back"],
+        ["Hot Mess - Women", "Hot Mess"],
+        ["Madonna - Women", "Madonna"],
+        ["Kenja - Women", "Kenja"],
+        ["Kiku - Women", "Kiku"]]
 
       name_array.each do |name_pair|
         if @scraped_name.include?("#{name_pair[0]}")
@@ -294,7 +331,20 @@ class Backcountry
 
       #     review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
       elsif Ski.where(:name => @name).exists?
-        if Ski.where(:name => @name).where(:model_year => @model_year).exists?
+        if Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).exists?
+
+          @ski8 = Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).first
+
+          @sizes.each do |size_available|
+            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski8.id, :size_available => size_available, :store_id => @store.id)
+          end
+
+          image = Image.create(:image_url => @image_link, :ski_id => @ski8.id)
+          # puts image.image_url
+
+          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski8.id, :store_id => @store.id)
+
+        elsif Ski.where(:name => @name).where(:model_year => @model_year).exists?
 
           @ski7 = Ski.where(:name => @name).where(:model_year => @model_year).first
 
@@ -306,6 +356,7 @@ class Backcountry
           # puts image.image_url
 
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski7.id, :store_id => @store.id)
+
         else
           @ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
