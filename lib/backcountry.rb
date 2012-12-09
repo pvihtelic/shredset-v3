@@ -319,7 +319,7 @@ class Backcountry
           review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)    
         end  
       else
-          @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => 2013, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
+          @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
           @sizes.each do |size_available|
             Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski3.id, :size_available => size_available, :store_id => @store.id)

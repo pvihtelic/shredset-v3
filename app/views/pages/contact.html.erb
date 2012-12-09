@@ -1,7 +1,6 @@
-<div class="content">
-	<div class="page-header">
-    	<h3>Feel free to email us at shredset@xxx.com</h3>  
-    	
 
-	</div>
-</div>
+<ul style="list-style-type: none;">
+	<% Ski.order("name").each do |ski| %>
+			<li><%= ski.model_year %></li>
+	<% end %>
+</ul>
