@@ -358,7 +358,7 @@ class Skis
 			elsif @name.include? "Binding"
 				@ski_type = "All Mountain Ski Packages"
 			elsif @ski_type.include? "Frontside"
-				@ski_type = "Carving"
+				@ski_type = "Carving Skis"
 			elsif @ski_type.include? "Freestyle"
 				@ski_type = "Park & Pipe Skis"
 			elsif @ski_type.include? "Powder"

@@ -40,7 +40,9 @@ class SkisController < ApplicationController
 
       ski_ids2 = skis.map(&:id) & skis_refined.map(&:id)
 
-      @overlapping_skis = Ski.where(:id => ski_ids2) 
+      @all_skis = Ski.where(:id => ski_ids2)
+
+      @overlapping_skis =  @all_skis
 
       @overlapping_skis = @overlapping_skis.order("name").page(params[:page])
     else

@@ -1,7 +1,13 @@
 <div class="row">
     <div class="span3 offset1 index">
             <div class="content-left-home">
-                <h5 class="search-headline-home">Search <%= Ski.all.count %> skis </h5> 
+                <% if params[:ski].present? || params[:brand].present? || params[:price_range].present? %> 
+                    <h5 class="search-headline-home">Your Search Returned <%= @all_skis.count %> Skis </h5>
+                    <h6 class="search-headline-home">Modify your search below</h6> 
+                <% else %>
+                    <h5 class="search-headline-home">Search <%= Ski.all.count %> skis </h5>
+                    <h6 class="search-headline-home">Be as specific as you'd like</h6>
+                <% end %>
                 <%= render 'layouts/search_form' %>
             </div>
     </div>
