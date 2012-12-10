@@ -54,6 +54,8 @@ class Skis
 				@brand = "Kastle"
 			elsif brand_text.include? "Lib Tech"
 				@brand = "Lib Tech"
+			elsif brand_text.include? "Scott Jib TW"
+				@brand = "Scott"	
 			else
 				brand_array = brand_text.split ' '
 				@brand = brand_array[0]
@@ -88,6 +90,8 @@ class Skis
 				@name = name.gsub("Snow Carve", "")
 			elsif name.include? "South Line"
 				@name = name.gsub("South Line", "")
+			elsif name.include? "Amp Skis"
+				@name = "AMPerge"
 			else
 				name_array = name.split ' '
 				name_array.delete_at(0)
@@ -108,17 +112,18 @@ class Skis
 			["A.M.P. Rictor Skis with Marker MX 12.0 Bindings", "A.M.P. Rictor + MX 12.0 Bindings 2011"],
 			["Access", "Access"],
 			["Ace of Spades Ti", "Ace Of Spades Ti"],
+			["Exclusive Active Light", "Exclusive Active Light Womens Skis with XPress10 Bindings"],
 			["Adora Womens Skis with Marker 3 Motion 10.0 TP Essenza Bindings", "Adora + Essenza 3Motion TP 10.0 Bindings - Women's"],
 			["Affinity Air Womens Skis with XTE 10 Lady Bindings", "Affinity Air + XTE 10 Bindings - Women's"],
 			["Affinity Pure Womens Skis with XTO 10 AF Bindings", "Affinity Pure + XTO 10 Bindings - Women's"],
 			["Affinity Storm Womens Skis with XTO 10 AF Bindings", "Affinity Storm + XTO 10 Bindings - Women's"],
 			["Afterbang", "Afterbang"],
+			["Afterbang Shorty", "Afterbang Shorty"],
 			["AK JJ", "AK JJ"],
 			["Alibi", "Alibi"],
 			["Alley", "Alley"],
 			["Allura Womens Skis with Marker iPT eMotion 11.0 TC Bindings", "Allura with iPT eMotion 11.0 TC Binding - Women's"],
 			["Alpha 1", "Alpha 1"],
-			["Amp", "AMPerge"],
 			["AR7", "AR7"],
 			["ARV", "ARV"],
 			["ARVw Womens", "ARVw"],
@@ -244,8 +249,9 @@ class Skis
 			["Prophet 90", "Prophet 90"],
 			["Prophet 98", "Prophet 98"],
 			["Prophet Flite", "Prophet Flite"],
-			["Punisher", "Punisher"],
+			["Punisher", "Punisher"], 
 			["Punx", "Punx"],
+			["Punx Jr III", "Punx Jr III"],
 			["Pursuit HP Skis with Axial 2 140 Ti Bindings", "Pursuit HP + Axial2 140 Ti Bindings"],
 			["Pyra Womens", "Pyra"],
 			["Ritual", "Ritual"],
@@ -265,6 +271,8 @@ class Skis
 			["Samba Womens", "Samba"],
 			["Savage Ti Skis with XTO 14 Bindings", "Savage Ti + XTO 14 Bindings"],
 			["Scimitar", "Scimitar"],
+			["Scimitar Jr X70 Kids", "Scimitar Jr X70 Kids with Xelium Jr 70 Bindings"],
+			["Scimitar Jr Kids with Comp Kid 25 L Bindings", "Scimitar Jr Kids with Comp Kid 25 L Bindings"],
 			["Scimitar Jr Kids Skis with Xelium Kid 45 Bindings", "Scimitar Jr - Xelium Kid 45 Bindings - Youth - Boy's"],
 			["Seeker", "Seeker"],
 			["Shadow Womens", "Shadow"],
@@ -387,8 +395,7 @@ class Skis
 		
 
 
-		  	#add review stuff
-		  	if @name.include?("Mounting and Adjustment")
+		  if @name.include?("Mounting and Adjustment")
 				elsif @name.include?("Binding")
           @ski = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand_final.id)
 
@@ -397,7 +404,6 @@ class Skis
           end
 
           image = Image.create(:image_url => @big_image_link, :ski_id => @ski.id)
-          # puts image.image_url
 
           review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski.id, :store_id => @store.id)
 		
@@ -405,34 +411,33 @@ class Skis
 	      	if Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).exists?
 	      		@ski4 = Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).first
 
-	          @sizes.each do |size_available|
-	            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
-	          end
-
-	          image = Image.create(:image_url => @big_image_link, :ski_id => @ski4.id)
+	          
+		          @sizes.each do |size_available|
+		            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
+		          end
+	          	  image = Image.create(:image_url => @big_image_link, :ski_id => @ski4.id)
+	          	  review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski4.id, :store_id => @store.id)
+	      	  
 
 	      	elsif Ski.where(:name => @name).where(:model_year => @model_year).exists?
 
 	      		@ski1 = Ski.where(:name => @name).where(:model_year => @model_year).first
 
-	          @sizes.each do |size_available|
-	            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski1.id, :size_available => size_available, :store_id => @store.id)
-	          end
-
-	          image = Image.create(:image_url => @big_image_link, :ski_id => @ski1.id)
-	          # puts image.image_url
+	          
+		          @sizes.each do |size_available|
+		            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski1.id, :size_available => size_available, :store_id => @store.id)
+		          end
+		      	image = Image.create(:image_url => @big_image_link, :ski_id => @ski1.id)
+		      	review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski1.id, :store_id => @store.id)
+		      
 
 	        else
-	        	
 	        	@ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand_final.id)
 
 	          @sizes.each do |size_available|
 	            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
 	          end
-
 	          image = Image.create(:image_url => @big_image_link, :ski_id => @ski2.id)
-	          # puts image.image_url
-
 	          review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski.id, :store_id => @store.id)
 	        end
 	      else
@@ -441,10 +446,7 @@ class Skis
           @sizes.each do |size_available|
             Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski3.id, :size_available => size_available, :store_id => @store.id)
           end
-
           image = Image.create(:image_url => @big_image_link, :ski_id => @ski3.id)
-          # puts image.image_url
-
           review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski3.id, :store_id => @store.id)
 	      end
 

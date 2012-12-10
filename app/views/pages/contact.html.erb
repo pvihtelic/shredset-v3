@@ -1,6 +1,14 @@
+<!-- Test file  -->
+
+
+<!-- print out -->
+
+
 
 <ul style="list-style-type: none;">
 	<% Ski.order("name").each do |ski| %>
-			<li><%= ski.model_year %></li>
+		<% if ski.inventories.where(:store_id => 3).count > 5 %>
+			<li><%= ski.name %></li>
+		<% end %>
 	<% end %>
 </ul>

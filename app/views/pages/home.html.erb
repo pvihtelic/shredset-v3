@@ -28,7 +28,7 @@
 			    <div class="tab-pane active" id="tab1">  
 			    <div class="carousel slide span7" id="myCarousel">
 				<div class="carousel-inner">
-					<% @all_mountain_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+					<% @all_mountain_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -58,7 +58,7 @@
 			    <div class="tab-pane" id="tab2">
 			    <div class="carousel slide span7" id="myCarousel2">
 				<div class="carousel-inner">
-					<% @powder_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+					<% @powder_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -89,7 +89,7 @@
 			    <div class="tab-pane" id="tab3">
 			    <div class="carousel slide span7" id="myCarousel3">
 				<div class="carousel-inner">
-					<% @carving_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+					<% @carving_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -120,7 +120,7 @@
 			    <div class="tab-pane" id="tab4">
 			    <div class="carousel slide span7" id="myCarousel4">
 				<div class="carousel-inner">
-					<% @twin_tip_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+					<% @twin_tip_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -151,7 +151,7 @@
 			    <div class="tab-pane" id="tab5">
 			    <div class="carousel slide span7" id="myCarousel5">
 				<div class="carousel-inner">
-					<% @park_and_pipe_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+					<% @park_and_pipe_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -182,7 +182,7 @@
 			    <div class="tab-pane" id="tab6">
 			    <div class="carousel slide span7" id="myCarousel6">
 				<div class="carousel-inner">
-					<% @alpine_touring_top_skis.each_slice(3).with_index do |top_three_skis, index| %>
+					<% @alpine_touring_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>

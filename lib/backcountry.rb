@@ -339,15 +339,18 @@ class Backcountry
         if Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).exists?
 
           @ski8 = Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).first
+          
+         
+            @sizes.each do |size_available|
+              Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski8.id, :size_available => size_available, :store_id => @store.id)
+            end
 
-          @sizes.each do |size_available|
-            Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski8.id, :size_available => size_available, :store_id => @store.id)
-          end
+            image = Image.create(:image_url => @image_link, :ski_id => @ski8.id)
+            # puts image.image_url
 
-          image = Image.create(:image_url => @image_link, :ski_id => @ski8.id)
-          # puts image.image_url
+            review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski8.id, :store_id => @store.id)
+         
 
-          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski8.id, :store_id => @store.id)
         else
           @ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
 
