@@ -245,7 +245,7 @@ class Backcountry
       if review == "0"
         @average_review = "na"
       else
-        @average_review = review
+        @average_review = review.to_i*19 + (rand(1-5))
       end
 
       #number of reviews

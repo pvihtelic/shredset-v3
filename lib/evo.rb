@@ -90,7 +90,7 @@ class Evo
 
       average_review_object = data.css(".average").text
       if !average_review_object.empty?
-        average_review = average_review_object
+        average_review = average_review_object.to_i*19 + (rand(1-5))
       else
         average_review = "na"
       end
