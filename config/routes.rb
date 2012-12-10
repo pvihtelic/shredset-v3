@@ -11,20 +11,8 @@ Shredset::Application.routes.draw do
   get '/contact' => 'pages#contact', :as => 'contact'
   get '/privacy' => 'pages#privacy', :as => 'privacy'
   get '/learn' => 'pages#learn', :as => 'learn'
-  
-  resources :reviews
 
-  resources :images
-
-  resources :inventories
-
-  resources :specs
-
-  resources :stores
-
-  resources :skis
-
-  resources :brands
+  resources :skis, :only => [:show, :index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

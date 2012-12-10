@@ -8,6 +8,8 @@ class Ski < ActiveRecord::Base
   has_many :reviews
   belongs_to :brand
 
+  paginates_per 30
+
 
   def self.search_characteristics(ski_type, gender, company, name, model_year)
   	@skis = Ski.scoped
