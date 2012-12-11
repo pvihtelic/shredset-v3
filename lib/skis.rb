@@ -336,7 +336,7 @@ class Skis
       puts @name
 
 			#model year
-			model_year = data.css(".productdetail h1.productname").text
+			model_year = data.css(".productdetail h1.productname").text.to_i
 			@model_year = model_year.slice(/\d{4}/)
 			if @model_year.nil?
 				@model_year = 2010
@@ -366,7 +366,7 @@ class Skis
 				@ski_type = "Park & Pipe Skis"
 			elsif @ski_type.include? "Powder"
 				@ski_type = "Big Mountain Skis"
-			elsif @name.include? "Board"
+			elsif @name.include? "2010"
 				@ski_type = "Ski Boards"
 			elsif @ski_type == "Yes"
 				@ski_type = "Ski Boards"
