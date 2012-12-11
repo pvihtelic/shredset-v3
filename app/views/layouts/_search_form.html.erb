@@ -19,6 +19,9 @@
 			    <%= collection_select(:ski, :model_year, @model_years.sort_by(&:model_year).reverse, :model_year, :model_year, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Model Year") %>
 			</div>
 			<div class="field">
+				<%= select_tag "sort_by", options_for_select([["Sort By:", "Sort By:"],["Price", "Price"], ["Rating", "Rating"], ["Availability", "Availability"]]) %>
+			</div>
+			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
 			</div>			
 	    <% end %>
