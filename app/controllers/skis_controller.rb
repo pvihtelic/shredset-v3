@@ -44,9 +44,9 @@ class SkisController < ApplicationController
 
       @overlapping_skis =  @all_skis
 
-      @overlapping_skis = @overlapping_skis.order("brand_id ASC").page(params[:page])
+      @overlapping_skis = @overlapping_skis.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
     else
-      @overlapping_skis = Ski.order("brand_id ASC").page(params[:page])
+      @overlapping_skis = Ski.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
     end
 
     respond_to do |format|

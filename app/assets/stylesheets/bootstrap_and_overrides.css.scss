@@ -109,12 +109,19 @@ body {
   height: 100%;
 }
 
+.index-pictures-container {
+  background-color: transparent;
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 220px;
+  height: 320px;
+}
+
 div.index-pictures {
   background-color: #fff;
   margin-top: 30px;
   margin-left: 30px;
   width: 220px;
-  height: 310px;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -449,6 +456,16 @@ ul.thumbnails {
 }
 
 .pagination li:first-child a {
+  border: none;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-box-shadow: 5px 5px 4px rgba(0,0,0,.5);
+  -moz-box-shadow: 5px 5px 4px rgba(0,0,0,.5);
+  box-shadow: 5px 5px 4px rgba(0,0,0,.5); 
+}
+
+.pagination li:last-child a {
   border: none;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;

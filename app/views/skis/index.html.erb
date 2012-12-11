@@ -24,35 +24,37 @@
                 <% @overlapping_skis.each do |ski| %>
                         <li class="product-item">
                         <% if ski.images.first.present? %>
-                        <div class="index-pictures">
-                        <%= link_to image_tag(ski.images.first.image_url, :class => "index-product-image"), ski_url(ski.id) %>
-                        <% else %>
-                        <% end %>
-                        <br />
-                        <ul class="product-details">
-                            <li class="product-details">
-                                <span class="product-title">
-                                <%= ski.brand.company %> <%= ski.name %> <%= ski.model_year %></br> 
-                                </span>
-                                <% @b = [] %>
-                                    <% ski.inventories.each do |inventory| %>
-                                        <% if !@b.include? inventory.store_id %>
-                                        <% @b.push(inventory.store_id) %>
-                                        <% end %>
-                                    <% end %>
-                                    <a href="<%= ski_url(ski.id) %>"> <%= @b.count %> 
-                                    <% if @b.count>1%> stores <% else %> store
-                                    <% end %>
-                                <% a = [] %>
-                                <% ski.inventories.each do |inventory| %>
-                                    <% a.push(number_to_currency(inventory.price)) %>
-                                    <% end %>
-                                    <% @lowest_price = a.compact.sort { |x,y| x <=> y} %>
-                                    from <%= @lowest_price.first %> </a>
-                                </br>
-                            </li>
-                        </ul>
-                        </div>
+                            <div class="index-pictures-container" %>
+                                <div class="index-pictures">
+                                <%= link_to image_tag(ski.images.first.image_url, :class => "index-product-image"), ski_url(ski.id) %>
+                                <% else %>
+                                <% end %>
+                                <br />
+                                <ul class="product-details">
+                                    <li class="product-details">
+                                        <span class="product-title">
+                                        <%= ski.brand.company %> <%= ski.name %> <%= ski.model_year %></br> 
+                                        </span>
+                                        <% @b = [] %>
+                                            <% ski.inventories.each do |inventory| %>
+                                                <% if !@b.include? inventory.store_id %>
+                                                <% @b.push(inventory.store_id) %>
+                                                <% end %>
+                                            <% end %>
+                                            <a href="<%= ski_url(ski.id) %>"> <%= @b.count %> 
+                                            <% if @b.count>1%> stores <% else %> store
+                                            <% end %>
+                                        <% a = [] %>
+                                        <% ski.inventories.each do |inventory| %>
+                                            <% a.push(number_to_currency(inventory.price)) %>
+                                            <% end %>
+                                            <% @lowest_price = a.compact.sort { |x,y| x <=> y} %>
+                                            from <%= @lowest_price.first %> </a>
+                                        </br>
+                                    </li>
+                                </ul>
+                                </div>
+                            </div>
                 <% end %>
                 </ul>
         </div>
