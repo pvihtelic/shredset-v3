@@ -9,6 +9,7 @@ class SkisController < ApplicationController
     @names = Ski.find(:all, :select => "DISTINCT name")
     @price_ranges = PriceRange.scoped
     @model_years = Ski.find(:all, :select => "DISTINCT model_year")
+    @sorts = ["Price", "Rating", "Availability"]
 
     if params[:ski].present? || params[:brand].present? || params[:price_range].present?
 
@@ -44,10 +45,27 @@ class SkisController < ApplicationController
 
       @overlapping_skis =  @all_skis
 
-      @overlapping_skis = @overlapping_skis.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
+      if params[:sort_by] == "Sort By:"
+        @overlapping_skis = @overlapping_skis.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
+      end
+
+      if params[:sort_by] == "Price"
+        @overlapping_skis = @overlapping_skis.joins(:inventories).order("inventories.price ASC").page(params[:page])
+      end
+
+      if params[:sort_by] == "Rating"
+        @overlapping_skis = @overlapping_skis.joins(:reviews).order("reviews.average_review DESC").page(params[:page])
+      end
+
+      if params[:sort_by] == "Availability"
+        @overlapping_skis = @overlapping_skis.joins(:inventories).order("inventories.size_available DESC").page(params[:page])
+      end
+
     else
       @overlapping_skis = Ski.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
     end
+
+
 
     respond_to do |format|
       format.html # index.html.erb
