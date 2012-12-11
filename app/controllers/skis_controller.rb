@@ -12,9 +12,8 @@ class SkisController < ApplicationController
     @sorts = ["Price", "Rating", "Availability"]
 
     if params[:ski].present? || params[:brand].present? || params[:price_range].present?
-
     # Creates references for collection select
-   
+    
       ski_type = params[:ski][:ski_type].reject(&:blank?)
       gender = params[:ski][:gender].reject(&:blank?)
       company = params[:brand][:company].reject(&:blank?)
@@ -22,7 +21,7 @@ class SkisController < ApplicationController
       price_range = params[:price_range][:price_range]
       model_year = params[:ski][:model_year].reject(&:blank?)
       # raise ski_type.any?.inspect
-      
+
       @ski = Ski.new
       @ski.ski_type = ski_type
       @ski.gender = gender
@@ -43,28 +42,17 @@ class SkisController < ApplicationController
 
       @all_skis = Ski.where(:id => ski_ids2)
 
-      @overlapping_skis =  @all_skis
-
-      if params[:sort_by] == "Sort By:"
-        @overlapping_skis = @overlapping_skis.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
-      end
-
       if params[:sort_by] == "Price"
-        @overlapping_skis = @overlapping_skis.joins(:inventories).order("inventories.price ASC").page(params[:page])
+        @overlapping_skis = @all_skis.joins(:inventories).order("inventories.price ASC").page(params[:page])
+      elsif params[:sort_by] == "Rating"
+        @overlapping_skis = @all_skis.joins(:reviews).order("reviews.average_review DESC").page(params[:page])
+      else
+        @overlapping_skis = @all_skis.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
       end
-
-      if params[:sort_by] == "Rating"
-        @overlapping_skis = @overlapping_skis.joins(:reviews).order("reviews.average_review DESC").page(params[:page])
-      end
-
-      if params[:sort_by] == "Availability"
-        @overlapping_skis = @overlapping_skis.joins(:inventories).order("inventories.size_available DESC").page(params[:page])
-      end
-
+      
     else
       @overlapping_skis = Ski.joins(:brand).order("brands.company ASC, skis.model_year DESC, skis.name ASC").page(params[:page])
     end
-
 
 
     respond_to do |format|
