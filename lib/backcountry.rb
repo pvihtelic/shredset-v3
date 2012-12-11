@@ -84,7 +84,7 @@ class Backcountry
 
       name_array = [
         ["Armada El Rey Ski", "El Rey"], 
-        ["Aretha - Women", "Aretha"],
+        ["Aretha Ski - Women", "Aretha"],
         ["Dynastar 6th Sense Distorter Ski", "6th Sense Distorter"], 
         ["Dynastar 6th Sense Huge Ski", "6th Sense Huge"],
         ["Dynastar 6th Sense Slicer Ski", "6th Sense Slicer"], 
@@ -110,6 +110,7 @@ class Backcountry
         ["Line Prophet 98 Ski", "Prophet 98"], 
         ["Line Prophet Flite Ski","Prophet Flite"], 
         ["Madonna - Women", "Madonna"],
+        ["Millennium Ski - Women", "Millennium"],
         ["Moment Belafonte Ski", "Belefonte"],
         ["Rossignol Experience 88 Ski","Experience 88"], 
         ["Rossignol Experience 98 Ski","Experience 98"], 
@@ -136,7 +137,7 @@ class Backcountry
         ["Aura - Women", "Aura" ],
         ["VJJ - Women", "VJJ"],
         ["TSTw - Women", "TSTw"],
-        ["Cantika - Women", "Cantika"],
+        ["Cantika Ski - Women", "Cantika"],
         ["Century - Women", "Century"],
         ["Cody", "CODY"],
         ["DarkSide", "Darkside"],

@@ -5,7 +5,7 @@
                     <h5 class="search-headline-home">Your Search Returned <%= @all_skis.count %> Skis </h5>
                     <h6 class="search-headline-home">Modify your search below</h6> 
                 <% else %>
-                    <h5 class="search-headline-home">Search <%= Ski.all.count %> skis </h5>
+                    <h5 class="search-headline-home">Search <%= number_with_delimiter(Ski.all.count, :delimiter => ',') %> skis </h5>
                     <h6 class="search-headline-home">Be as specific as you'd like</h6>
                 <% end %>
                 <%= render 'layouts/search_form' %>

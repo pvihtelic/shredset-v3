@@ -7,7 +7,7 @@
 
 <ul style="list-style-type: none;">
 	<% Ski.order("name").each do |ski| %>
-		<% if ski.inventories.where(:store_id => 2).count > 5 %>
+		<% if ski.inventories.where(:store_id => 3).count > 3 %>
 			<li><%= ski.name %></li>
 		<% end %>
 	<% end %>

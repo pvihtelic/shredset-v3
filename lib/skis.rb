@@ -117,16 +117,16 @@ class Skis
 			["Affinity Air Womens Skis with XTE 10 Lady Bindings", "Affinity Air + XTE 10 Bindings - Women's"],
 			["Affinity Pure Womens Skis with XTO 10 AF Bindings", "Affinity Pure + XTO 10 Bindings - Women's"],
 			["Affinity Storm Womens Skis with XTO 10 AF Bindings", "Affinity Storm + XTO 10 Bindings - Women's"],
-			["Afterbang", "Afterbang"],
 			["Afterbang Shorty", "Afterbang Shorty"],
+			["Afterbang", "Afterbang"],
 			["AK JJ", "AK JJ"],
 			["Alibi", "Alibi"],
 			["Alley", "Alley"],
 			["Allura Womens Skis with Marker iPT eMotion 11.0 TC Bindings", "Allura with iPT eMotion 11.0 TC Binding - Women's"],
 			["Alpha 1", "Alpha 1"],
 			["AR7", "AR7"],
-			["ARV", "ARV"],
 			["ARVw Womens", "ARVw"],
+			["ARV", "ARV"],
 			["ARW Womens", "ARW - Womens"],
 			["Aura Womens", "Aura"],
 			["Aurena Womens Skis with Marker 4 Motion 10.0 Essenza Bindings", "Aurena + Essenza 4Motion 10.0 Bindings - Women's"],
@@ -140,8 +140,8 @@ class Skis
 			["BBR 8.0", "BBR 8.0"],
 			["BBR 8.9", "BBR 8.9"],
 			["BBR Sunlite Womens", "BBR Sunlite"],
-			["Bent Chetler", "Bent Chetler"],
 			["Bent Chetler Mini Kids", "Bent Chetler Mini"],
+			["Bent Chetler", "Bent Chetler"],
 			["Blackeye Ti Skis with XTO 12 Bindings", "Blackeye Ti + XTO 12 Bindings"],
 			["Blend", "Blend"],
 			["Blog", "Blog"],
@@ -155,8 +155,8 @@ class Skis
 			["Cantika Womens", "Cantika"],
 			["Celebrity 85 Womens", "Celebrity 85"],
 			["Celebrity 90 Womens", "Celebrity 90"],
-			["Century", "Century"],
 			["Century Jr II Kids", "Century Jr. II"],
+			["Century", "Century"],			
 			["Cham 107", "Cham 107"],
 			["Cham 87", "Cham 87"],
 			["Cham 97", "Cham 97"],
@@ -182,12 +182,12 @@ class Skis
 			["Enduro XT 850 Skis with Z12 B90 Bindings", "Enduro XT 850 + Z12 Bindings"],
 			["Experience 74 Skis with Xelium 100 Bindings", "Experience 74 + Xelium 100 Bindings"],
 			["Experience 83 Skis with TPX Axium 120 L Bindings", "Experience 83 + Axium 120 Bindings"],
-			["Experience 88", "Experience 88"],
 			["Experience 88 Skis with Axium 120 Bindings", "Experience 88 + Axium 120 Bindings"],
+			["Experience 88", "Experience 88"],
 			["Experience 98", "Experience 98"],
 			["Geisha 100 Womens", "Geisha 100"],
-			["Gotama", "Gotama"],
 			["Gotama Jr. Kids", "Gotama Jr"],
+			["Gotama", "Gotama"],			
 			["Gunsmoke", "Gunsmoke"],
 			["Gypsy", "Gypsy"],
 			["Halo", "Halo"],
@@ -204,14 +204,14 @@ class Skis
 			["Influence 105", "Influence 105"],
 			["Influence 115", "Influence 115"],
 			["Iron Maiden", "Iron Maiden"],
-			["Jib", "Jib"],
 			["Jib TW", "Jib TW"],
+			["Jib", "Jib"],			
 			["JJ", "JJ"],
 			["Keeper", "Keeper"],
 			["Kendo", "Kendo"],
 			["Kenja Womens", "Kenja"],
-			["Kink", "Kink"],
 			["Kink Jr. Kids", "Kink Jr"],
+			["Kink", "Kink"],			
 			["KOA Jr. Kids Skis with FJ 4 Bindings", "Koa Jr + FJ4 AC Jr Rail Bindings - Youth - Girl's"],
 			["KOA jr Kids Skis with FJ 7 Bindings", "Koa Jr + FJ7 AC Jr Rail Bindings - Youth - Girl's"],
 			["Kung Fujas", "Kung Fujas"],
@@ -250,8 +250,8 @@ class Skis
 			["Prophet 98", "Prophet 98"],
 			["Prophet Flite", "Prophet Flite"],
 			["Punisher", "Punisher"], 
-			["Punx", "Punx"],
 			["Punx Jr III", "Punx Jr III"],
+			["Punx", "Punx"],
 			["Pursuit HP Skis with Axial 2 140 Ti Bindings", "Pursuit HP + Axial2 140 Ti Bindings"],
 			["Pyra Womens", "Pyra"],
 			["Ritual", "Ritual"],
@@ -266,33 +266,33 @@ class Skis
 			["RTM 80 Skis with Marker iPT Wideride 12 Bindings", "RTM 80 + iPT Wide Ride 12.0 Bindings"],
 			["RTM 84 Skis with Marker iPT Wideride 12.0 Bindings", "RTM 84 + iPT Wide Ride 12.0 Bindings"],
 			["S3 W Womens", "S3"],
-			["S7", "S7"],
 			["S7 Pro Kids", "S7 Pro"],
+			["S7", "S7"],
 			["Samba Womens", "Samba"],
 			["Savage Ti Skis with XTO 14 Bindings", "Savage Ti + XTO 14 Bindings"],
-			["Scimitar", "Scimitar"],
 			["Scimitar Jr X70 Kids", "Scimitar Jr X70 Kids with Xelium Jr 70 Bindings"],
 			["Scimitar Jr Kids with Comp Kid 25 L Bindings", "Scimitar Jr Kids with Comp Kid 25 L Bindings"],
 			["Scimitar Jr Kids Skis with Xelium Kid 45 Bindings", "Scimitar Jr - Xelium Kid 45 Bindings - Youth - Boy's"],
+			["Scimitar", "Scimitar"],
 			["Seeker", "Seeker"],
 			["Shadow Womens", "Shadow"],
 			["Shaman", "Shaman"],
-			["Shiro", "Shiro"],
 			["Shiro Jr. Kids", "Shiro Jr"],
+			["Shiro", "Shiro"],			
 			["Shogun 100", "Shogun 100"],
 			["Sickle", "Sickle"],
 			["SideSeth", "SideSeth"],
 			["SideStash", "SideStash"],
 			["Sight", "Sight"],
-			["Sir Francis Bacon", "Sir Francis Bacon"],
 			["Sir Francis Bacon Shorty Kids", "Sir Francis Bacon Shorty"],
+			["Sir Francis Bacon", "Sir Francis Bacon"],
 			["Smash 7", "Smash 7"],
 			["Smoke Skis with XTO 10 Bindings", "Smoke + XTO 10 Bindings"],
 			["Smoke Ti Skis with XTO 12 Bindings", "Smoke Ti + XTO 12 Bindings"],
 			["Snow Angel Kids", "Snow Angel"],
 			["Soulmate Womens", "SoulMate"],
-			["Sprayer", "Sprayer"],
 			["Sprayer Pro Kids", "Sprayer Pro"],
+			["Sprayer", "Sprayer"],
 			["Stepup", "Stepup"],
 			["Storm", "Storm"],
 			["Super 7", "Super 7"],
@@ -308,14 +308,13 @@ class Skis
 			["The 130", "The 130"],
 			["Theory", "Theory"],
 			["Threat", "Threat"],
-			["Threat", "Threat"],
 			["Tonic", "Tonic"],
 			["Traveling Circus", "Traveling Circus"],
 			["Triple J Kids", "Triple J"],
 			["Triumph", "Triumph"],
 			["Trooper", "Trooper"],
+			["TSTw Ski - Women", "TSTw"],
 			["TST", "TST"],
-			["TSTw", "TSTw"],
 			["Verdict", "Verdict"],
 			["Wall", "Wall"],
 			["Watea 84", "Watea 84"],
@@ -328,6 +327,7 @@ class Skis
       name_array2.each do |name_pair|
         if @name.include?("#{name_pair[0]}")
            @name = "#{name_pair[1]}"
+           break
         end
       end
 
@@ -350,7 +350,6 @@ class Skis
 			# #rocker type
 			@rocker_type = data.css(":nth-child(14) .value").text.strip
 			
-			
 			# #ski type
 			@ski_type = data.css("#pdpTab3 :nth-child(3) .value").text.strip
 			if @ski_type.include? "All-Mountain"
@@ -366,8 +365,6 @@ class Skis
 			elsif @name.include? "Board"
 				@ski_type = "Ski Boards"
 			end
-			
-
 
 			# #gender
 			gender_text = data.css("#pdpTab3 :nth-child(2) .value").text.strip
@@ -391,8 +388,7 @@ class Skis
 			# #image link
 		  match = data.text.match /http:\/\/s7d5.scene7.com\/is\/image\/SummitSports\/(.+)\?\$(\d+)\$/
 		  image_link = match[0]
-		  @big_image_link = image_link.gsub(/\$\d+\$$/, "$600$")
-		
+		  @big_image_link = image_link.gsub(/\$\d+\$$/, "$600$")		
 
 
 		  if @name.include?("Mounting and Adjustment")
@@ -438,7 +434,7 @@ class Skis
 	            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
 	          end
 	          image = Image.create(:image_url => @big_image_link, :ski_id => @ski2.id)
-	          review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski.id, :store_id => @store.id)
+	          review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski2.id, :store_id => @store.id)
 	        end
 	      else
 	      	 @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand_final.id)
