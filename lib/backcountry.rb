@@ -63,13 +63,13 @@ class Backcountry
       if @scraped_name.include?("Binding")
         @ski_type = "All Mountain Ski Packages"
       elsif ski_type.include? "Big Mountain"
-        @ski_type = "Powder Skis"
+        @ski_type = "Big Mountain Skis"
       elsif ski_type.include? "All Mountain"
         @ski_type = "All Mountain Skis"
       elsif ski_type.include? "Carve"
         @ski_type = "Carving Skis"
       elsif ski_type.include? "Fat"
-        @ski_type = "Powder Skis"
+        @ski_type = "Big Mountain Skis"
       elsif ski_type.include? "Alpine Park"
         @ski_type = "Park & Pipe Skis"
       else @ski_type = "na"
@@ -85,6 +85,7 @@ class Backcountry
       name_array = [
         ["Armada El Rey Ski", "El Rey"], 
         ["Aretha Ski - Women", "Aretha"],
+        ["ARVw Ski - Women", "ARVw"],
         ["Dynastar 6th Sense Distorter Ski", "6th Sense Distorter"], 
         ["Dynastar 6th Sense Huge Ski", "6th Sense Huge"],
         ["Dynastar 6th Sense Slicer Ski", "6th Sense Slicer"], 
@@ -109,15 +110,14 @@ class Backcountry
         ["Line Prophet 90 Ski", "Prophet 90"], 
         ["Line Prophet 98 Ski", "Prophet 98"], 
         ["Line Prophet Flite Ski","Prophet Flite"], 
-        ["Madonna - Women", "Madonna"],
+        ["Madonna Ski - Women", "Madonna"],
         ["Millennium Ski - Women", "Millennium"],
         ["Moment Belafonte Ski", "Belefonte"],
         ["Rossignol Experience 88 Ski","Experience 88"], 
         ["Rossignol Experience 98 Ski","Experience 98"], 
         ["Rossignol Temptation 82 Ski - Women's","Temptation 82"], 
         ["Rossignol Temptation 88 Ski - Women's","Temptation 88"], 
-        ["S7", "S7"],
-        ["Samba - Women", "Samba"],
+        ["Samba Ski - Women", "Samba"],
         ["Salomon BBR 10.0 Ski","BBR 10.0"], 
         ["Salomon BBR 8.0 Ski","BBR 8.0"], 
         ["Salomon BBR 8.9 Ski","BBR 8.9"], 
@@ -134,42 +134,43 @@ class Backcountry
         ["Scott Jib Ski", "Jib"], 
         ["Scott Jib TW Ski", "Jib TW"],
         ["AMP", "AMPerge"],
-        ["Aura - Women", "Aura" ],
-        ["VJJ - Women", "VJJ"],
-        ["TSTw - Women", "TSTw"],
+        ["Aura Ski - Women", "Aura" ],
+        ["VJJ Ski - Women", "VJJ"],
+        ["TSTw Ski - Women", "TSTw"],
         ["Cantika Ski - Women", "Cantika"],
-        ["Century - Women", "Century"],
+        ["Century Ski - Women", "Century"],
         ["Cody", "CODY"],
         ["DarkSide", "Darkside"],
         ["Deathwish", "Death Wish"],
-        ["Empress - Women", "Empress"],
-        ["SuperSweet with Marker ER3 10.0 Binding - Women", "SuperSweet + Marker ER3 10.0 Bindings - Women's"],
-        ["SuperStitious with Marker ERS 11.0 TC Binding - Women", "SuperStitious + Marker ERS 11.0 TC Bindings - Women's"],
-        ["Superific with Marker ER3 10.0 Binding - Women", "SuperIfic + Marker ER3 10.0 Bindings - Women's"],
-        ["SuperGlide with Marker ERS 11.0 TC Binding - Women", "SuperGlide + Marker ERS 11.0 TC Bindings - Women's"],
-        ["SuperFree with Marker ER3 10.0 Binding - Women", "SuperFree + Marker ER3 10.0 Bindings - Women's"],
+        ["Empress Ski - Women", "Empress"],
+        ["SuperSweet Ski with Marker ER3 10.0 Binding - Women", "SuperSweet + Marker ER3 10.0 Bindings - Women's"],
+        ["SuperStitious Ski with Marker ERS 11.0 TC Binding - Women", "SuperStitious + Marker ERS 11.0 TC Bindings - Women's"],
+        ["Superific Ski with Marker ER3 10.0 Binding - Women", "SuperIfic + Marker ER3 10.0 Bindings - Women's"],
+        ["SuperGlide Ski with Marker ERS 11.0 TC Binding - Women", "SuperGlide + Marker ERS 11.0 TC Bindings - Women's"],
+        ["SuperFree Ski with Marker ER3 10.0 Binding - Women", "SuperFree + Marker ER3 10.0 Bindings - Women's"],
         ["Enforcer Ti", "Enforcer"],
-        ["SuperBurnin with Marker ERS 11.0 TC Binding - Women", "SuperBurnin + Marker ERS 11.0 TC Bindings - Women's"],
-        ["Sierra - Women", "Sierra"],
-        ["SideKick - Women", "SideKick"],
-        ["Shadow - Women", "Shadow"],
-        ["Samba - Women", "Samba"],
-        ["S7 - Women", "S7"],
-        ["S3 - Women", "S3"],
-        ["S2 - Women", "S2"],
+        ["SuperBurnin Ski with Marker ERS 11.0 TC Binding - Women", "SuperBurnin + Marker ERS 11.0 TC Bindings - Women's"],
+        ["Sierra Ski - Women", "Sierra"],
+        ["SideKick Ski - Women", "SideKick"],
+        ["Shadow Ski - Women", "Shadow"],
+        ["Samba Ski - Women", "Samba"],
+        ["S7 Ski - Women", "S7"],
+        ["S3 Ski - Women", "S3"],
+        ["S2 Ski - Women", "S2"],
+        ["S7", "S7"],
         ["RTM 84 with IPT Wideride 12.0 D Binding", "RTM 84 + iPT Wide Ride 12.0 Bindings"],
-        ["Nemesis - Women", "Nemesis"],
+        ["Nemesis Ski - Women", "Nemesis"],
         ["Freeride NAS reCurve", "Freeride NAS ReCurve"],
-        ["MissDemeanor - Women", "MissDemeanor"], 
-        ["MissConduct - Women", "MissConduct"], 
-        ["MissBehaved - Women", "MissBehaved"],
+        ["MissDemeanor Ski - Women", "MissDemeanor"], 
+        ["MissConduct Ski - Women", "MissConduct"], 
+        ["MissBehaved Ski - Women", "MissBehaved"],
         ["Fully Functional Five NAS", "Fully Functional Five ReCurve"],
-        ["Geisha 100 - Women", "Geisha 100"],
+        ["Geisha 100 Ski - Women", "Geisha 100"],
         ["Hell and Back", "Hell & Back"],
-        ["Hot Mess - Women", "Hot Mess"],
-        ["Madonna - Women", "Madonna"],
-        ["Kenja - Women", "Kenja"],
-        ["Kiku - Women", "Kiku"]]
+        ["Hot Mess Ski - Women", "Hot Mess"],
+        ["Madonna Ski - Women", "Madonna"],
+        ["Kenja Ski - Women", "Kenja"],
+        ["Kiku Ski - Women", "Kiku"]]
 
       name_array.each do |name_pair|
         if @scraped_name.include?("#{name_pair[0]}")

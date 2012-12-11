@@ -74,7 +74,7 @@
                       <td><%= spec.tip_width %></td>
                       <td><%= spec.waist_width %></td>
                       <td><%= spec.tail_width %></td>
-                      <td><%= spec.weight %></td>
+                      <td><%= number_with_delimiter(spec.weight, :delimiter => ",") %></td>
                       </tr>
                     <% end %>
                   </tbody>

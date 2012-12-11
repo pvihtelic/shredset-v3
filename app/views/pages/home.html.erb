@@ -18,7 +18,7 @@
 			<div class="tabbable"> <!-- Only required for left/right tabs -->
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a href="#tab1" data-toggle="tab">All Mountain</a></li>
-			    <li><a href="#tab2" data-toggle="tab">Powder</a></li>
+			    <li><a href="#tab2" data-toggle="tab">Big Mountain</a></li>
 			    <li><a href="#tab3" data-toggle="tab">Carving</a></li>
 			    <li><a href="#tab4" data-toggle="tab">Twin Tip</a></li>
 			    <li><a href="#tab5" data-toggle="tab">Park</a></li>
@@ -59,7 +59,7 @@
 			    <div class="tab-pane" id="tab2">
 			    <div class="carousel slide span8" id="myCarousel2">
 				<div class="carousel-inner">
-					<% @powder_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
+					<% @big_mountain_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>

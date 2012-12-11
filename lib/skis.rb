@@ -361,7 +361,7 @@ class Skis
 			elsif @ski_type.include? "Freestyle"
 				@ski_type = "Park & Pipe Skis"
 			elsif @ski_type.include? "Powder"
-				@ski_type = "Powder Skis"
+				@ski_type = "Big Mountain"
 			elsif @name.include? "Board"
 				@ski_type = "Ski Boards"
 			end
@@ -381,7 +381,7 @@ class Skis
 
 			# #price 
 			price = data.css(".productinfo .salesprice")
-			price = price.text.strip
+			price = price.text.strip.gsub(',','')
 			@price = price.delete("$")
 			
 

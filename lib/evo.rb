@@ -60,7 +60,7 @@ class Evo
       if !data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text.empty?
         ski_type = data.xpath('//span/a[contains(@href, "/all-mountain.aspx")]').text
       elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
-        ski_type = "Powder Skis"
+        ski_type = "Big Mountain Skis"
       elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
         ski_type = "Twin Tip Skis"
       elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
@@ -81,7 +81,7 @@ class Evo
         gender = "Men's"
       end
 
-      @price = data.css("#price").text.strip.gsub('$','')
+      @price = data.css("#price").text.strip.gsub('$','').gsub(',','')
       # puts @price
 
       image_link_relative = data.css(".mainImageContainer").map{|link| link['href']}
