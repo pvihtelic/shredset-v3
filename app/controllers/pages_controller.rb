@@ -18,7 +18,6 @@ class PagesController < ApplicationController
         
         #ALL MOUNTAIN
         @all_mountain_top_skis = []
-        @twin_tip_top_skis = []
         @big_mountain_top_skis = []  
         @park_and_pipe_top_skis = []
         @alpine_touring_top_skis = []
@@ -30,10 +29,6 @@ class PagesController < ApplicationController
           all_mountain_top_ski.each do |ski_object|
             @all_mountain_top_skis << ski_object
           end
-          twin_tip_top_ski = Ski.where(:ski_type => "Twin Tip Skis").where(:id => review.ski_id).where(:gender=>"Men's")
-          twin_tip_top_ski.each do |ski_object|
-            @twin_tip_top_skis << ski_object
-          end  
           big_mountain_top_ski = Ski.where(:ski_type => "Big Mountain Skis").where(:id => review.ski_id).where(:gender=>"Men's")
           big_mountain_top_ski.each do |ski_object|
             @big_mountain_top_skis << ski_object

@@ -55,7 +55,9 @@ class Skis
 			elsif brand_text.include? "Lib Tech"
 				@brand = "Lib Tech"
 			elsif brand_text.include? "Scott Jib TW"
-				@brand = "Scott"	
+				@brand = "Scott"
+			elsif brand_text.include? "Boarder"
+				@brand = "Boarder"		
 			else
 				brand_array = brand_text.split ' '
 				@brand = brand_array[0]
@@ -338,6 +340,8 @@ class Skis
 			@model_year = model_year.slice(/\d{4}/)
 			if @model_year.nil?
 				@model_year = 2010
+			elsif @model_year == 5500
+				@model_year = 2013
 			end
 			
 
@@ -361,8 +365,10 @@ class Skis
 			elsif @ski_type.include? "Freestyle"
 				@ski_type = "Park & Pipe Skis"
 			elsif @ski_type.include? "Powder"
-				@ski_type = "Big Mountain"
+				@ski_type = "Big Mountain Skis"
 			elsif @name.include? "Board"
+				@ski_type = "Ski Boards"
+			elsif @ski_type == "Yes"
 				@ski_type = "Ski Boards"
 			end
 

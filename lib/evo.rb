@@ -62,7 +62,7 @@ class Evo
       elsif !data.xpath('//span/a[contains(@href, "/powder.aspx")]').text.empty?
         ski_type = "Big Mountain Skis"
       elsif !data.xpath('//span/a[contains(@href, "/twin-tip.aspx")]').text.empty?
-        ski_type = "Twin Tip Skis"
+        ski_type = "Big Mountain Skis"
       elsif !data.xpath('//span/a[contains(@href, "/park-pipe.aspx")]').text.empty?
         ski_type = "Park & Pipe Skis"
       elsif !data.xpath('//span/a[contains(@href, "/alpine-touring.aspx")]').text.empty?
@@ -88,15 +88,15 @@ class Evo
       image_link = "http://www.evo.com#{image_link_relative.join}"
       # puts image_link
 
-      average_review_object = data.css(".average").text
-      if !average_review_object.empty?
+      average_review_object = data.css(".average").text.to_i
+      if !average_review_object.blank?
         average_review = average_review_object.to_i*19 + (rand(1-5))
       else
         average_review = "na"
       end
 
-      review_object = data.css(".pr-snapshot-average-based-on-text").text.gsub(/[^\d]/,"")
-      if !review_object.empty?
+      review_object = data.css(".pr-snapshot-average-based-on-text").text.gsub(/[^\d]/,"").to_i
+      if !review_object.blank?
         number_of_reviews = review_object
       else
         number_of_reviews = "na"

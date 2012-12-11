@@ -243,16 +243,16 @@ class Backcountry
       image_link = @image_link
 
       #average review
-      review = data.css(".product-group-title .rating .rating-value").text
+      review = data.css(".product-group-title .rating .rating-value").text.to_i
       if review == "0"
         @average_review = "na"
-      else
+      elsif review > 0
         @average_review = review.to_i*19 + (rand(1-5))
       end
 
       #number of reviews
-      @number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join ''
-      if @number_of_reviews.empty?
+      @number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join('').to_i
+      if @number_of_reviews.blank?
         @number_of_reviews = "na"
       end
 
@@ -380,5 +380,4 @@ class Backcountry
       end
       end
     end
-  
 end  
