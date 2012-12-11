@@ -336,8 +336,8 @@ class Skis
       puts @name
 
 			#model year
-			model_year = data.css(".productdetail h1.productname").text.to_i
-			@model_year = model_year.slice(/\d{4}/)
+			model_year = data.css(".productdetail h1.productname").text
+			@model_year = model_year.slice(/\d{4}/).to_i
 			if @model_year.nil?
 				@model_year = 2010
 			elsif @model_year == 5500
