@@ -20,8 +20,7 @@
                   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
                 </div>
                 <div>
-                  <h5>Shred Score: <%= @reviews.first.average_review %> points</h5>
-                  <h5>Data Points: <%= @reviews.first.number_of_reviews %></h5>
+                  <h5>Shred Score: <%= @reviews.map(&:average_review).max %> points</h5>
                 </div>
           </div>
           <div class="span6">

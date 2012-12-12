@@ -43,7 +43,7 @@
       											<% end %>
       											<% @price_array.compact.sort! {|x,y| x <=> y} %>
       											<%= @price_array.first %></p>
-      									<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %> points</p>
+      									<p class="thumbnail-label">Reviews: <%= top_ski.reviews.map(&:average_review).max %> points</p>
                         			</div>
                         		</li>
                         		<% end %>
