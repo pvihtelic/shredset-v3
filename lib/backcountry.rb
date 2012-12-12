@@ -245,9 +245,9 @@ class Backcountry
       #average review
       review = data.css(".product-group-title .rating .rating-value").text
       if review == "0"
-        @average_review = "na"
+        @average_review = "0"
       else
-        @average_review = review*19 + (rand(1-5))
+        @average_review = review
       end
 
       #number of reviews

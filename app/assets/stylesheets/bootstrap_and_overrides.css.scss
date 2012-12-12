@@ -151,11 +151,13 @@ div.content-index {
 .content {
   font-family: 'Sanchez', serif;
   background-color: rgba(255,255,255,0.9);
+  margin-left: auto;
+  margin-right: auto;
+  width: 850px;
   padding-top: 20px;
   padding-left: 25px;
   padding-right: 25px;
   height: 100%;
-  margin: 0 -20px 50px; /* negative indent the amount of the padding to maintain the grid system */
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -309,8 +311,8 @@ input.btn.index {
 
 .container {
 	width: auto;
-  margin-left: 225px;
-  margin-right: 225px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .container.index {
