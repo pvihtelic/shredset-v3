@@ -251,7 +251,7 @@ class Backcountry
       if review == "0"
         @average_review = "0"
       else
-        @average_review = review*19 + rand(1..5)
+        @average_review = review*19 + rand(6)
       end
 
       #number of reviews
