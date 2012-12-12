@@ -42,8 +42,10 @@ class SkisController < ApplicationController
 
       @all_skis = Ski.where(:id => ski_ids2)
 
-      if params[:sort_by] == "Price"
+      if params[:sort_by] == "Price Low to High"
         @overlapping_skis = Kaminari.paginate_array(@all_skis.joins(:inventories).order("inventories.price ASC").uniq_by(&:id)).page(params[:page]).per(30)
+      elsif params[:sort_by] == "Price High to Low"
+        @overlapping_skis = Kaminari.paginate_array(@all_skis.joins(:inventories).order("inventories.price DESC").uniq_by(&:id)).page(params[:page]).per(30)
       elsif params[:sort_by] == "Rating"
         @overlapping_skis = Kaminari.paginate_array(@all_skis.joins(:reviews).order("reviews.average_review DESC").uniq_by(&:id)).page(params[:page]).per(30)
       else
