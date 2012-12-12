@@ -14,7 +14,6 @@
 </div>
 <div class="container index">
     <div class="row">    
-        <div class="span4">
             <div class="span12 offset4">
                 <div class="pagination pagination-mini"> 
                     <%= paginate @overlapping_skis %>
@@ -55,15 +54,16 @@
                                 </ul>
                                 </div>
                             </div>
-                <% end %>
+                        <% end %>
                 </ul>
-        </div>
+            
             <% if @overlapping_skis.present? %>
 
             <div class="pagination pagination-mini"> 
               <%= paginate @overlapping_skis %>
             </div>
             <% end %>
+
     </div>
 </div>
 
