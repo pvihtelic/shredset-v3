@@ -2,7 +2,7 @@
     <div class="span3 offset1 index">
             <div class="content-left-home">
                 <% if params[:ski].present? || params[:brand].present? || params[:price_range].present? %> 
-                    <h5 class="search-headline-home">Your Search Returned <%= @all_skis.count %> Skis </h5>
+                    <h5 class="search-headline-home">Your Search Returned <%= number_with_delimiter(@all_skis.count, :delimiter => ',') %> Skis </h5>
                     <h6 class="search-headline-home">Modify your search below</h6> 
                 <% else %>
                     <h5 class="search-headline-home">Search <%= number_with_delimiter(Ski.all.count, :delimiter => ',') %> skis </h5>
@@ -14,7 +14,7 @@
 </div>
 <div class="container index">
     <div class="row">    
-            <div class="span12 offset4">
+            <div class="span12 offset5">
                 <div class="pagination pagination-mini"> 
                     <%= paginate @overlapping_skis %>
                 </div>
@@ -22,6 +22,7 @@
                 <ul class="products">
                 <% @overlapping_skis.each do |ski| %>
                         <li class="product-item">
+
                         <% if ski.images.first.present? %>
                             <div class="index-pictures-container" %>
                                 <div class="index-pictures">
@@ -32,6 +33,7 @@
                                 <ul class="product-details">
                                     <li class="product-details">
                                         <span class="product-title">
+                                            <%= ski.reviews.first.average_review %>
                                         <%= ski.brand.company %> <%= ski.name %> <%= ski.model_year %></br> 
                                         </span>
                                         <% @b = [] %>
@@ -59,7 +61,7 @@
             
             <% if @overlapping_skis.present? %>
 
-            <div class="pagination pagination-mini"> 
+            <div class="pagination pagination-mini bottom"> 
               <%= paginate @overlapping_skis %>
             </div>
             <% end %>
