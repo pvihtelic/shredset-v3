@@ -103,7 +103,6 @@ class Backcountry
         ["Fischer Koa 110 Ski - Women's", "Fischer Koa 110"], 
         ["Fischer Koa 88 Ski - Women's", "Fischer Koa 88"], 
         ["Fischer Koa 98 Ski - Women's", "Koa 98"],
-        ["La Nina Ski - Women", "La Niña"], 
         ["Line Celebrity 85 Ski - Women's", "Celebrity 85"], 
         ["Line Celebrity 90 Ski - Women's", "Celebrity 90"], 
         ["Line Influence 105 Ski", "Influence 105"], 
@@ -248,11 +247,11 @@ class Backcountry
       image_link = @image_link
 
       #average review
-      review = data.css(".product-group-title .rating .rating-value").text
+      review = data.css(".product-group-title .rating .rating-value").text.to_i
       if review == "0"
         @average_review = "0"
       else
-        @average_review = review
+        @average_review = review*19 + rand(1..5)
       end
 
       #number of reviews

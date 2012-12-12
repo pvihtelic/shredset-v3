@@ -88,9 +88,9 @@ class Evo
       image_link = "http://www.evo.com#{image_link_relative.join}"
       # puts image_link
 
-      average_review_object = data.css(".average").text
+      average_review_object = data.css(".average").text.to_i
       if !average_review_object.blank?
-        average_review = average_review_object
+        average_review = average_review_object*19 + rand(1..5)
       else
         average_review = "0"
       end
