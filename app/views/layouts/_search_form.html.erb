@@ -19,7 +19,7 @@
 			    <%= collection_select(:ski, :model_year, @model_years.sort_by(&:model_year).reverse, :model_year, :model_year, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Model Year") %>
 			</div>
 			<div class="field">
-				<%= select_tag "sort_by", options_for_select([['',''], ["Price Low to High", "Price Low to High"], ["Price High to Low", "Price High to Low"], ["Rating", "Rating"]]), :class => "chzn-select", :'data-placeholder' => "Sort By:" %>
+				<%= select_tag "sort_by", options_for_select([['',''], ["Price Low to High", "Price Low to High"], ["Price High to Low", "Price High to Low"], ["Rating", "Rating"]], :selected => params[:sort_by]), :class => "chzn-select", :'data-placeholder' => "Sort By:"%>
 			</div>
 			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
