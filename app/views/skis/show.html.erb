@@ -12,7 +12,7 @@
                   <div class="carousel-inner">
                             <% @image.each_with_index do |item_image, index| %>
                             <div class="<% if index == 0 %>item active<% else %>item<% end %>">
-                                <%= link_to(image_tag(item_image.image_url, :class=>"ski-image"), item_image.image_url) %>
+                                <%= link_to(image_tag(item_image.image_url, :class=>"ski-image"), item_image.ski.inventories.sample.product_url) %>
                             </div>
                             <% end %>
                   </div>
@@ -20,8 +20,7 @@
                   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
                 </div>
                 <div>
-                  <h5>Shred Score: <%= @reviews.first.average_review %> points</h5>
-                  <h5>Data Points: <%= @reviews.first.number_of_reviews %></h5>
+                  <h5 class="shredscore-show-page">Shred Score: <%= @reviews.first.average_review %></h5>
                 </div>
           </div>
           <div class="span6">
