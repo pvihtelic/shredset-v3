@@ -366,7 +366,7 @@ class Skis
 				@ski_type = "Park & Pipe Skis"
 			elsif @ski_type.include? "Powder"
 				@ski_type = "Big Mountain Skis"
-			elsif @ski_type == "2010"
+			elsif @ski_type == "2010" || @ski_type == "2012" || @ski_type == "2013"
 				@ski_type = "Ski Boards"
 			elsif @ski_type == "Yes"
 				@ski_type = "Ski Boards"
