@@ -155,8 +155,8 @@ div.content-index {
   margin-right: auto;
   width: 850px;
   padding-top: 20px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
   height: 100%;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
@@ -269,6 +269,12 @@ input.btn.index {
 }
 
 .page-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.page-header.home {
   margin-top: 20px;
   margin-left: 40px;
   margin-bottom: 20px;

@@ -55,6 +55,12 @@ class PagesController < ApplicationController
 
   def learn
   end
+
+  def about
+  end
+
+  def blog
+  end
   
   end 
 
