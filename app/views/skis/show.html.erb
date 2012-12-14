@@ -36,7 +36,7 @@
                 <tbody>
                   <% @ski.inventories.group_by(&:store).each do |store, s_inventories| %>
                     <tr>
-                      <td><%= link_to store.vendor, s_inventories.first.product_url %></td>
+                      <td><%= link_to "Buy at #{store.vendor}", s_inventories.first.product_url, :class => "btn small" %></td>
                       <td><%= s_inventories.map(&:size_available).join(", ") %></td>
                       <td><%= number_to_currency(s_inventories.first.price) %></td>
                     </tr>
