@@ -254,9 +254,9 @@ div.tabbable {
   float: none;
   font-family: 'Sanchez', serif;
   text-shadow: 0 1px 1px rgba(75, 71, 71, 0.75); 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8000', endColorstr='#FF7500'); /* for IE */
-  background: -webkit-gradient(top, #FF8000, #FF7500); /* for webkit browsers */
-  background: -moz-linear-gradient(top, #FF8000, #FF7500); /* for firefox 3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, from(#FF8000), to(#FF7500));
+  background: -moz-linear-gradient(top, #FF8000, #FF7500);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF8000', endColorstr='#FF7500');
   }
 
 input.btn {
@@ -270,9 +270,9 @@ input.btn.index {
 
 .btn.learn {
   background-color: #D0D0D0 !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D0D0D0', endColorstr='#C8C8C8'); /* for IE */
-  background: -webkit-gradient(top, #D0D0D0, #C8C8C8); /* for webkit browsers */
-  background: -moz-linear-gradient(top, #D0D0D0, #C8C8C8); /* for firefox 3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, from(#D0D0D0), to(#C8C8C8));
+  background: -moz-linear-gradient(top, #D0D0D0, #C8C8C8);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#D0D0D0', endColorstr='#C8C8C8');
   border-color: #C0C0C0;
   margin-left: 10px;
   background-image: none; 
