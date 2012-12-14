@@ -314,8 +314,6 @@ class Backcountry
 
       @model_year = 2013
 
-      # puts @sizes
-
       @product_link = product_link
 
       if @name.include?("Binding") || @name.include?("Backcountry.com")
@@ -326,23 +324,10 @@ class Backcountry
           end
 
           image = Image.create(:image_url => @image_link, :ski_id => @ski.id)
-          # puts image.image_url
 
-          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-
-      # elsif Ski.where(['name LIKE ?', "%#{@name.split(' ')[0]}%"]).exists?
-      #     # @ski = Ski.where(:name => @name).first
-
-      #     @ski2 = Ski.where("name LIKE ?", "%#{@name.split(' ')[0]}%").first
-
-      #     @sizes.each do |size_available|
-      #       Inventory.create(:price => @price, :product_url => @product_link, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
-      #     end
-
-      #     image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
-      #     # puts image.image_url
-
-      #     review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)
+          if @average_review > 0
+            review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
+          end
       elsif Ski.where(:name => @name).exists?
         if Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).exists?
 
@@ -354,10 +339,10 @@ class Backcountry
             end
 
             image = Image.create(:image_url => @image_link, :ski_id => @ski8.id)
-            # puts image.image_url
 
-            review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski8.id, :store_id => @store.id)
-         
+            if @average_review > 0
+              review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski8.id, :store_id => @store.id)
+            end
 
         else
           @ski2 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
@@ -367,9 +352,11 @@ class Backcountry
           end
 
           image = Image.create(:image_url => @image_link, :ski_id => @ski2.id)
-          # puts image.image_url
-
-          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)    
+          
+          if @average_review > 0
+            review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski2.id, :store_id => @store.id)    
+        end
+        
         end  
       else
           @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand.id)
@@ -381,8 +368,9 @@ class Backcountry
           image = Image.create(:image_url => @image_link, :ski_id => @ski3.id)
           # puts image.image_url
 
-          review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski3.id, :store_id => @store.id)
-          # puts review.average_review
+          if @average_review > 0
+            review = Review.create(:average_review => @average_review, :number_of_reviews => @number_of_reviews, :ski_id => @ski3.id, :store_id => @store.id)
+          end  
       end
       end
     end

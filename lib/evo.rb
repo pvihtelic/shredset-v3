@@ -20,8 +20,6 @@ class Evo
       end
     end
 
-    # puts @links_array.inspect
-
     @store = Store.create(:store_url => "http://www.evo.com/", :vendor => "evo.com")
 
     @links_array.each do |product_link|
@@ -162,10 +160,10 @@ class Evo
       end
 
       image = Image.create(:image_url => image_link, :ski_id => @ski.id)
-      # puts image.image_url
 
-      review = Review.create(:average_review => average_review, :number_of_reviews => number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-      # puts review.average_review
+      if average_review > 0
+        review = Review.create(:average_review => average_review, :number_of_reviews => number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
+      end  
 
     end
     # puts @ski.name

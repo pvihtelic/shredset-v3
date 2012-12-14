@@ -412,8 +412,6 @@ class Skis
           end
 
           image = Image.create(:image_url => @big_image_link, :ski_id => @ski.id)
-
-          review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski.id, :store_id => @store.id)
 		
 	      elsif Ski.where(:name => @name).exists?
 	      	if Ski.where(:name => @name).where(:model_year => @model_year).where(:gender => @gender).exists?
@@ -424,7 +422,6 @@ class Skis
 		            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski4.id, :size_available => size_available, :store_id => @store.id)
 		          end
 	          	  image = Image.create(:image_url => @big_image_link, :ski_id => @ski4.id)
-	          	  review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski4.id, :store_id => @store.id)
 	      	  
 
 	      	elsif Ski.where(:name => @name).where(:model_year => @model_year).exists?
@@ -436,7 +433,6 @@ class Skis
 		            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski1.id, :size_available => size_available, :store_id => @store.id)
 		          end
 		      	image = Image.create(:image_url => @big_image_link, :ski_id => @ski1.id)
-		      	review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski1.id, :store_id => @store.id)
 		      
 
 	        else
@@ -446,7 +442,6 @@ class Skis
 	            Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski2.id, :size_available => size_available, :store_id => @store.id)
 	          end
 	          image = Image.create(:image_url => @big_image_link, :ski_id => @ski2.id)
-	          review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski2.id, :store_id => @store.id)
 	        end
 	      else
 	      	 @ski3 = Ski.create(:name => @name, :ability_level => "na", :description => @description, :gender => @gender, :model_year => @model_year, :rocker_type => @rocker_type, :ski_type => @ski_type, :brand_id => @brand_final.id)
@@ -455,7 +450,6 @@ class Skis
             Inventory.create(:price => @price, :product_url => @url2, :ski_id => @ski3.id, :size_available => size_available, :store_id => @store.id)
           end
           image = Image.create(:image_url => @big_image_link, :ski_id => @ski3.id)
-          review = Review.create(:average_review => 0, :number_of_reviews => 0, :ski_id => @ski3.id, :store_id => @store.id)
 	      end
 
 		 	# average_review
