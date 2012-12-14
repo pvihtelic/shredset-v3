@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="span3 offset1">
 	<div class="content-left-home">
-		<h5 class="search-headline-home">Search <%= number_with_delimiter(Ski.all.count, :delimiter => ',') %> skis </h5>
+		<h5 class="search-headline-home">Search <% if Ski.all.count > 1000 %><%= "1,000+" %><% else %> <%=number_with_delimiter(Ski.all.count, :delimiter => ',') %><% end %> skis </h5>
 		<h6 class="search-headline-home">Be as specific as you'd like</h6>	
 	    <%= render 'layouts/search_form' %>
 	</div>

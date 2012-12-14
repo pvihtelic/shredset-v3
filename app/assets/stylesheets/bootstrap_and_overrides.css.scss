@@ -162,6 +162,7 @@ div.content-index {
   padding-top: 20px;
   padding-left: 30px;
   padding-right: 30px;
+  padding-bottom: 15px;
   margin-bottom: 50px;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
@@ -283,7 +284,7 @@ input.btn.index {
 
 .page-header {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   border: none;
 }
 
@@ -392,6 +393,10 @@ div.thumbnail {
   width: 230px;
 }
 
+.chzn-container {
+  font-family: Arial;
+}
+
 .carousel-control {
   background: none;
   color: black;
@@ -417,16 +422,19 @@ ul.thumbnails {
   margin-left: auto;
 }
 
-div.navbar-bottom {
+.navbar-fixed-bottom {
+  margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
 }
 
 
-.footer-nav {
-  color: #fff;
+.footer-nav, .footer-nav a {
+  color: #FF6600;
+  font-size: 16px;
+  text-shadow: black 0.1em 0.1em 0.1em;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 10px;
   display: inline;
   list-style-type: none;
 }
@@ -448,6 +456,9 @@ div.navbar-bottom {
 .pagination a {
   background-color: transparent;
   border: none;
+  color: #FF6600;
+  text-shadow: black 0.1em 0.1em 0.1em;
+  font-size: 16px;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
@@ -466,24 +477,15 @@ div.navbar-bottom {
 
 .pagination ul {
   display: inline-block;
-  margin: 10px auto;
+  margin: 0 auto 75px auto;
   width: 85%;
 }
 
-
-
-.pagination li:first-child a {
+.pagination li:first-child a, .pagination li:last-child a, .pagination .active a {
+  color: #FF6600;
   border: none;
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  border-radius: 6px 6px 6px 6px;
-  -webkit-box-shadow: 5px 5px 4px rgba(0,0,0,.5);
-  -moz-box-shadow: 5px 5px 4px rgba(0,0,0,.5);
-  box-shadow: 5px 5px 4px rgba(0,0,0,.5); 
-}
-
-.pagination li:last-child a {
-  border: none;
+  font-size: 16px;
+  text-shadow: black 0.1em 0.1em 0.1em;
   -webkit-border-radius: 6px 6px 6px 6px;
   -moz-border-radius: 6px 6px 6px 6px;
   border-radius: 6px 6px 6px 6px;
