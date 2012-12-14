@@ -5,7 +5,7 @@
                     <h5 class="search-headline-home">Your Search Returned <%= number_with_delimiter(@all_skis.count, :delimiter => ',') %> Skis </h5>
                     <h6 class="search-headline-home">Modify your search below</h6> 
                 <% else %>
-                    <h5 class="search-headline-home">Search <%= number_with_delimiter(Ski.all.count, :delimiter => ',') %> skis </h5>
+                    <h5 class="search-headline-home">Search <% if Ski.all.count > 1000 %><%= "1,000+" %><% else %> <%=number_with_delimiter(Ski.all.count, :delimiter => ',') %><% end %> skis </h5>
                     <h6 class="search-headline-home">Be as specific as you'd like</h6>
                 <% end %>
                 <%= render 'layouts/search_form' %>
