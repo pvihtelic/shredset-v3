@@ -91,8 +91,10 @@ class Evo
       average_review_object = data.css(".average").text.to_i
       if !average_review_object.blank?
         average_review = average_review_object*19 + rand(6)
+      elsif average_review_object == 0
+        average_review = 0
       else
-        average_review = "0"
+        average_review = 0
       end
 
       review_object = data.css(".pr-snapshot-average-based-on-text").text.gsub(/[^\d]/,"").to_i

@@ -248,16 +248,18 @@ class Backcountry
 
       #average review
       review = data.css(".product-group-title .rating .rating-value").text.to_i
-      if review == "0"
-        @average_review = "0"
-      else
+      if !review.blank?
         @average_review = review*19 + rand(6)
+      elsif review == 0
+        @average_review = 0
+      else
+        average_review = 0
       end
 
       #number of reviews
       @number_of_reviews = data.css(".product-group-title .rating-count a").text.scan(/\d/).join('').to_i
       if @number_of_reviews.blank?
-        @number_of_reviews = "na"
+        @number_of_reviews = 0
       end
 
       #turning radius
