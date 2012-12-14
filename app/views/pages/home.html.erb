@@ -19,7 +19,6 @@
 			  <ul class="nav nav-tabs">
 			    <li class="active"><a href="#tab1" data-toggle="tab">All Mountain</a></li>
 			    <li><a href="#tab2" data-toggle="tab">Big Mountain</a></li>
-			    <li><a href="#tab3" data-toggle="tab">Carving</a></li>
 			    <li><a href="#tab5" data-toggle="tab">Park</a></li>
 			    <li><a href="#tab6" data-toggle="tab">Alpine Touring</a></li>
 			    <li><a href="#tab7" data-toggle="tab">Women's</a></li>
@@ -43,7 +42,7 @@
       											<% end %>
       											<% @price_array.compact.sort! {|x,y| x <=> y} %>
       											<%= @price_array.first %></p>
-      									<p class="thumbnail-label">Reviews: <%= top_ski.reviews.map(&:average_review).max %> points</p>
+      									<p class="thumbnail-label">Shred Score: <%= top_ski.reviews.map(&:average_review).max %> pts</p>
                         			</div>
                         		</li>
                         		<% end %>
@@ -58,7 +57,7 @@
 			    <div class="tab-pane" id="tab2">
 			    <div class="carousel slide home" id="myCarousel2">
 				<div class="carousel-inner">
-					<% @big_mountain_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
+					<% @big_mountain_top_skis[0..5].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -86,41 +85,10 @@
 				<a data-slide="next" href="#myCarousel2" class="right carousel-control">›</a>
 				</div>
 			    </div>
-			    <div class="tab-pane" id="tab3">
-			    <div class="carousel slide home" id="myCarousel3">
-				<div class="carousel-inner">
-					<% @carving_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
-                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
-                        	<ul class="thumbnails">
-                            	<% top_three_skis.each do |top_ski| %>
-                            	<li class="span1">
-				            		<div class="thumbnail">
-                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
-                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
-      									<p class="thumbnail-label">
-      										<% @price_array = []%>
-	    									  <% top_ski.inventories.each do |inventory| %>
-	    									    <% @price_array << number_to_currency(inventory.price) %>
-	    									  <% end %>
-	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
-	    									  <%= @price_array.first %></p>
-	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %> points</p>
-                        			</div>
-                        		</li>
-                        		<% end %>
-                        	</ul>	
-                  		</div>
-                        <% end %>			
-				</div>
-				<a data-slide="prev" href="#myCarousel3" class="left carousel-control">‹</a>
-				<a data-slide="next" href="#myCarousel3" class="right carousel-control">›</a>
-				</div>
-			    </div>
 			    <div class="tab-pane" id="tab5">
 			    <div class="carousel slide home" id="myCarousel5">
 				<div class="carousel-inner">
-					<% @park_and_pipe_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
+					<% @park_and_pipe_top_skis[0..5].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
@@ -148,41 +116,10 @@
 				<a data-slide="next" href="#myCarousel5" class="right carousel-control">›</a>
 				</div>
 			    </div>
-			    <div class="tab-pane" id="tab6">
-			    <div class="carousel slide home" id="myCarousel6">
-				<div class="carousel-inner">
-					<% @alpine_touring_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
-                        <div class="<% if index == 0 %>item active<% else %>item<% end %>">
-                        	<ul class="thumbnails">
-                            	<% top_three_skis.each do |top_ski| %>
-                            	<li class="span1">
-				            		<div class="thumbnail">
-                            			<%= link_to(image_tag(top_ski.images.first.image_url, :class=>"ski-image"), "/skis/#{top_ski.id}") %>
-                        				<h5 class="thumbnail-label"><%= top_ski.name %></h5>
-      									<p class="thumbnail-label">
-      										<% @price_array = []%>
-	    									  <% top_ski.inventories.each do |inventory| %>
-	    									    <% @price_array << number_to_currency(inventory.price) %>
-	    									  <% end %>
-	    									  <!-- not sure that sort is working -->
-	    									  <% @price_array.compact.sort! {|x,y| x <=> y } %>
-	    									  <%= @price_array.first %></p>
-	    								<p class="thumbnail-label">Reviews: <%= top_ski.reviews.first.average_review %> points</p>
-                        			</div>
-                        		</li>
-                        		<% end %>
-                        	</ul>	
-                  		</div>
-                        <% end %>			
-				</div>
-				<a data-slide="prev" href="#myCarousel6" class="left carousel-control">‹</a>
-				<a data-slide="next" href="#myCarousel6" class="right carousel-control">›</a>
-				</div>
-			    </div>
 			    <div class="tab-pane" id="tab7">
 			    <div class="carousel slide home" id="myCarousel7">
 				<div class="carousel-inner">
-					<% @womens_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
+					<% @womens_top_skis[0..5].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
