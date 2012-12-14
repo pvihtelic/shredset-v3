@@ -11,7 +11,7 @@
 	</div>
 	</div>        
 
-	<div class="span10 offset1">
+	<div class="span10">
 		<div class="content-home-page">
 			<h5 class="carousel-tagline-homepage">Top 3 Reviewed Skis by Category</h5>
 
@@ -28,7 +28,7 @@
 			    <div class="tab-pane active" id="tab1">  
 			    <div class="carousel slide home" id="myCarousel">
 				<div class="carousel-inner">
-					<% @all_mountain_top_skis[0..11].each_slice(3).with_index do |top_three_skis, index| %>
+					<% @all_mountain_top_skis[0..5].each_slice(3).with_index do |top_three_skis, index| %>
                         <div class="<% if index == 0 %>item active<% else %>item<% end %>">
                         	<ul class="thumbnails">
                             	<% top_three_skis.each do |top_ski| %>
