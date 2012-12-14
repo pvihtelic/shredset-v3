@@ -87,10 +87,8 @@ class Evo
       # puts image_link
 
       average_review_object = data.css(".average").text.to_i
-      if !average_review_object.blank?
+      if average_review_object > 0
         average_review = average_review_object*19 + rand(6)
-      elsif average_review_object == 0
-        average_review = 0
       else
         average_review = 0
       end
@@ -163,7 +161,7 @@ class Evo
 
       if average_review > 0
         review = Review.create(:average_review => average_review, :number_of_reviews => number_of_reviews, :ski_id => @ski.id, :store_id => @store.id)
-      end  
+      end 
 
     end
     # puts @ski.name
