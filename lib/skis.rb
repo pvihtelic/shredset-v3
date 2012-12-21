@@ -358,10 +358,10 @@ class Skis
 			
 			# #ski type
 			@ski_type = data.css("#pdpTab3 :nth-child(3) .value").text.strip
-			if @ski_type.include? "All-Mountain"
-				@ski_type = "All Mountain Skis"
-			elsif @name.include? "Binding"
+			if @name.include? "Binding"
 				@ski_type = "All Mountain Ski Packages"
+			elsif @ski_type.include? "All-Mountain"
+				@ski_type = "All Mountain Skis"
 			elsif @ski_type.include? "Frontside"
 				@ski_type = "Carving Skis"
 			elsif @ski_type.include? "Freestyle"

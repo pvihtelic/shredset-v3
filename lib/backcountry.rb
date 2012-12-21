@@ -114,6 +114,8 @@ class Backcountry
         ["Madonna Ski - Women", "Madonna"],
         ["Millennium Ski - Women", "Millennium"],
         ["Moment Belafonte Ski", "Belefonte"],
+        ["Moment Bibby Pro Model", "Bibby Pro"],
+        ["Moment PB&J", "PB & J"],
         ["Rossignol Experience 88 Ski","Experience 88"], 
         ["Rossignol Experience 98 Ski","Experience 98"], 
         ["Rossignol Temptation 82 Ski - Women's","Temptation 82"], 
