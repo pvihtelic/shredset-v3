@@ -339,13 +339,20 @@ class Skis
 
 			#model year
 			model_year = data.css(".productdetail h1.productname").text
-			@model_year = model_year.slice(/\d{4}/).to_i
-			if @model_year.nil?
-				@model_year = 2010
-			elsif @model_year == 5500
-				@model_year = 2013
+			if !model_year.nil?
+				@model_year = model_year.slice(/\d{4}/).to_i
+				if @model_year.nil?
+					@model_year = 2010
+				elsif @model_year == 5500
+					@model_year = 2013
+				elsif @model_year == 9000
+					@model_year = 2013
+				elsif @model_year == 3500
+					@model_year = 2013
+				elsif @model_year == 0
+					@model_year = 2013			
+				end
 			end
-			
 
 			# #description
 			@description = data.css("#pdpTab2 p").text
