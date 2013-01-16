@@ -349,6 +349,8 @@ class Skis
 					@model_year = 2013
 				elsif @model_year == 3500
 					@model_year = 2013
+				elsif @model_year == 3900
+					@model_year = 2013	
 				elsif @model_year == 0
 					@model_year = 2013			
 				end
