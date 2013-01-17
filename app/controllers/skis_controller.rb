@@ -19,7 +19,9 @@ class SkisController < ApplicationController
       company = params[:brand][:company].reject(&:blank?)
       name = params[:ski][:name].reject(&:blank?)
       price_range = params[:price_range][:price_range]
-      model_year = params[:ski][:model_year].reject(&:blank?)
+      if !params[:ski][:model_year].nil?
+        model_year = params[:ski][:model_year].reject(&:blank?)
+      end
       # raise ski_type.any?.inspect
 
       @ski = Ski.new

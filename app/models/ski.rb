@@ -29,7 +29,7 @@ class Ski < ActiveRecord::Base
     if name.any?
       @skis = @skis.where(:name => name)
     end
-    if model_year.any?
+    if !model_year.nil?
       @skis = @skis.where(:model_year => model_year)
     end
     return @skis
