@@ -1,6 +1,6 @@
 
-	    <%= form_tag skis_url, :method=>:get do %>
-	    	<div class="field">
+	  <%= form_tag skis_url, :method=>:get do %>
+	    <div class="field">
 			    <%= collection_select(:ski, :ski_type, @ski_types.sort_by(&:ski_type), :ski_type, :ski_type, {}, :multiple => true, :class=>'chzn-select', :'data-placeholder' => "Enter Ski Type") %>
 			</div>
 			<div class="field">
@@ -16,7 +16,7 @@
 			    <%= collection_select(:price_range, :price_range, @price_ranges, :price_range, :price_range, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Price Range") %>
 			</div>
 			<div class="field">
-			    <%= collection_select(:ski, :model_year, @model_years.sort_by(&:model_year).reverse, :model_year, :model_year, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Model Year") %>
+			    <%= collection_select(:model_year, :model_year, @model_years.sort_by(&:model_year), :model_year, :model_year, {}, :multiple => true, :class => "chzn-select", :'data-placeholder' => "Enter Model Year") %>
 			</div>
 			<div class="field">
 				<%= select_tag "sort_by", options_for_select([['',''], ["Price Low to High", "Price Low to High"], ["Price High to Low", "Price High to Low"], ["Rating", "Rating"]], :selected => params[:sort_by]), :class => "chzn-select", :'data-placeholder' => "Sort By:"%>
@@ -24,4 +24,4 @@
 			<div class="field">
 			    <%= submit_tag "Search", :class=>"btn" %>
 			</div>			
-	    <% end %>
+	  <% end %>
