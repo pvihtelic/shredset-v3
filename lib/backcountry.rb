@@ -236,6 +236,9 @@ class Backcountry
 
       #price
       @price = data.css(".qa-low-price, .low-price").text.gsub(',','').gsub('$','')
+      if @price.blank?
+        @price = data.css(".qa-high-price, .high-price").text.gsub(',','').gsub('$','')
+      end
       # puts @price
 
 
