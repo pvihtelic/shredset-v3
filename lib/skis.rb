@@ -371,6 +371,8 @@ class Skis
 				@ski_type = "All Mountain Ski Packages"
 			elsif @ski_type.include? "All-Mountain"
 				@ski_type = "All Mountain Skis"
+			elsif @ski_type.include? "shipment"
+				@ski_type = "All Mountain Skis"	
 			elsif @ski_type.include? "Frontside"
 				@ski_type = "Carving Skis"
 			elsif @ski_type.include? "Freestyle"
