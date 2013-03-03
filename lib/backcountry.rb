@@ -235,8 +235,9 @@ class Backcountry
 
 
       #price
-      @price = data.css(".price-integer, .price-fraction").text.gsub(',','')
+      @price = data.css(".qa-low-price, .low-price").text.gsub(',','').gsub('$','')
       # puts @price
+
 
       #image link
       image_href = data.css("#product_image .wraptocenter a")
