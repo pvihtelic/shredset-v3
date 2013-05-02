@@ -115,7 +115,7 @@ class Evo
         'Tip Width (mm)' => :tip_width,
         'Waist Width (mm)' => :waist_width,
         'Tail Width (mm)' => :tail_width,
-        'Indv. Ski Weight (g)' => :weight,
+        'Indiv. Ski Weight (g)' => :weight,
         'Weight (g)' => :weight
       }
 
